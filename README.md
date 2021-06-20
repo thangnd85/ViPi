@@ -156,7 +156,7 @@ Cửa sổ nano hiện lên, paste dòng sau
 ```sh
 [program:ViPi]
 directory=/home/pi
-command=/bin/bash -c 'env/bin/python -u ./ViPi/src/main.py'
+command=/bin/bash -c 'env/bin/python -u ./ViPi/src/start.py'
 numprocs=1
 autostart=true
 autorestart=true
@@ -247,7 +247,7 @@ Tăng giảm âm thanh: đặt/thay đổi âm lượng 0-100
 Tắt nhạc: tắt nhạc
 Chuyển bài chỉ áp dụng khi phát tự động: bài tiếp theo/ bài hát trước
 Phát một bài hát: Phát bài, phát nhạc+()
-Phát nhiều bài bài hát khi dùng main.py: Phát tự động + (), phát danh sách+()
+Phát nhiều bài bài hát khi dùng start.py: Phát tự động + (), phát danh sách+()
 Phát nhiều bài bài hát khi dùng start.py: Phát + ()
 phát radio:   radio + (tên đài) ví dụ Radio bà rịa vũng tàu
 Lịch âm: Lịch âm hoặc âm lịch + (hôm nay, qua , mai ,mốt)
