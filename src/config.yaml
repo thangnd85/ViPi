@@ -1,0 +1,262 @@
+#Config file for declaring custom actions'parameters. The parameters have been listed here in alphabetical order (A-Z).
+ctr_led:
+  #  Set type mic to:
+  # 1. 'GEN'   ---> USB-MIC-JACK
+  # 2. 'GEN'   ---> USB-MIC-HDMI
+  # 3. 'AIY'   ---> AIY-HAT
+  # 4. 'R2M'   ---> Respeaker-2-Mic
+  # 5. 'R4M'   ---> Respeaker-4-Mic
+  # 6. 'RUM'   ---> Respeaker-Usb-Mic
+  # 7. 'NEO'   ---> NeoPixel
+  # 8. 'GOO'   ---> Google
+  # 8. 'ALE'   ---> Alexa
+  # 9. 'WS2'   ---> WS2812
+  type: 'R2M'
+
+Startup_voice: 'Disabled'  
+continue_conversation: False #True or False
+Home_Assistant:
+    control: 'Enabled'
+    url: 'http://192.168.1.246:8123'
+    token: 'eyJ0eXAiOiJKV1QiLCJhkkkkkkkkkkkkkUzI1NiJ9.eyJpc3MiOiJhNWJlODRhZGZhMDc0MjMyODcxMjViMjdlODc0NTY1NCIsImlhdCI6MTYyMzAwMjE4MCwiZXhwIjoxOTM4MzYyMTgwfQ.us5XLLZuqzk2dFQhVdYkAjJKBSQlJxuHHQ0AlS4mAyY'
+#Adafruit_IO. Sending commands from Genuine Google Home/Assistant Devices to control Domoticz Tasmota etc.
+ADAFRUIT_IO:
+  ADAFRUIT_IO_CONTROL: 'Disabled'
+  ADAFRUIT_IO_USERNAME: 'ENTER YOUR ADAFRUIT_IO USERNAME HERE'
+  ADAFRUIT_IO_KEY: 'ENTER YOUR ADAFRUIT_IO KEY HERE'
+  FEEDNAME: 'ENTER YOUR ADAFRUIT_IO FEEDNAME THAT YOU WANT TO MONITOR HERE'
+
+#Aftership API to Track Parcels. Create a developer account with Aftership and generate a key.
+#The number of couriers should match the number of tracking codes.
+AFTERSHIP:
+  Key: 'ENTER YOUR AFTERSHIP KEY HERE'
+  Parcels:
+    Courier_Name:
+      - 'usps'
+      - 'fedex'
+    Tracking_Code:
+      - '9400111699000119607527'
+      - '953255692957'
+
+#Custom conversation. Add your queries and expected assistant response. Do not add symbols or special charecters.
+Conversation:
+  Conversation_Control: 'Disabled'
+  question:
+    1:
+      - 'Who are you'
+    2:
+      - 'Do you have a family'
+  answer:
+    1:
+      - 'I am not the one you expect to be'
+      - 'Who do you think I am'
+      - 'What bothers you'
+    2:
+      - 'Nope i am forever alone'
+      - 'The whole world is my family'
+
+
+DIYHUE:
+  DIYHUE_Control: 'Disabled'
+
+
+#ESP control declarations. Follow a similar pattern to add your own list.
+ESP:
+  ESP_Control: 'Disabled'
+  IP: 'xxxxxxxxxxxx' #Enter your ESP's IP here.
+  devicename:
+    - 'Device 1'
+    - 'Device 2'
+    - 'Device 3'
+  deviceid:
+    - '/Device1'
+    - '/Device2'
+    - '/Device3'
+
+#Streaming songs from Gaana.com
+
+
+#API Key for YouTube and Kickstarter Search Engine
+Google_cloud_api_key: "AIzaSyAm3WDBX32iML5Ycux30lveD2"
+
+#GPIOS used in the project. Feel free to change in case.
+Gpios:
+  AIY_indicator:
+    - 0
+  assistant_indicators:
+    - 10
+    - 0
+  ir:
+    - 0
+  picontrol:
+    - 0
+  pushbutton_trigger:
+    - 0
+  servo:
+    - 0
+  stopbutton_music_AIY_pushbutton:
+    - 0
+
+#Preset commands/requests using IR remote/receiver
+IR:
+  IR_Control: 'Disabled'
+  Codes:
+    - 58056
+    - 58072
+    - 58064
+  Commands:
+    - "Start conversation"
+    - "custom stop" #Custom command stop
+    - "what is the time in London"
+
+
+#Change you language. Default is english
+Language:
+  Choice: 'vi-VN'
+  Language options:
+     - 'en-US' #'English'US
+     - 'vi-VN' #VietNam
+
+
+# Enter your Magic Mirror IP
+Mmmip: 'ENTER_YOUR_MAGIC_MIRROR_IP'
+
+#MQTT credentials
+MQTT:
+  MQTT_Control: 'Disabled'
+  IP: 'Enter your MQTT IP ADDRESS here'
+  UNAME: 'Enter your MQTT USERNAME here'
+  PSWRD: 'Enter your MQTT PASSWORD here'
+  TOPIC: 'ENTER your MQTT TOPIC here'
+
+#Text to speak notifications (replay after me workaround for mqtt).
+#You can change command word to something else if your command is mixed with native functions
+Notify_TTS:
+  Notify_TTS_Control: 'Enabled'
+
+
+#Radio station declarations. Follow a similar pattern to add your own stations.
+#Google may not pickup the pronunciation of radio station names, hence 'Radio 1' etc is required.
+Radio_stations:
+  Radio_Control: 'Enabled'
+  stationnames:
+    - 'Bà Rịa Vũng Tàu'
+    - 'Hải Phòng 1'
+    - 'Hải Phòng 2'
+    - 'VOV 1'
+    - 'Radio 5'
+    - 'Radio 6'
+  stationlinks:
+    - 'http://113.163.216.23:1935/live/radio1.sdp_audio/playlist.m3u8'
+    - 'https://live.thhp.vn/radio/102/index.m3u8'
+    - 'https://live.thhp.vn/937/index.m3u8'
+    - 'https://str.vov.gov.vn/vovlive/vov1vov5Vietnamese.sdp_aac/chunklist_w1718990933.m3u8'
+    - 'http://icecast.omroep.nl/3fm-bb-mp3'
+    - 'http://playerservices.streamtheworld.com/api/livestream-redirect/VERONICA.mp3'
+  stationradio:
+    - 'Bà Rịa Vũng Tàu'
+    - 'Hải Phòng FM 102.2MHz'
+    - 'Hải Phòng FM 93.7MHz'
+    - 'VOV 1'
+    - '3 FM'
+    - 'Veronica'
+
+#Pi GPIO control declarations. Follow a similar pattern to add your own list of GPIOs
+Raspberrypi_GPIO_Control:
+  GPIO_Control: 'Disabled'
+  lightnames:
+    - 'kitchen lights'
+    - 'bathroom lights'
+    - 'bedroom lights'
+
+#Custom scripts. Add your scripts commands.
+Script:
+  Script_Control: 'Disabled'
+  scriptname:
+    - 'Script test'
+  scriptcommand:
+    - 'echo test >> /home/pi/test.txt'
+
+#Speech to text conversion
+Speechtotext:
+  Google_Cloud_Speech:
+    Cloud_Speech_Control: 'Disabled'
+    Google_Cloud_Speech_Credentials_Path: "/home/pi/ViPi/src/google.json"
+
+#Spotify credentials. Register for a spotify developer and get the credentials.
+Spotify:
+  Spotify_Control: 'Disabled'
+  client_id: 'ENTER YOUR SPOTIFY CLIENT ID HERE'
+  client_secret: 'ENTER YOUR SPOTIFY CLIENT SECRET HERE'
+  username: 'ENTER YOUR SPOTIFY USERNAME HERE'
+
+#Enter your Tasmota Device details below
+Tasmota_devicelist:
+  Tasmota_Control: 'Disabled'
+  friendly-names:
+    - 'Desk Light'
+    - 'Table Light'
+  ipaddresses:
+    - '192.168.1.36'
+    - '192.168.1.35'
+  portID:
+    - '1'
+    - '1'
+
+#Text to speech conversation
+TextToSpeech:
+  # Set the choice to:
+  # 1. "gTTS" for quotaless text to speech conversion
+  # 2. "Google Cloud" for Google Cloud text to sppech conversion. Free limit 4 Million Characters/month
+  # 3. "VIETTEL" 
+  Choice: 'gTTS'
+  Google_Cloud_TTS_Credentials_Path: "ENTER THE PATH TO YOUR TTS CREDENTIALS FILE HERE"
+  #Voice for the "SAY" function or text to speech. Set it to 'Female' or 'Male' depending on your preference.
+  #Note: This does not change Google's voice. this is only for the speech generated within custom actions.
+  Voice_Gender: 'Male'
+Pushbullet:
+  Pushbullet_API_KEY: 'o.K3D6uw98nPz28eiCdRh3PgNYqYsg7a6I'
+  Pushbullet_Control: 'Enabled'
+#Custom wakeword On/Off.
+#To enable custom wakeword, change status to Enabled and restart the assistant.
+Wakewords:
+  Ok_Google: 'Disabled'
+  Custom_Wakeword: 'Enabled'
+#  Ok_Google: 'Enabled'
+#  Custom_Wakeword: 'Disabled'
+  #Set below to 'Picovoice' or 'Snowboy' as per your choice.
+  Wakeword_Engine: 'Picovoice'
+  Picovoice_wakeword_models:
+    - '/home/pi/ViPi/src/resources/picovoice_models/hey siri_raspberry-pi.ppn'
+    - '/home/pi/ViPi/src/resources/picovoice_models/americano_raspberry-pi.ppn'
+    - '/home/pi/ViPi/src/resources/picovoice_models/ok google_raspberry-pi.ppn'
+    - '/home/pi/ViPi/src/resources/picovoice_models/alexa_raspberry-pi.ppn'
+
+#Wemo/Emulated Wemo devices
+Wemo:
+  Wemo_Control: 'Disabled'
+  Wemo_Devices:
+    IP_Address:
+      - 'Enter wemo device 1 ip here'
+      - 'Enter wemo device 2 ip here'
+    Device_Names:
+      - 'Enter wemo device 1 name here'
+      - 'Enter wemo device 1 name here'
+
+#Youtube music streaming
+YouTube:
+  YouTube_Control: 'Enabled'
+##Bạn phải bật Youtube V3 API trong Google Cloud console.
+
+#Chromecast on Tivi
+Chromecast:
+  Chromecast_Control: 'Enabled'
+
+  #Change ip to match th ip address of your Chromecast device
+  Chromecast_Devices:
+    IP_Address:
+      - '192.168.1.11'
+      - '192.168.1.21'
+    Device_Names:
+      - 'Mini'  
+      - 'Tivi trước' 

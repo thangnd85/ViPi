@@ -1,0 +1,100 @@
+device_classes:
+  door:
+    'on':
+      - 'đang mở'
+      - 'chưa đóng'
+    'off':
+      - 'đang đóng'
+      - 'chưa mở'
+  motion:
+    'on':
+      - 'có chuyển động'
+      - 'có di chuyển'
+      - 'có người'
+    'off': 
+      - 'trống trải'
+      - 'không chuyển động'
+domains:
+  sun: 'mặt trời'
+  switch: 'công tắc'
+  sensor: 'cảm biến'
+  media_player: 'trình phát'
+  automation: 'tự động hóa'
+  light: 'đèn'
+  weather: 'thời tiết'
+  binary_sensor: 'cảm biến'
+  switch: 'công tắc'
+  device_tracker: 'vị trí'
+  socket: 'ổ cắm'
+
+units:
+#'đ', '%', '₫', 'h', 'kWh', 'ms', 'Mbit/s', 'lm', 'Watching', '°C', 'connection(s)', 'lx', 'Mbps', 'MHz', 'dBm', 'V', 'W', 'A', 'C', ' ', 'VA', 'VAr', 'Cos φ', 'lqi', 'mV', 'pending update(s)', 'queries', 'requests', 'Hz'
+  'đ':
+    - 'đồng'
+    - 'việt nam đồng'
+  '%':
+    - 'phần trăm'
+  '₫':
+    - 'đồng'
+  'h':
+    - 'giờ'
+  'kWh':
+    - 'ki lô oát giờ'
+  'ms':
+    - 'mi li giây'
+  'lm':
+    - 'lu men'
+  'lx':
+    - 'lux'
+  '°C':
+    - 'độ xê'
+  'A':
+    - 'Am pe'
+  'V':
+     - 'Vôn'
+  'W':
+    - 'Oát'
+  'Mbps':
+    - 'Mê ga bít trên giây'
+  'Cos φ':
+    - 'cốt phi'
+devices:
+    'light':
+        - 'đèn'
+        - 'bóng'
+    'switch':
+        - 'công tắc'
+    'socket':
+        - 'cắm'
+        - 'điện'
+    'input_select':
+        - 'kênh'
+    'automation': 
+        - 'tự động'
+    'cover':
+        - 'rèm'
+        - 'cửa'
+    'media_player':
+        - 'tv'
+        - 'tivi'
+        - 'ti vi'
+        - 'đài'
+        - 'âm thanh'
+actions:
+    'on':
+        - 'bật'
+        - 'mở'
+    'off':
+        - 'tắt'
+        - 'ngắt'
+    'close':
+        - 'đóng rèm'
+        - 'vào'
+    'open':
+        - 'ra'
+    'status':
+        - 'kiểm tra'
+        - 'trạng thái'
+        - 'cảm biến'
+    
+        

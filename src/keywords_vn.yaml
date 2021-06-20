@@ -1,0 +1,208 @@
+Cutwords:
+ - 'cho tao'
+ - 'cho tôi'
+ - 'cho anh'
+ - 'cho em'
+ - 'cho cháu'
+ - 'tao muốn'
+ - 'anh muốn'
+ - 'tôi muốn'
+ - 'kể tôi nghe'
+ - 'kể cho tôi'
+keyword:
+  sma_on:
+    - 'mở đèn'
+    - 'bật công tắc'
+    - 'bật ổ cắm'
+    - 'bật đèn'
+    - 'bât quạt'
+    - 'kích hoạt'
+    - 'thực hiện'
+    - 'thi hành'
+    - 'mở rèm'
+    - 'bật máy'
+    - 'mở máy'
+  sma_all:
+    - 'bật tất cả'
+    - 'bật hết'
+    - 'bật toàn bộ'
+    - 'bật các'
+    - 'tắt tất cả'
+    - 'tắt hết'
+    - 'tắt toàn bộ'
+    - 'tắt các'
+  sma_off:
+    - 'đóng đèn'
+    - 'tắt đèn'
+    - 'tắt công tắc'
+    - 'ngắt công tắc'
+    - 'vô hiệu'
+    - 'hủy bỏ'
+    - 'đóng rèm'
+    - 'tắt quạt'
+    - 'tắt máy'
+    - 'ngắt máy'
+  sma_schedule:
+    - 'hẹn giờ'
+    - 'đặt giờ'
+  sma_input:
+    - 'nhập vào'
+    - 'điền vào'
+    - 'chọn mục'
+    - 'đầu vào'
+    - 'mục nhập'
+
+  sma_status:
+    - 'kiểm tra'
+    - 'trạng thái'
+    - 'đóng hay mởi'
+    - 'bật hay tắt'
+    - 'nhiệt độ'
+    - 'múc nhiệt'
+    - 'độ ẩm'
+    - 'mức ẩm'
+    - 'tiền điện'
+    - 'đang ở đâu'
+    - 'cảm biến'
+    
+  sma_script:
+    - 'kịch bản'
+    - 'chuỗi hành động'
+  sma_automation:
+    - 'tự động hóa'
+  sma_scene:
+    - 'ngữ cảnh'
+  sma_action_schedule:
+    - 'ngay'
+    - 'lúc'
+    - 'sau'
+    - 'lập tức'
+
+
+  app_hour_schedule:
+    - 'một giờ'
+    - 'hai giờ'
+    - 'ba giờ'
+    - 'bốn giờ'
+    - 'năm giờ'
+    - 'sáu giờ'
+    - 'bẩy giờ'
+    - 'tám giờ'
+    - 'chín giờ'
+    - 'mười một giờ'
+    - 'mười hai giờ'
+  app_minutue_schedule:
+    - 'năm phút'
+    - 'mười phút'
+    - 'mười năm phút'
+    - 'hai mươi năm phút'
+    - 'ba mươi phút'
+    - 'ba mươi năm phút'
+    - 'bốn mươi phút'
+    - 'bốn mươi năm phút'
+    - 'năm mươi phút'
+    - 'năm mươi năm phút'
+
+  app_lunar_calendar:
+    - 'ngày âm'
+    - 'lịch âm'
+    - 'mồng mấy'
+    - 'mùng mấy'
+    - 'âm lịch'
+  app_read_story:
+    - 'truyện cười'
+    - 'kể truyện'
+    - 'đọc truyện'
+    - 'tìm truyện'
+  app_chromecast:
+    - 'trên loa'
+    - 'trên tivi'
+
+  app_music:
+    - 'phát bài hát'
+    - 'phát nhạc'
+    - 'chơi nhạc'
+    - 'hát bài'
+    - 'bài hát'
+    - 'bài nhạc'
+    - 'trên youtube'
+    - 'trên zing'
+    - 'phát bài nhạc'
+  app_download_music:
+    - 'download '
+    - 'tải xuống'
+  app_music_auto:
+    - 'abum'
+    - 'danh sách'
+    - 'list nhạc'
+  med_stop_music:
+    - 'tắt nhạc'
+    - 'dừng nhạc'
+    - 'stop music'
+  med_next:
+    - 'tiếp theo'
+    - 'kế tiếp'
+  med_pause:
+    - 'tạm dừng'
+    - 'phát lại'
+  med_continue:
+    - 'tiếp tục'
+  med_previous:
+    - 'phát lại'
+    - 'chơi lại'
+  med_volume_up:
+    - 'tăng âm lượng'
+  med_volume_down:
+    - 'giảm âm lượng'
+  med_volume_vlc:
+    - 'tiếng nhạc'
+    - 'volume music'
+  sma_check:
+    - 'kiểm tra'
+    - 'hiển thị'
+    - 'trạng thái'
+    - 'thông tin'
+  med_setup:
+    - 'thiết lập'
+    - 'cài đặt'
+  app_speedtest:
+    - 'tốc độ đường truyền'
+    - 'chất lượng đường truyền'
+#Do not change the Dict below
+Dict:
+  Change: 
+    - 'thay đổi'
+  Colour: 
+    - 'colour'
+  Decrease: 
+    - 'giảm bớt'
+  Down:  
+    - 'hạ'
+  From: 
+    - 'from'
+  From_youtube:
+    - 'từ youtube'
+  Increase:
+    - 'tăng thêm'
+  Maximum:
+    - 'lớn nhất'
+  Minimum:
+    - 'nhỏ nhất'
+  Play:
+    - 'phát'
+  Reduce:
+    - 'reduce'
+  Set:
+    - 'đặt'
+  To:
+    - 'đến'
+  Up:
+    - 'tăng'
+  Chromecast:
+    - 'trên tivi'
+
+  keyword_day:
+    - 'qua'
+    - 'nay'
+    - 'mai'
+    - 'kia'
