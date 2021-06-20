@@ -1,9 +1,11 @@
 ### Dự án bot [ViPi] là dự án mod lại từ các dự án sau:
 https://github.com/googlesamples/assistant-sdk-python/tree/master/google-assistant-sdk
 https://github.com/shivasiddharth/GassistPi
+
 Với sự đóng góp các thành viên mù code và tester đam mê phá nhà, nghèo vì độ loa sẽ update trong contributer sau :D
 
 Đây là dự án miễn phí, phục vụ cá nhân khi rảnh rỗi, không phải dev chuyên nghiệp. Anh em muốn tham gia vào đội coder thì cứ inbox m.me/thangnd85 hoặc t.me/thangnd85
+
 ### 1.Tải OS tại đây:
 http://www.cs.tohoku-gakuin.ac.jp/pub/Linux/RaspBerryPi/
 
@@ -105,9 +107,16 @@ Nếu vẫn còn xuất hiện lỗi cài bổ sung các thư viện bổ sung c
 ```sh
 sudo apt-get install pulseaudio -y && sudo apt-get remove pulseaudio -y
 ```
+### Clone source về  Pi và cài đặt
 
+```sh
+cd /home/${USER}/
+git clone https://github.com/thangnd85/ViPi.git
+sudo chmod +x ./ViPi/scripts/installer.sh && sudo  ./ViPi/scripts/installer.sh
 
-### 5. Chọn loại led trong file config.yaml
+```
+
+### 5. Cấu hình led và các cài đặt khác trong file Vipo/src/config.yaml
 ```sh
   #  Set type mic to:
   # 1. 'GEN'   ---> USB-MIC-JACK
@@ -120,34 +129,28 @@ sudo apt-get install pulseaudio -y && sudo apt-get remove pulseaudio -y
   # 8. 'GOO'   ---> Google
   # 8. 'ALE'   ---> Alexa
 ```
-### 6.Tải git & cài đặt:
 
-Chạy lệnh sau để cài đặt trên môi trường ảo hóa:
-```sh
- sudo chmod +x ./ViPi/scripts/installer.sh && sudo  ./ViPi/scripts/installer.sh
-```
-
-```
-### 7.Chạy lần đầu:
+### 6.Chạy lần đầu:
 Chạy lần đầu với raspi:
 ```sh
 env/bin/python -u ./ViPi/src/start.py --project-id 'XXX' --device-model-id 'XXX'
 ```
 
-### 8.Chạy thủ công các lần tiếp theo:
-Chạy thủ công với raspi:
-```sh
-env/bin/python -u ./ViPi/src/start.py
-```
+### 7.Chạy thủ công các lần tiếp theo:
 
-```
+
 Đăng ký thủ công nếu bỏ qua bước nhập json thay thế $credname thành vị trí file json tương ứng:
 ```sh
 google-oauthlib-tool --scope https://www.googleapis.com/auth/assistant-sdk-prototype \
           --scope https://www.googleapis.com/auth/gcm \
           --save --headless --client-secrets $credname
 ```
-### 9.Thiết lập chạy tự động:
+Chạy thủ công với raspi:
+```sh
+env/bin/python -u ./ViPi/src/start.py
+```
+
+### 8.Thiết lập chạy tự động:
 a. Chạy tự động với supervisor:
 ```sh
 sudo nano /etc/supervisor/conf.d/ViPi.conf
@@ -166,7 +169,19 @@ Chạy lệnh sau để khởi động chạy tự động:
 ```sh
 sudo supervisorctl update
 ```
-Xong reboot lại Pi:
+Bật web ínterface để xem log cho nhanh
+```sh
+sudo nano /etc/supervisor/supervisord.conf
+```
+Sau đó paste dòng này vào:
+```sh
+[inet_http_server]
+port=*:9001
+username=user
+password=pass
+```
+Ctrn + X, Y, enter để save. Xong reboot lại Pi, có thể mở web lên nhập http://ip_của_pi:9001 nhập username và pass ở trên để xem log:
+
 ```sh
 sudo reboot
 ```
@@ -181,16 +196,16 @@ chọn 1 và paste line to the end, press ctrl + X, Y. Then reboot Pi
 ```sh
 @reboot python -u /home/pi/run_vipi.py
 ```
-### 10.Tắt chạy tự động trong phiên làm việc:
+### 9.Tắt chạy tự động trong phiên làm việc:
 
 ```sh
 sudo supervisorctl stop ViPi
 ```
-### 11.Xóa chạy tự động:
+### 10.Xóa chạy tự động:
 ```sh
 sudo rm -rf /etc/supervisor/conf.d/ViPi.conf
 ```
-### 12. Tạo STT tại đây:
+### 11. Tạo STT tại đây:
 
 -  Đăng ký Acc FPT AI tại: https://fpt.ai/
 
@@ -200,7 +215,7 @@ sudo rm -rf /etc/supervisor/conf.d/ViPi.conf
 
 
 
-### 14. Note!
+###. Note!
 fix: NotImplementedError: mixer module not available (ImportError: libSDL2_mixer-2.0.so.0: cannot open shared object file: No such file or directory)
 ```sh
 sudo dpkg --configure -a
