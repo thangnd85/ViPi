@@ -83,6 +83,29 @@ sudo cp /home/pi/.asoundrc /etc/asound.conf
 ```sh
 sudo usermod -aG root pi
 ```
+###
+### Cài portaudio:
+Tải về từ git:
+```sh
+git clone -b alsapatch https://github.com/gglockner/portaudio
+cd portaudio
+./configure && make
+sudo make install
+sudo ldconfig
+```
+
+
+Khởi động lại
+
+```sh
+sudo reboot
+```
+Nếu vẫn còn xuất hiện lỗi cài bổ sung các thư viện bổ sung của pulseaudio
+```sh
+sudo apt-get install pulseaudio -y && sudo apt-get remove pulseaudio -y
+```
+
+
 ### 5. Chọn loại led trong file config.yaml
 ```sh
   #  Set type mic to:
@@ -175,34 +198,7 @@ sudo rm -rf /etc/supervisor/conf.d/ViPi.conf
 -  Đăng ký Acc Zalo AI tại: https://zalo.ai/user-profile
 
 
-### 13. Fix lỗi khi dùng Mic USB, nếu xuất hiện lỗi libportaudio:
-Tải về từ git:
-```sh
-git clone -b alsapatch https://github.com/gglockner/portaudio
-cd portaudio
-./configure && make
-sudo make install
-sudo ldconfig
-```
-Gỡ Libportaudio mặc định:
 
-```sh
-sudo apt-get remove libportaudio2 -y
-```
-
-Khởi động lại
-
-```sh
-sudo reboot
-```
-Nếu vẫn còn xuất hiện lỗi cài bổ sung pulseaudio
-```sh
-sudo apt-get install pulseaudio -y
-```
-Gỡ bỏ pulseaudio:
-```sh
-sudo apt-get purge pulseaudio -y
-```
 ### 14. Note!
 fix: NotImplementedError: mixer module not available (ImportError: libSDL2_mixer-2.0.so.0: cannot open shared object file: No such file or directory)
 ```sh
