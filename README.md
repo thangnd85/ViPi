@@ -143,6 +143,7 @@ env/bin/python -u ./ViPi/src/start.py --project-id 'XXX' --device-model-id 'XXX'
 
 Đăng ký thủ công nếu bỏ qua bước nhập json thay thế $credname thành vị trí file json tương ứng:
 ```sh
+source ~/env/bin/activate
 google-oauthlib-tool --scope https://www.googleapis.com/auth/assistant-sdk-prototype \
           --scope https://www.googleapis.com/auth/gcm \
           --save --headless --client-secrets $credname
