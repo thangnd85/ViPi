@@ -231,7 +231,7 @@ Wakewords:
     - '/home/pi/ViPi/src/resources/picovoice_models/americano_raspberry-pi.ppn'
     - '/home/pi/ViPi/src/resources/picovoice_models/ok google_raspberry-pi.ppn'
     - '/home/pi/ViPi/src/resources/picovoice_models/alexa_raspberry-pi.ppn'
-
+  sensitivities: 0.6
 #Wemo/Emulated Wemo devices
 Wemo:
   Wemo_Control: 'Disabled'
