@@ -113,8 +113,10 @@ sudo apt-get install pulseaudio -y && sudo apt-get remove pulseaudio -y
 cd /home/${USER}/
 git clone https://github.com/thangnd85/ViPi.git
 sudo chmod +x ./ViPi/scripts/installer.sh && sudo  ./ViPi/scripts/installer.sh
-
 ```
+Sau khi cài đặt xong có thể sẽ bị rớt mạng wifi, khởi động lại pi hoặc kiểm tra wifi trên điện thoại (hay máy tính), sẽ có mạng wifi mới tên là ViPi thì kết nối vào đó, rồi lựa chọn mạng wifi nhà mình, nhập mật khẩu để kết nối. 
+Ngay sau khi kết nối thành công thì có thể dùng các công cụ để tìm IP để ssh, winscp để chỉnh sửa file tùy ý.
+Team sẽ cố gắng tạo ra phần cài đặt bằng trình duyết cho gọn nhẹ. 
 
 ### 5. Cấu hình led và các cài đặt khác trong file Vipo/src/config.yaml
 ```sh
