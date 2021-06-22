@@ -10,164 +10,167 @@ Cutwords:
  - 'kể tôi nghe'
  - 'kể cho tôi'
 keyword:
-  sma_on:
-    - 'mở đèn'
-    - 'bật công tắc'
-    - 'bật ổ cắm'
-    - 'bật đèn'
-    - 'bât quạt'
-    - 'kích hoạt'
-    - 'thực hiện'
-    - 'thi hành'
-    - 'mở rèm'
-    - 'bật máy'
-    - 'mở máy'
-  sma_all:
-    - 'bật tất cả'
-    - 'bật hết'
-    - 'bật toàn bộ'
-    - 'bật các'
-    - 'tắt tất cả'
-    - 'tắt hết'
-    - 'tắt toàn bộ'
-    - 'tắt các'
-  sma_off:
-    - 'đóng đèn'
-    - 'tắt đèn'
-    - 'tắt công tắc'
-    - 'ngắt công tắc'
-    - 'vô hiệu'
-    - 'hủy bỏ'
-    - 'đóng rèm'
-    - 'tắt quạt'
-    - 'tắt máy'
-    - 'ngắt máy'
-  sma_schedule:
-    - 'hẹn giờ'
-    - 'đặt giờ'
-  sma_input:
-    - 'nhập vào'
-    - 'điền vào'
-    - 'chọn mục'
-    - 'đầu vào'
-    - 'mục nhập'
-
-  sma_status:
-    - 'kiểm tra'
-    - 'trạng thái'
-    - 'đóng hay mởi'
-    - 'bật hay tắt'
-    - 'nhiệt độ'
-    - 'múc nhiệt'
-    - 'độ ẩm'
-    - 'mức ẩm'
-    - 'tiền điện'
-    - 'đang ở đâu'
-    - 'cảm biến'
-    
-  sma_script:
-    - 'kịch bản'
-    - 'chuỗi hành động'
-  sma_automation:
-    - 'tự động hóa'
-  sma_scene:
-    - 'ngữ cảnh'
-  sma_action_schedule:
-    - 'ngay'
-    - 'lúc'
-    - 'sau'
-    - 'lập tức'
-
-
-  app_hour_schedule:
-    - 'một giờ'
-    - 'hai giờ'
-    - 'ba giờ'
-    - 'bốn giờ'
-    - 'năm giờ'
-    - 'sáu giờ'
-    - 'bẩy giờ'
-    - 'tám giờ'
-    - 'chín giờ'
-    - 'mười một giờ'
-    - 'mười hai giờ'
-  app_minutue_schedule:
-    - 'năm phút'
-    - 'mười phút'
-    - 'mười năm phút'
-    - 'hai mươi năm phút'
-    - 'ba mươi phút'
-    - 'ba mươi năm phút'
-    - 'bốn mươi phút'
-    - 'bốn mươi năm phút'
-    - 'năm mươi phút'
-    - 'năm mươi năm phút'
-
-  app_lunar_calendar:
-    - 'ngày âm'
-    - 'lịch âm'
-    - 'mồng mấy'
-    - 'mùng mấy'
-    - 'âm lịch'
-  app_read_story:
-    - 'truyện cười'
-    - 'kể truyện'
-    - 'đọc truyện'
-    - 'tìm truyện'
-  app_chromecast:
-    - 'trên loa'
-    - 'trên tivi'
-
-  app_music:
-    - 'phát bài hát'
-    - 'phát nhạc'
-    - 'chơi nhạc'
-    - 'hát bài'
-    - 'bài hát'
-    - 'bài nhạc'
-    - 'trên youtube'
-    - 'trên zing'
-    - 'phát bài nhạc'
-  app_download_music:
-    - 'download '
-    - 'tải xuống'
-  app_music_auto:
-    - 'abum'
-    - 'danh sách'
-    - 'list nhạc'
-  med_stop_music:
-    - 'tắt nhạc'
-    - 'dừng nhạc'
-    - 'stop music'
-  med_next:
-    - 'tiếp theo'
-    - 'kế tiếp'
-  med_pause:
-    - 'tạm dừng'
-    - 'phát lại'
-  med_continue:
-    - 'tiếp tục'
-  med_previous:
-    - 'phát lại'
-    - 'chơi lại'
-  med_volume_up:
-    - 'tăng âm lượng'
-  med_volume_down:
-    - 'giảm âm lượng'
-  med_volume_vlc:
-    - 'tiếng nhạc'
-    - 'volume music'
-  sma_check:
-    - 'kiểm tra'
-    - 'hiển thị'
-    - 'trạng thái'
-    - 'thông tin'
-  med_setup:
-    - 'thiết lập'
-    - 'cài đặt'
-  app_speedtest:
-    - 'tốc độ đường truyền'
-    - 'chất lượng đường truyền'
+    app_hour_schedule:
+        - 'một giờ'
+        - 'hai giờ'
+        - 'ba giờ'
+        - 'bốn giờ'
+        - 'năm giờ'
+        - 'sáu giờ'
+        - 'bẩy giờ'
+        - 'tám giờ'
+        - 'chín giờ'
+        - 'mười một giờ'
+        - 'mười hai giờ'
+    app_minutue_schedule:
+        - 'năm phút'
+        - 'mười phút'
+        - 'mười năm phút'
+        - 'hai mươi năm phút'
+        - 'ba mươi phút'
+        - 'ba mươi năm phút'
+        - 'bốn mươi phút'
+        - 'bốn mươi năm phút'
+        - 'năm mươi phút'
+        - 'năm mươi năm phút'
+    app_lunar_calendar:
+        - 'ngày âm'
+        - 'lịch âm'
+        - 'mồng mấy'
+        - 'mùng mấy'
+        - 'âm lịch'
+    app_read_story:
+        - 'truyện cười'
+        - 'kể truyện'
+        - 'đọc truyện'
+        - 'tìm truyện'
+    app_chromecast_play:
+        - 'trên loa'
+        - 'trên tivi'
+    app_music_play:
+        - 'phát bài hát'
+        - 'phát nhạc'
+        - 'chơi nhạc'
+        - 'hát bài'
+        - 'bài hát'
+        - 'bài nhạc'
+        - 'youtube'
+        - 'zing'
+        - 'phát bài nhạc'
+    app_download_music:
+        - 'download '
+        - 'tải xuống'
+    app_music_auto:
+        - 'abum'
+        - 'danh sách'
+        - 'list nhạc'
+    med_stop_music:
+        - 'tắt nhạc'
+        - 'dừng nhạc'
+        - 'stop music'
+    med_next_:
+        - 'tiếp theo'
+        - 'kế tiếp'
+    med_pause_:
+        - 'tạm dừng'
+        - 'phát lại'
+    med_continue_:
+        - 'tiếp tục'
+    med_previous_:
+        - 'phát lại'
+        - 'chơi lại'
+    med_volume_up:
+        - 'tăng âm lượng'
+    med_volume_down:
+        - 'giảm âm lượng'
+    med_volume_vlc:
+        - 'tiếng nhạc'
+        - 'volume music'
+    med_setup_:
+        - 'thiết lập'
+        - 'cài đặt'
+    app_speedtest_net:
+        - 'tốc độ đường truyền'
+        - 'chất lượng đường truyền'
+    sma_on_all:
+        - 'bật tất cả'
+        - 'bật hết'
+        - 'bật toàn bộ'
+        - 'bật các'
+    sma_off_all:
+        - 'tắt tất cả'
+        - 'tắt hết'
+        - 'tắt toàn bộ'
+        - 'tắt các'
+    sma_on_automation:
+        - 'bật tự động'
+    sma_off_automation:
+        - 'tắt tự động'
+        - 'vô hiệu tự động'
+    sma_trigger_automation:
+        - 'kích hoạt'
+    sma_on_script:
+        - 'bật kịch bản'
+        - 'chạy kịch bản'
+    sma_off_script:
+        - 'tắt kịch bản'
+        - 'dừng kịch bản'
+    sma_toggle_script:
+        - 'đổi kịch bản'
+    sma_on_light:
+        - 'mở đèn'
+        - 'bật đèn'
+    sma_off_light:
+        - 'tắt đèn'
+        - 'ngắt đèn'
+    sma_on_switch:
+        - 'bật công tắc'
+        - 'mở công tắc'
+        - 'bật điện'
+    sma_off_switch:
+        - 'tắt công tắc'
+        - 'ngắt công tắc'
+    sma_on_socket:
+        - 'bật ổ cắm'
+        - 'đóng điện ổ cắm'
+        - 'mở điện ổ cắm'
+        - 'mở nguồn ổ cắm'
+    sma_off_socket:
+        - 'tắt ổ cắm'
+        - 'ngắt ổ cắm'
+        - 'ngắt nguồn ổ cắm'
+    sma_open_cover:
+        - 'mở rèm'
+        - 'kéo rèm lên'
+        - 'kéo rèm ra'
+    sma_close_cover:
+        - 'đóng rèm'
+        - 'kéo rèm lại'
+    sma_on_fan:
+        - 'bật quạt'
+        - 'mở quạt'
+    sma_off_fan:
+        - 'tắt quạt'
+    sma_schedule_:
+        - 'hẹn giờ'
+        - 'đặt giờ'
+    sma_input_:
+        - 'nhập vào'
+        - 'điền vào'
+        - 'chọn mục'
+        - 'đầu vào'
+        - 'mục nhập'
+    sma_status_sensor:
+        - 'kiểm tra'
+        - 'trạng thái'
+        - 'đóng hay mởi'
+        - 'bật hay tắt'
+        - 'kiểm tra'
+        - 'hiển thị'
+        - 'thông tin'
+    sma_status_tracker:
+        - 'vị trí'
+        - 'ở đâu'
 #Do not change the Dict below
 Dict:
   Change: 
@@ -206,3 +209,51 @@ Dict:
     - 'nay'
     - 'mai'
     - 'kia'
+    
+units:
+#'đ', '%', '₫', 'h', 'kWh', 'ms', 'Mbit/s', 'lm', 'Watching', '°C', 'connection(s)', 'lx', 'Mbps', 'MHz', 'dBm', 'V', 'W', 'A', 'C', ' ', 'VA', 'VAr', 'Cos φ', 'lqi', 'mV', 'pending update(s)', 'queries', 'requests', 'Hz'
+  'đ':
+    - 'đồng'
+    - 'việt nam đồng'
+  '%':
+    - 'phần trăm'
+  '₫':
+    - 'đồng'
+  'h':
+    - 'giờ'
+  'kWh':
+    - 'ki lô oát giờ'
+  'ms':
+    - 'mi li giây'
+  'lm':
+    - 'lu men'
+  'lx':
+    - 'lux'
+  '°C':
+    - 'độ xê'
+  'A':
+    - 'Am pe'
+  'V':
+     - 'Vôn'
+  'W':
+    - 'Oát'
+  'Mbps':
+    - 'Mê ga bít trên giây'
+  'Cos φ':
+    - 'cốt phi'
+commands:
+    - 'bật'
+    - 'mở'
+    - 'tắt'
+    - 'ngắt'
+    - 'đóng'
+    - 'vào'
+    - 'ra'
+    - 'kiểm tra'
+    - 'trạng thái'
+    - 'vị trí'
+    - 'ở đâu'
+    - 'thế nào'
+    - 'cao hay thấp'
+    - 'đóng hay mở'
+    

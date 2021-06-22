@@ -11,14 +11,16 @@ ctr_led:
   # 8. 'GOO'   ---> Google
   # 8. 'ALE'   ---> Alexa
   # 9. 'WS2'   ---> WS2812
-  type: 'R2M'
+  type: 'WS2'
 
 Startup_voice: 'Disabled'  
 continue_conversation: False #True or False
 Home_Assistant:
     control: 'Enabled'
+    ratio: 70
     url: 'http://192.168.1.246:8123'
-    token: 'eyJ0eXAiOiJKV1QiLCJhkkkkkkkkkkkkkUzI1NiJ9.eyJpc3MiOiJhNWJlODRhZGZhMDc0MjMyODcxMjViMjdlODc0NTY1NCIsImlhdCI6MTYyMzAwMjE4MCwiZXhwIjoxOTM4MzYyMTgwfQ.us5XLLZuqzk2dFQhVdYkAjJKBSQlJxuHHQ0AlS4mAyY'
+    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhNWJlODRhZGZhMDc0MjMyODcxMjViMjdlODc0NTY1NCIsImlhdCI6MTYyMzAwMjE4MCwiZXhwIjoxOTM4MzYyMTgwfQ.us5XLLZuqzk2dFQhVdYkAjJKBSQlJxuHHQ0AlS4mAyY'
+    
 #Adafruit_IO. Sending commands from Genuine Google Home/Assistant Devices to control Domoticz Tasmota etc.
 ADAFRUIT_IO:
   ADAFRUIT_IO_CONTROL: 'Disabled'
@@ -28,15 +30,6 @@ ADAFRUIT_IO:
 
 #Aftership API to Track Parcels. Create a developer account with Aftership and generate a key.
 #The number of couriers should match the number of tracking codes.
-AFTERSHIP:
-  Key: 'ENTER YOUR AFTERSHIP KEY HERE'
-  Parcels:
-    Courier_Name:
-      - 'usps'
-      - 'fedex'
-    Tracking_Code:
-      - '9400111699000119607527'
-      - '953255692957'
 
 #Custom conversation. Add your queries and expected assistant response. Do not add symbols or special charecters.
 Conversation:
@@ -77,7 +70,7 @@ ESP:
 
 
 #API Key for YouTube and Kickstarter Search Engine
-Google_cloud_api_key: "AIzaSyAm3WDBX32iML5Ycux30lveD2"
+Google_cloud_api_key: "AIzaSyAm3WDBX32iML5Ycux30lveD2P56SINpnA"
 
 #GPIOS used in the project. Feel free to change in case.
 Gpios:
@@ -118,8 +111,6 @@ Language:
      - 'vi-VN' #VietNam
 
 
-# Enter your Magic Mirror IP
-Mmmip: 'ENTER_YOUR_MAGIC_MIRROR_IP'
 
 #MQTT credentials
 MQTT:
@@ -213,7 +204,7 @@ TextToSpeech:
   Google_Cloud_TTS_Credentials_Path: "ENTER THE PATH TO YOUR TTS CREDENTIALS FILE HERE"
   #Voice for the "SAY" function or text to speech. Set it to 'Female' or 'Male' depending on your preference.
   #Note: This does not change Google's voice. this is only for the speech generated within custom actions.
-  Voice_Gender: 'Male'
+  Voice_Gender: 'Female'
 Pushbullet:
   Pushbullet_API_KEY: 'o.K3D6uw98nPz28eiCdRh3PgNYqYsg7a6I'
   Pushbullet_Control: 'Enabled'
@@ -227,11 +218,13 @@ Wakewords:
   #Set below to 'Picovoice' or 'Snowboy' as per your choice.
   Wakeword_Engine: 'Picovoice'
   Picovoice_wakeword_models:
-    - '/home/pi/ViPi/src/resources/picovoice_models/hey siri_raspberry-pi.ppn'
-    - '/home/pi/ViPi/src/resources/picovoice_models/americano_raspberry-pi.ppn'
+#    - '/home/pi/ViPi/src/resources/picovoice_models/hey siri_raspberry-pi.ppn'
+#    - '/home/pi/ViPi/src/resources/picovoice_models/americano_raspberry-pi.ppn'
+    - '/home/pi/ViPi/src/resources/picovoice_models/hey google_raspberry-pi.ppn'
     - '/home/pi/ViPi/src/resources/picovoice_models/ok google_raspberry-pi.ppn'
     - '/home/pi/ViPi/src/resources/picovoice_models/alexa_raspberry-pi.ppn'
-  sensitivities: 0.6
+  sensitivities:  0.9
+
 #Wemo/Emulated Wemo devices
 Wemo:
   Wemo_Control: 'Disabled'
@@ -246,7 +239,6 @@ Wemo:
 #Youtube music streaming
 YouTube:
   YouTube_Control: 'Enabled'
-##Bạn phải bật Youtube V3 API trong Google Cloud console.
 
 #Chromecast on Tivi
 Chromecast:
