@@ -9,6 +9,8 @@ Cutwords:
  - 'tôi muốn'
  - 'kể tôi nghe'
  - 'kể cho tôi'
+ - 'đi nào'
+ - 'ngay đi'
 keyword:
     app_hour_schedule:
         - 'một giờ'
@@ -60,6 +62,9 @@ keyword:
     app_download_music:
         - 'download '
         - 'tải xuống'
+    app_custom_weather:
+        - 'thời tiết'
+        - 'dự báo'
     app_music_auto:
         - 'abum'
         - 'danh sách'
@@ -68,15 +73,15 @@ keyword:
         - 'tắt nhạc'
         - 'dừng nhạc'
         - 'stop music'
-    med_next_:
+    med_next_player:
         - 'tiếp theo'
         - 'kế tiếp'
-    med_pause_:
+    med_pause_player:
         - 'tạm dừng'
         - 'phát lại'
-    med_continue_:
+    med_continue_player:
         - 'tiếp tục'
-    med_previous_:
+    med_previous_player:
         - 'phát lại'
         - 'chơi lại'
     med_volume_up:
