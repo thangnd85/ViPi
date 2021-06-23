@@ -35,57 +35,13 @@ Kiểm tra xem có âm thanh ở loa hay không:
 ```sh
 speaker-test
 ```
-Lệnh Thống kê ID của Mic USB và Loa
+Lệnh Thống kê ID của Mic và Loa
 ```sh
 arecord -l
 aplay -l
 ```
-==> chuyển sang bước 5:
-### 4. Khai báo khi sử dụng Mic Usb:
-Lệnh Thống kê ID của Mic USB và Loa
-```sh
-arecord -l
-aplay -l
-```
-Chạy lệnh sau
-```sh
-sudo nano /home/pi/.asoundrc
-```
-Cửa sổ nano hiện lên, paste dòng sau, thay thế ID mic, loa phù hợp
 
-```sh
-pcm.dsnooper {
-    type dsnoop
-    ipc_key 816357492
-    ipc_key_add_uid 0
-    ipc_perm 0666
-    slave {
-        pcm "hw:1,0"
-        channels 1
-    }
-}
 
-pcm.!default {
-        type asym
-        playback.pcm {
-                type plug
-                slave.pcm "hw:0,0"
-        }
-        capture.pcm {
-                type plug
-                slave.pcm "dsnooper"
-        }
-}
-
-```
-Coppy cấu hình âm thanh vào etc:
-```sh
-sudo cp /home/pi/.asoundrc /etc/asound.conf
-```
-Đưa Account đang dùng (Ví dụ pi) vào group root:
-```sh
-sudo usermod -aG root pi
-```
 ###
 ### Cài portaudio:
 Tải về từ git:
@@ -97,16 +53,22 @@ sudo make install
 sudo ldconfig
 ```
 
-
-Khởi động lại
-
-```sh
-sudo reboot
-```
 Nếu vẫn còn xuất hiện lỗi cài bổ sung các thư viện bổ sung của pulseaudio
 ```sh
 sudo apt-get install pulseaudio -y && sudo apt-get remove pulseaudio -y
 ```
+
+
+## Disable onbord soủnd:
+```sh
+sudo nano /etc/modprobe.d/snd-blacklist.conf
+```
+Thêm dòng này vào:
+```
+blacklist snd_bcm2835
+```
+Ctr + X, Y Enter
+
 ### Clone source về  Pi và cài đặt
 
 ```sh
@@ -117,6 +79,7 @@ sudo chmod +x ./ViPi/scripts/installer.sh && sudo  ./ViPi/scripts/installer.sh
 Sau khi cài đặt xong có thể sẽ bị rớt mạng wifi, khởi động lại pi hoặc kiểm tra wifi trên điện thoại (hay máy tính), sẽ có mạng wifi mới tên là ViPi thì kết nối vào đó, rồi lựa chọn mạng wifi nhà mình, nhập mật khẩu để kết nối. 
 Ngay sau khi kết nối thành công thì có thể dùng các công cụ để tìm IP để ssh, winscp để chỉnh sửa file tùy ý.
 Team sẽ cố gắng tạo ra phần cài đặt bằng trình duyết cho gọn nhẹ. 
+
 
 ### 5. Cấu hình led và các cài đặt khác trong file Vipo/src/config.yaml
 ```sh
@@ -299,3 +262,49 @@ core_freq=250
 spidev.bufsiz=32768
 ```
 Reboot lại thiết bị
+
+### 4. Khai báo khi sử dụng Mic Usb:
+Lệnh Thống kê ID của Mic USB và Loa
+```sh
+arecord -l
+aplay -l
+```
+Chạy lệnh sau
+```sh
+sudo nano /home/pi/.asoundrc
+```
+Cửa sổ nano hiện lên, paste dòng sau, thay thế ID mic, loa phù hợp
+
+```sh
+pcm.dsnooper {
+    type dsnoop
+    ipc_key 816357492
+    ipc_key_add_uid 0
+    ipc_perm 0666
+    slave {
+        pcm "hw:1,0"
+        channels 1
+    }
+}
+
+pcm.!default {
+        type asym
+        playback.pcm {
+                type plug
+                slave.pcm "hw:0,0"
+        }
+        capture.pcm {
+                type plug
+                slave.pcm "dsnooper"
+        }
+}
+
+```
+Coppy cấu hình âm thanh vào etc:
+```sh
+sudo cp /home/pi/.asoundrc /etc/asound.conf
+```
+Đưa Account đang dùng (Ví dụ pi) vào group root:
+```sh
+sudo usermod -aG root pi
+```
