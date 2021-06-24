@@ -36,3 +36,4 @@ underthesea==1.2.3
 fuzzywuzzy
 python-Levenshtein
 mutagen
+youtube-search-python
