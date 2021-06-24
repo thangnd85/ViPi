@@ -15,6 +15,14 @@ ctr_led:
 
 Startup_voice: 'Disabled'  
 continue_conversation: False #True or False
+Weather:
+    control: 'Enabled'
+    lat_long: 
+        - 11.555358
+        - 106.172483
+    ipfy_api: '128979ae3de728602f249354a85ac508'
+    darksky_api: 'c457d056f60c2aa93fd47339aad294da'
+    
 Home_Assistant:
     control: 'Enabled'
     ratio: 70
@@ -223,7 +231,7 @@ Wakewords:
     - '/home/pi/ViPi/src/resources/picovoice_models/hey google_raspberry-pi.ppn'
     - '/home/pi/ViPi/src/resources/picovoice_models/ok google_raspberry-pi.ppn'
     - '/home/pi/ViPi/src/resources/picovoice_models/alexa_raspberry-pi.ppn'
-  sensitivities:  0.9
+  sensitivities:  0.6
 
 #Wemo/Emulated Wemo devices
 Wemo:
