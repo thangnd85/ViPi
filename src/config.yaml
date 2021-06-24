@@ -21,7 +21,7 @@ Weather:
         - 11.555358
         - 106.172483
     ipfy_api: '128979ae3de728602f249354a85ac508'
-    darksky_api: 'c457d056f60c2aa93fd47339aad294da'
+    darksky_api: 'c457d056f60c2aa93fd47339axxx94da'
     
 Home_Assistant:
     control: 'Enabled'
@@ -78,7 +78,7 @@ ESP:
 
 
 #API Key for YouTube and Kickstarter Search Engine
-Google_cloud_api_key: "AIzaSyAm3WDBX32iML5Ycux30lveD2P56SINpnA"
+Google_cloud_api_key: ""
 
 #GPIOS used in the project. Feel free to change in case.
 Gpios:
