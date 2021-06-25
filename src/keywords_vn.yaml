@@ -59,6 +59,7 @@ keyword:
         - 'youtube'
         - 'zing'
         - 'phát bài nhạc'
+        - 'ca nhạc'
     app_download_music:
         - 'download '
         - 'tải xuống'
@@ -167,15 +168,15 @@ keyword:
         - 'chọn mục'
         - 'đầu vào'
         - 'mục nhập'
-    sma_status_sensor:
+    sma_sensor_status:
         - 'kiểm tra'
         - 'trạng thái'
-        - 'đóng hay mởi'
+        - 'đóng hay mở'
         - 'bật hay tắt'
         - 'kiểm tra'
         - 'hiển thị'
         - 'thông tin'
-    sma_status_tracker:
+    sma_tracker_status:
         - 'vị trí'
         - 'ở đâu'
 #Do not change the Dict below
@@ -210,13 +211,11 @@ Dict:
     - 'tăng'
   Chromecast:
     - 'trên tivi'
-
   keyword_day:
     - 'qua'
     - 'nay'
     - 'mai'
-    - 'kia'
-    
+    - 'kia'    
 units:
 #'đ', '%', '₫', 'h', 'kWh', 'ms', 'Mbit/s', 'lm', 'Watching', '°C', 'connection(s)', 'lx', 'Mbps', 'MHz', 'dBm', 'V', 'W', 'A', 'C', ' ', 'VA', 'VAr', 'Cos φ', 'lqi', 'mV', 'pending update(s)', 'queries', 'requests', 'Hz'
   'đ':
@@ -262,5 +261,4 @@ commands:
     - 'ở đâu'
     - 'thế nào'
     - 'cao hay thấp'
-    - 'đóng hay mở'
-    
+    - 'đóng hay mở'    
