@@ -6,13 +6,51 @@ Với sự đóng góp các thành viên mù code và tester đam mê phá nhà,
 
 Đây là dự án miễn phí, phục vụ cá nhân khi rảnh rỗi, không phải dev chuyên nghiệp. Anh em muốn tham gia vào đội coder thì cứ inbox m.me/thangnd85 hoặc t.me/thangnd85
 
-### 1.Tải OS tại đây:
+## 1.Chuẩn bị:
+Thẻ nhớ, file image tải bên dưới:
+Imgage gốc:
 http://www.cs.tohoku-gakuin.ac.jp/pub/Linux/RaspBerryPi/
+Hoặc bản có sẵn môi trường và wifi hotspot
+https://vipiteam.page.link/img
+Flash vào thẻ nhớ bằng Echter hoặc Raspberry Pi Imager
+## 1.1 Kết nối wifi và ssh:
+1, Với image gốc: Tạo file ssh (không có đuôi gì cả và không nội dung) 
+Tạo tiếp file wpa_suplicant.conf với nội dung sau:
+```
+country=vn
+update_config=1
+ctrl_interface=/var/run/wpa_supplicant
+
+network={
+ scan_ssid=1
+ ssid="tên_wifi"
+ psk="pass_wifi"
+}
+```
+Rồi chép cả 2 vào partition boot trong thẻ nhớ. Gắn thẻ vào Pi rồi bật nguồn.
+
+2. Trường hợp flash image có sẵn môi trường, sau khi flash xong, gắn vào Pi và bật nguồn, sẽ xuất hiện wifi tên là ViPi
+Kết nối với wifi đó để tiến hành nối vào mạng.
+
+3. Sau khi nối mạng, có thể dùng các phần mềm trên điện thoại như Fing để quét IP, hoặc dùng IP scanner free trên PC
+Hay vào modem/router để xem IP của pi. 
+
+
+File json google Actions:
+Tạo json theo hướng dẫn tại đây, tải về đổi tên tùy ý, chút sẽ sử dụng.
+https://www.youtube.com/watch?v=ROQ5K4om2Fo
+Nhớ thêm email của mình vào mục Test user:
+
+
+Nếu cài đặt từ img gốc, tiến hành từ bước 2:
+Nếu cài từ img sẵn có môi trường, chuyển qua bước 7.
 
 ### 2.Update OS & cài đặt git:
-```sh
-sudo apt-get update && sudo apt-get install git -y
-```
+Dùng ssh để đăng nhập vào pi với username và pass mặc định
+Sử dụng puTTY hoặc Terminal để SSH vào Pi với địa chỉ đã scan bên trên, hoặc dùng hostname raspberrypi.local
+Dùng WinSCP để quản lí file trong Pi
+Copy json ở bước 1 vào /home/pi (là cái folder mặc định khi vào winscp)
+
 ### 3. Cài đặt Mic & Loa nếu sử dụng Mic HAT:
 OS trước tháng 8.2020
 ```sh
@@ -41,9 +79,8 @@ arecord -l
 aplay -l
 ```
 
-
 ###
-### Cài portaudio:
+### 4. Cài portaudio:
 Tải về từ git:
 ```sh
 git clone -b alsapatch https://github.com/gglockner/portaudio
@@ -59,7 +96,7 @@ sudo apt-get install pulseaudio -y && sudo apt-get remove pulseaudio -y
 ```
 
 
-## Disable onbord soủnd:
+## 4.1. Disable onboard sound nếu không dùng:
 ```sh
 sudo nano /etc/modprobe.d/snd-blacklist.conf
 ```
@@ -69,19 +106,36 @@ blacklist snd_bcm2835
 ```
 Ctr + X, Y Enter
 
-### Clone source về  Pi và cài đặt
+### 5. Clone source về  Pi và cài đặt
+
 
 ```sh
 cd /home/${USER}/
 git clone https://github.com/thangnd85/ViPi.git
-sudo chmod +x ./ViPi/scripts/installer.sh && sudo  ./ViPi/scripts/installer.sh
+sudo chmod +x ./ViPi/scripts/installer.sh && sudo ./ViPi/scripts/installer.sh
 ```
-Sau khi cài đặt xong có thể sẽ bị rớt mạng wifi, khởi động lại pi hoặc kiểm tra wifi trên điện thoại (hay máy tính), sẽ có mạng wifi mới tên là ViPi thì kết nối vào đó, rồi lựa chọn mạng wifi nhà mình, nhập mật khẩu để kết nối. 
+Nhập đường dẫn json:  /home/pi/ten_file.json (đổi tên cho đúng nhé)
+
+Sau khi cài đặt xong có thể sẽ bị rớt mạng wifi, khởi động lại pi hoặc kiểm tra wifi trên điện thoại (hay máy tính), 
+sẽ có mạng wifi mới tên là ViPi thì kết nối vào đó, rồi lựa chọn mạng wifi nhà mình, nhập mật khẩu để kết nối. 
 Ngay sau khi kết nối thành công thì có thể dùng các công cụ để tìm IP để ssh, winscp để chỉnh sửa file tùy ý.
 Team sẽ cố gắng tạo ra phần cài đặt bằng trình duyết cho gọn nhẹ. 
 
+### 5.1: Update new source:
+Cách 1: 
+```
+cd /home/${USER}/
+cd ViPi
+git pull
+```
+Cách 2:
+```
+cd /home/${USER}/
+rm -rf ViPi
+git clone https://github.com/thangnd85/ViPi
+```
 
-### 5. Cấu hình led và các cài đặt khác trong file Vipo/src/config.yaml
+### 6. Cấu hình led và các cài đặt khác trong file ViPi/src/config.yaml
 ```sh
   #  Set type mic to:
   # 1. 'GEN'   ---> USB-MIC-JACK
@@ -93,28 +147,24 @@ Team sẽ cố gắng tạo ra phần cài đặt bằng trình duyết cho gọ
   # 7. 'NEO'   ---> NeoPixel
   # 8. 'GOO'   ---> Google
   # 8. 'ALE'   ---> Alexa
+  Bật tắt Home_Assistant:
+  .......
 ```
 
-### 6.Chạy lần đầu:
+### 7.Chạy lần đầu:
 Chạy lần đầu với raspi:
-```sh
-env/bin/python -u ./ViPi/src/start.py --project-id 'XXX' --device-model-id 'XXX'
-```
-
-### 7.Chạy thủ công các lần tiếp theo:
-
-
-Đăng ký thủ công nếu bỏ qua bước nhập json thay thế $credname thành vị trí file json tương ứng:
 ```sh
 source ~/env/bin/activate
 google-oauthlib-tool --scope https://www.googleapis.com/auth/assistant-sdk-prototype \
           --scope https://www.googleapis.com/auth/gcm \
-          --save --headless --client-secrets $credname
+          --save --headless --client-secrets /home/pi/ten_file.json
 ```
-Chạy thủ công với raspi:
+Tiếp tục:
 ```sh
-env/bin/python -u ./ViPi/src/start.py
+~/env/bin/python -u ~/ViPi/src/start.py --project-id 'XXX' --device-model-id 'XXX'
 ```
+Thay XXX bằng project-id và device-model-id của bạn.
+
 
 ### 8.Thiết lập chạy tự động:
 a. Chạy tự động với supervisor:
@@ -208,17 +258,57 @@ source env/bin/activate
 pip install python-vlc==3.0.11115
 ```
 
-### Fix pluseaudio
-```sh   
-cd /home/${USER}/       
-git clone https://github.com/shivasiddharth/PulseAudio-System-Wide       
-cd ./PulseAudio-System-Wide/      
-sudo cp ./pulseaudio.service /etc/systemd/system/pulseaudio.service    
-systemctl --system enable pulseaudio.service       
-systemctl --system start pulseaudio.service       
-sudo cp ./client.conf /etc/pulse/client.conf        
-sudo sed -i '/^pulse-access:/ s/$/root,pi/' /etc/group    
+### Khai báo khi sử dụng Mic Usb:
+Lệnh Thống kê ID của Mic USB và Loa
+```sh
+arecord -l
+aplay -l
 ```
+Chạy lệnh sau
+```sh
+sudo nano /home/pi/.asoundrc
+```
+Cửa sổ nano hiện lên, paste dòng sau, thay thế ID mic, loa phù hợp
+
+```sh
+pcm.dsnooper {
+    type dsnoop
+    ipc_key 816357492
+    ipc_key_add_uid 0
+    ipc_perm 0666
+    slave {
+        pcm "hw:1,0"
+        channels 1
+    }
+}
+
+pcm.!default {
+        type asym
+        playback.pcm {
+                type plug
+                slave.pcm "hw:0,0"
+        }
+        capture.pcm {
+                type plug
+                slave.pcm "dsnooper"
+        }
+}
+
+```
+Coppy cấu hình âm thanh vào etc:
+```sh
+sudo cp /home/pi/.asoundrc /etc/asound.conf
+```
+Đưa Account đang dùng (Ví dụ pi) vào group root:
+```sh
+sudo usermod -aG root pi
+```
+
+Fix lỗi không nhận được âm thanh:
+Step 1: rm ~/.asoundrc && sudo rm /etc/asound.conf
+Step 2: Reinstall driver
+Step 3: Reboot
+
 #### Một số khẩu lệnh:
 
 ```sh
@@ -263,48 +353,15 @@ spidev.bufsiz=32768
 ```
 Reboot lại thiết bị
 
-### 4. Khai báo khi sử dụng Mic Usb:
-Lệnh Thống kê ID của Mic USB và Loa
-```sh
-arecord -l
-aplay -l
-```
-Chạy lệnh sau
-```sh
-sudo nano /home/pi/.asoundrc
-```
-Cửa sổ nano hiện lên, paste dòng sau, thay thế ID mic, loa phù hợp
 
-```sh
-pcm.dsnooper {
-    type dsnoop
-    ipc_key 816357492
-    ipc_key_add_uid 0
-    ipc_perm 0666
-    slave {
-        pcm "hw:1,0"
-        channels 1
-    }
-}
-
-pcm.!default {
-        type asym
-        playback.pcm {
-                type plug
-                slave.pcm "hw:0,0"
-        }
-        capture.pcm {
-                type plug
-                slave.pcm "dsnooper"
-        }
-}
-
-```
-Coppy cấu hình âm thanh vào etc:
-```sh
-sudo cp /home/pi/.asoundrc /etc/asound.conf
-```
-Đưa Account đang dùng (Ví dụ pi) vào group root:
-```sh
-sudo usermod -aG root pi
+### Fix pluseaudio
+```sh   
+cd /home/${USER}/       
+git clone https://github.com/shivasiddharth/PulseAudio-System-Wide       
+cd ./PulseAudio-System-Wide/      
+sudo cp ./pulseaudio.service /etc/systemd/system/pulseaudio.service    
+systemctl --system enable pulseaudio.service       
+systemctl --system start pulseaudio.service       
+sudo cp ./client.conf /etc/pulse/client.conf        
+sudo sed -i '/^pulse-access:/ s/$/root,pi/' /etc/group    
 ```
