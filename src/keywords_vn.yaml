@@ -168,15 +168,15 @@ keyword:
         - 'chọn mục'
         - 'đầu vào'
         - 'mục nhập'
-    sma_sensor_status:
+    sma_status_sensor:
         - 'kiểm tra'
         - 'trạng thái'
-        - 'đóng hay mở'
+        - 'đóng hay mởi'
         - 'bật hay tắt'
         - 'kiểm tra'
         - 'hiển thị'
         - 'thông tin'
-    sma_tracker_status:
+    sma_status_tracker:
         - 'vị trí'
         - 'ở đâu'
 #Do not change the Dict below
@@ -211,11 +211,13 @@ Dict:
     - 'tăng'
   Chromecast:
     - 'trên tivi'
+
   keyword_day:
     - 'qua'
     - 'nay'
     - 'mai'
-    - 'kia'    
+    - 'kia'
+    
 units:
 #'đ', '%', '₫', 'h', 'kWh', 'ms', 'Mbit/s', 'lm', 'Watching', '°C', 'connection(s)', 'lx', 'Mbps', 'MHz', 'dBm', 'V', 'W', 'A', 'C', ' ', 'VA', 'VAr', 'Cos φ', 'lqi', 'mV', 'pending update(s)', 'queries', 'requests', 'Hz'
   'đ':
@@ -261,4 +263,4 @@ commands:
     - 'ở đâu'
     - 'thế nào'
     - 'cao hay thấp'
-    - 'đóng hay mở'    
+    - 'đóng hay mở'   
