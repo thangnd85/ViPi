@@ -326,8 +326,44 @@ Thay đổi âm lượng giọng nói: âm lượng tăng/ âm lượng giảm (
 ```
 https://installvirtual.com/install-python-3-7-on-raspberry-pi/
 
+## Sửa lỗi không lưu cài đặt âm thanh khi khởi động với mic 2HAT
 
-sudo chmod -R o+rwx /directory  
+Xóa bỏ service cũ:
+```
+sudo rm /lib/systemd/system/alsa-restore.service
+```
+Tạo service mới:
+
+```
+sudo nano /lib/systemd/system/alsa-restore.service
+```
+Dán nội dụng sau vào:
+
+```
+
+[Unit]
+Description=Save/Restore Sound Card State
+Documentation=man:alsactl(1)
+ConditionPathExists=!/etc/alsa/state-daemon.conf
+ConditionPathExistsGlob=/dev/snd/control*
+After=alsa-state.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=
+ExecStart=-/usr/sbin/alsactl -E HOME=/run/alsa -f /etc/voicecard/wm8960_asound.state restore
+
+ExecStop=
+ExecStop=-/usr/sbin/alsactl -E HOME=/run/alsa -f /etc/voicecard/wm8960_asound.state store
+```
+
+Ctr + X,Y, enter
+Sau đó 
+```
+sudo systemctl daemon-reload
+```
+Khởi động lại  
 
 ### Chuyển json vào root 
 
