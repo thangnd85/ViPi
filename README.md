@@ -1,20 +1,45 @@
-### Dự án bot [ViPi] là dự án mod lại từ các dự án sau:
+## Dự án bot [ViPi] là dự án mod lại từ các dự án sau:
 https://github.com/googlesamples/assistant-sdk-python/tree/master/google-assistant-sdk
 https://github.com/shivasiddharth/GassistPi
 
 Với sự đóng góp các thành viên mù code và tester đam mê phá nhà, nghèo vì độ loa sẽ update trong contributer sau :D
 
-Đây là dự án miễn phí, phục vụ cá nhân khi rảnh rỗi, không phải dev chuyên nghiệp. Anh em muốn tham gia vào đội coder thì cứ inbox m.me/thangnd85 hoặc t.me/thangnd85
+## ĐÓNG GÓP
+Người mò mẫm đầu tiên [longhd2](https://github.com/longhd2)
+
+Coder 3h Youtube [canghp128](https://github.com/canghp128)
+
+Coder ẩn dật [HungDoManh](https://github.com/HungDoManh)
+
+Copy & paste [thangnd85](https://github.com/thangnd85)
+
+Sharktank [lamthientieu](https://github.com/lamthientieu)
+
+Sharktank [tuanto90](https://github.com/tuanto90)
+
+Tester nghiệp dư [tienhuansk](https://github.com/tienhuansk)
+
+
+Đây là dự án miễn phí, phục vụ cá nhân khi rảnh rỗi, không phải dev chuyên nghiệp. 
+
+Anh em muốn tham gia vào đội coder thì cứ inbox [m.me/thangnd85](m.me/thangnd85) hoặc [t.me/thangnd85](t.me/thangnd85)
 
 ## 1.Chuẩn bị:
 Thẻ nhớ, file image tải bên dưới:
 Imgage gốc:
+
 http://www.cs.tohoku-gakuin.ac.jp/pub/Linux/RaspBerryPi/
+
 Hoặc bản có sẵn môi trường và wifi hotspot
+
 https://vipiteam.page.link/img
+
 Flash vào thẻ nhớ bằng Echter hoặc Raspberry Pi Imager
+
 ## 1.1 Kết nối wifi và ssh:
+
 1, Với image gốc: Tạo file ssh (không có đuôi gì cả và không nội dung) 
+
 Tạo tiếp file wpa_suplicant.conf với nội dung sau:
 ```
 country=vn
@@ -30,25 +55,34 @@ network={
 Rồi chép cả 2 vào partition boot trong thẻ nhớ. Gắn thẻ vào Pi rồi bật nguồn.
 
 2. Trường hợp flash image có sẵn môi trường, sau khi flash xong, gắn vào Pi và bật nguồn, sẽ xuất hiện wifi tên là ViPi
+
 Kết nối với wifi đó để tiến hành nối vào mạng.
 
-3. Sau khi nối mạng, có thể dùng các phần mềm trên điện thoại như Fing để quét IP, hoặc dùng IP scanner free trên PC
-Hay vào modem/router để xem IP của pi. 
+3. Sau khi nối mạng, có thể dùng các phần mềm trên điện thoại như Fing để quét IP, 
+
+hoặc dùng IP scanner free trên PC Hay vào modem/router để xem IP của pi. 
 
 
 File json google Actions:
+
 Tạo json theo hướng dẫn tại đây, tải về đổi tên tùy ý, chút sẽ sử dụng.
+
 https://www.youtube.com/watch?v=ROQ5K4om2Fo
+
 Nhớ thêm email của mình vào mục Test user:
 
-
 Nếu cài đặt từ img gốc, tiến hành từ bước 2:
+
 Nếu cài từ img sẵn có môi trường, chuyển qua bước 7.
 
 ### 2.Update OS & cài đặt git:
+
 Dùng ssh để đăng nhập vào pi với username và pass mặc định
+
 Sử dụng puTTY hoặc Terminal để SSH vào Pi với địa chỉ đã scan bên trên, hoặc dùng hostname raspberrypi.local
+
 Dùng WinSCP để quản lí file trong Pi
+
 Copy json ở bước 1 vào /home/pi (là cái folder mặc định khi vào winscp)
 
 ### 3. Cài đặt Mic & Loa nếu sử dụng Mic HAT:
@@ -69,6 +103,7 @@ sudo ./install.sh
 sudo reboot now
 ```
 Sau khi khởi động lại, đăng nhập lại vào console
+
 Kiểm tra xem có âm thanh ở loa hay không:
 ```sh
 speaker-test
@@ -117,8 +152,11 @@ sudo chmod +x ./ViPi/scripts/installer.sh && sudo ./ViPi/scripts/installer.sh
 Nhập đường dẫn json:  /home/pi/ten_file.json (đổi tên cho đúng nhé)
 
 Sau khi cài đặt xong có thể sẽ bị rớt mạng wifi, khởi động lại pi hoặc kiểm tra wifi trên điện thoại (hay máy tính), 
+
 sẽ có mạng wifi mới tên là ViPi thì kết nối vào đó, rồi lựa chọn mạng wifi nhà mình, nhập mật khẩu để kết nối. 
+
 Ngay sau khi kết nối thành công thì có thể dùng các công cụ để tìm IP để ssh, winscp để chỉnh sửa file tùy ý.
+
 Team sẽ cố gắng tạo ra phần cài đặt bằng trình duyết cho gọn nhẹ. 
 
 ### 5.1: Update new source:
