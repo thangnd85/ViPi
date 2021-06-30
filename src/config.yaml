@@ -19,7 +19,7 @@ Google_Assistant:
     device_model_id: 'vipi-speaker'
     project_id: 'vipi-195e3'
 Weather:
-    control: 'Enabled'
+    control: 'Disabled'
     lat_long: 
         - 11.555358
         - 106.172483
@@ -95,11 +95,11 @@ Gpios:
   picontrol:
     - 0
   pushbutton_trigger:
-    - 0
+    - 17
   servo:
     - 0
   stopbutton_music_AIY_pushbutton:
-    - 0
+    - 17
 
 #Preset commands/requests using IR remote/receiver
 IR:
@@ -234,7 +234,7 @@ Wakewords:
     - '/home/pi/ViPi/src/resources/picovoice_models/hey google_raspberry-pi.ppn'
     - '/home/pi/ViPi/src/resources/picovoice_models/ok google_raspberry-pi.ppn'
     - '/home/pi/ViPi/src/resources/picovoice_models/alexa_raspberry-pi.ppn'
-  sensitivities:  0.6
+  sensitivities:  0.7
 
 #Wemo/Emulated Wemo devices
 Wemo:

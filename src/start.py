@@ -1,2 +1,2 @@
-import start
-start.main()
+import main
+main.Myassisstant().main

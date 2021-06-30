@@ -63,8 +63,8 @@ speakingindicator=configuration['Gpios']['assistant_indicators'][1]
 
 #Stopbutton
 stoppushbutton=configuration['Gpios']['stopbutton_music_AIY_pushbutton'][0]
-#GPIO.setup(stoppushbutton, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-#GPIO.add_event_detect(stoppushbutton,GPIO.FALLING)
+GPIO.setup(stoppushbutton, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.add_event_detect(stoppushbutton,GPIO.FALLING)
 
 #IR receiver
 if ircontrol:
@@ -78,13 +78,13 @@ if (audiosetup=='AIY'):
     led=GPIO.PWM(aiyindicator,1)
     led.start(0)
     print('Initializing GPIO '+str(aiyindicator)+' for assistant activity indication')
-elif (audiosetup=='GEN'):
-    GPIO.setup(listeningindicator, GPIO.OUT)
-    GPIO.setup(speakingindicator, GPIO.OUT)
-    GPIO.output(listeningindicator, GPIO.LOW)
-    GPIO.output(speakingindicator, GPIO.LOW)
-    print('Initializing GPIOs '+str(listeningindicator)+' and '+str(speakingindicator)+' for assistant activity indication')
-
+if (audiosetup=='GEN'):
+#    GPIO.setup(listeningindicator, GPIO.OUT)
+#    GPIO.setup(speakingindicator, GPIO.OUT)
+#    GPIO.output(listeningindicator, GPIO.LOW)
+#    GPIO.output(speakingindicator, GPIO.LOW)
+#    print('Initializing GPIOs '+str(listeningindicator)+' and '+str(speakingindicator)+' for assistant activity indication')
+    pass
 class GoogleHomeLedPattern(object):
     def __init__(self, show=None):
         self.basis = numpy.array([0] * 4 * 12)
@@ -469,7 +469,7 @@ class ws2812:
         for i in range(self.strip.numPixels()):
             self.strip.setPixelColor(i, color)
             self.strip.show()
-            time.sleep(wait_ms / 2000.0)
+            time.sleep(wait_ms / 2500.0)
     def theaterChase(self,strip, color, wait_ms=20, iterations=5):
         """Movie theater light style chaser animation."""
         for j in range(iterations):
@@ -477,7 +477,7 @@ class ws2812:
                 for i in range(0, self.strip.numPixels(), 3):
                     strip.setPixelColor(i + q, color)
                 self.strip.show()
-                time.sleep(wait_ms / 1000.0)
+                time.sleep(wait_ms / 2000.0)
                 for i in range(0, strip.numPixels(), 3):
                     self.strip.setPixelColor(i + q, 0)
     def wheel(self,pos):
@@ -496,7 +496,7 @@ class ws2812:
             for i in range(self.strip.numPixels()):
                 self.strip.setPixelColor(i, self.wheel((i + j) & 255))
             self.strip.show()
-            time.sleep(wait_ms / 2000.0)
+            time.sleep(wait_ms / 2500.0)
     def rainbowCycle(self,strip, wait_ms=20, iterations=1):
         """Draw rainbow that uniformly distributes itself across all pixels."""
         for j in range(256 * iterations):
@@ -504,7 +504,7 @@ class ws2812:
                 self.strip.setPixelColor(i, self.wheel(
                     (int(i * 256 / strip.numPixels()) + j) & 255))
             self.strip.show()
-            time.sleep(wait_ms / 2000.0)
+            time.sleep(wait_ms / 2500.0)
     def theaterChaseRainbow(self,strip, wait_ms=20):
         """Rainbow movie theater light style chaser animation."""
         for j in range(256):
@@ -512,40 +512,37 @@ class ws2812:
                 for i in range(0, self.strip.numPixels(), 3):
                     self.strip.setPixelColor(i + q, self.wheel((i + j) % 255))
                 self.strip.show()
-                time.sleep(wait_ms / 2000.0)
+                time.sleep(wait_ms / 2500.0)
                 for i in range(0, strip.numPixels(), 3):
                     self.strip.setPixelColor(i + q, 0)
 
 ##
 
-    def wakeup(self, direction=0):
-        def f():
-            self._wakeup(direction)
-            
+    def wakeup(self):
+           
         self.next.set()
-        self.queue.put(f)
-        self.next.set()
+        self.queue.put(self,_wakeup)
         self.queue.put(self._off_apa)        
         
     def listen(self):
         self.next.set()
         self.queue.put(self._listen)
-        self.next.set()
         self.queue.put(self._off_apa)
     def think(self):
         self.next.set()
         self.queue.put(self._think)
-        self.next.set()
         self.queue.put(self._off_apa)
     def speak(self):
         self.next.set()
         self.queue.put(self._speak)
-        self.next.set()
         self.queue.put(self._off_apa)
     def off(self):
         self.next.set()
         self.queue.put(self._off)
-
+        self.queue.put(self._off_apa)
+    def mute(self):
+        self.next.set()
+        self.queue.put(self._mute)
     def _run(self):
         while True:
             func = self.queue.get()
@@ -574,6 +571,8 @@ class ws2812:
         self.write([0] * 3 * self.PIXELS_N)
         self.colorWipe(self.strip, Color(0, 0, 0))
         self.write([0] * 3 * self.PIXELS_N)
+    def _mute(self):
+        self.colorWipe(self.strip, Color(255, 0, 0))
     def _off_apa(self):
         self.write([0] * 3 * self.PIXELS_N)
     def write(self, colors):
@@ -599,7 +598,7 @@ def find(vid=0x2886, pid=0x0018):
 
 if audiosetup=='R2M':
     pixels=Pixels2mic()
-if audiosetup=='WS2':
+elif audiosetup=='WS2':
     pixels = ws2812()
 elif audiosetup=='R4M':
     pixels=Pixels4mic()

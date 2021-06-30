@@ -311,7 +311,7 @@ Step 3: Reboot
 
 #### Một số khẩu lệnh:
 
-```sh
+```
 Tăng/giảm âm thanh: tăng thêm/giảm bớt âm lượng 0-100 
 Tăng giảm âm thanh: đặt/thay đổi âm lượng lớn nhất/ tối thiểu
 Tăng giảm âm thanh: đặt/thay đổi âm lượng 0-100
@@ -323,6 +323,9 @@ Phát nhiều bài bài hát khi dùng start.py: Phát + ()
 phát radio:   radio + (tên đài) ví dụ Radio bà rịa vũng tàu
 Lịch âm: Lịch âm hoặc âm lịch + (hôm nay, qua , mai ,mốt)
 Thay đổi âm lượng giọng nói: âm lượng tăng/ âm lượng giảm ( tự động +/-5% đối với pi zero, +/-10% đối với pi3 trở lên)
+Nghe báo nói: Báo nói + (thời sự, tin mới, thể thao, cười)
+Điều khiển Home_Assistant: Bật tắt thiết bị, kiểm tra trạng thái, kích hoạt kịch bản (script) hoặc tự động hóa (automation)
+
 ```
 https://installvirtual.com/install-python-3-7-on-raspberry-pi/
 
