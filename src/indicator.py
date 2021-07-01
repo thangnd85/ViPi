@@ -464,13 +464,13 @@ class ws2812:
         self.strip.begin()
 ##
 
-    def colorWipe(self,strip, color, wait_ms=20):
+    def colorWipe(self,strip, color, wait_ms=15):
         """Wipe color across display a pixel at a time."""
         for i in range(self.strip.numPixels()):
             self.strip.setPixelColor(i, color)
             self.strip.show()
             time.sleep(wait_ms / 2500.0)
-    def theaterChase(self,strip, color, wait_ms=20, iterations=5):
+    def theaterChase(self,strip, color, wait_ms=15, iterations=5):
         """Movie theater light style chaser animation."""
         for j in range(iterations):
             for q in range(3):
@@ -490,14 +490,14 @@ class ws2812:
         else:
             pos -= 170
             return Color(0, pos * 3, 255 - pos * 3)
-    def rainbow(self,strip, wait_ms=20, iterations=1):
+    def rainbow(self,strip, wait_ms=15, iterations=1):
         """Draw rainbow that fades across all pixels at once."""
         for j in range(256 * iterations):
             for i in range(self.strip.numPixels()):
                 self.strip.setPixelColor(i, self.wheel((i + j) & 255))
             self.strip.show()
             time.sleep(wait_ms / 2500.0)
-    def rainbowCycle(self,strip, wait_ms=20, iterations=1):
+    def rainbowCycle(self,strip, wait_ms=15, iterations=1):
         """Draw rainbow that uniformly distributes itself across all pixels."""
         for j in range(256 * iterations):
             for i in range(self.strip.numPixels()):
@@ -505,7 +505,7 @@ class ws2812:
                     (int(i * 256 / strip.numPixels()) + j) & 255))
             self.strip.show()
             time.sleep(wait_ms / 2500.0)
-    def theaterChaseRainbow(self,strip, wait_ms=20):
+    def theaterChaseRainbow(self,strip, wait_ms=15):
         """Rainbow movie theater light style chaser animation."""
         for j in range(256):
             for q in range(1):
@@ -521,7 +521,7 @@ class ws2812:
     def wakeup(self):
            
         self.next.set()
-        self.queue.put(self,_wakeup)
+        self.queue.put(self._wakeup)
         self.queue.put(self._off_apa)        
         
     def listen(self):
@@ -703,4 +703,4 @@ def ctr_led(activity):
         elif (audiosetup=='ALE'):
             pixels.pixels.off()  
         elif (audiosetup=='WS2'):
-            pixels.off()
+            pixels.mute()
