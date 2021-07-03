@@ -29,7 +29,7 @@ audiosetup=''
 with open('{}/src/config.yaml'.format(ROOT_PATH),'r', encoding='utf8') as conf:
     configuration = yaml.safe_load(conf)
 if configuration['ctr_led']['type']=="GEN'":
-    audiosetup='GEN'
+    audiosetup=''
 elif configuration['ctr_led']['type']=="R4M":
     audiosetup='R4M'
 elif configuration['ctr_led']['type']=="R2M":
@@ -45,7 +45,7 @@ elif configuration['ctr_led']['type']=="ALE":
 elif configuration['ctr_led']['type']=="WS2":
     audiosetup='WS2'
 else:
-    audiosetup='GEN'
+    audiosetup=''
     print('Mic bạn đang sử dụng là: '+ audiosetup)
 
 if configuration['IR']['IR_Control']=='Enabled':

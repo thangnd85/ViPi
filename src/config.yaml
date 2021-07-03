@@ -15,6 +15,7 @@ ctr_led:
 
 Startup_voice: 'Disabled'  
 continue_conversation: False #True or False
+app_news_radio: 'Enabled'
 Google_Assistant:
     device_model_id: 'vipi-speaker'
     project_id: 'vipi-195e3'
@@ -28,7 +29,7 @@ Weather:
     
 Home_Assistant:
     control: 'Enabled'
-    ratio: 70
+    ratio: 60
     url: 'http://192.168.1.246:8123'
     token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhNWJlODRhZGZhMDc0MjMyODcxMjViMjdlODc0NTY1NCIsImlhdCI6MTYyMzAwMjE4MCwiZXhwIjoxOTM4MzYyMTgwfQ.us5XLLZuqzk2dFQhVdYkAjJKBSQlJxuHHQ0AlS4mAyY'
     
@@ -91,7 +92,7 @@ Gpios:
     - 10
     - 0
   ir:
-    - 0
+    - 12
   picontrol:
     - 0
   pushbutton_trigger:
@@ -102,17 +103,40 @@ Gpios:
     - 17
 
 #Preset commands/requests using IR remote/receiver
-IR:
-  IR_Control: 'Disabled'
-  Codes:
-    - 58056
-    - 58072
-    - 58064
-  Commands:
-    - "Start conversation"
-    - "custom stop" #Custom command stop
-    - "what is the time in London"
+##
 
+
+##
+IR:
+  IR_Control: 'Enabled'
+  Codes:
+    - 33738799 #Up 
+    - 33714319 #Down 
+    - 33720439 #Right 
+    - 33687799 #Left 
+    - 33735229 #Mute 
+    - 33731149 #Power 
+    - 33708199 #Home 
+    - 33727069 #Menu 
+    - 33702589 #Back 
+    - 33691879 #VolUp 
+    - 33744919 #VolDown 
+    - 33743389 #Assistant
+    - 33730639 #Play
+  Commands:
+    - "Time"
+    - "Weather"
+    - "Next"
+    - "Prev"
+    - "Mute"
+    - "Stop"
+    - "Story"
+    - "Radio news"
+    - "Music"
+    - "VolUp"
+    - "VolDown"
+    - "Assistant"
+    - "Play"
 
 #Change you language. Default is english
 Language:
@@ -222,9 +246,9 @@ Pushbullet:
 #Custom wakeword On/Off.
 #To enable custom wakeword, change status to Enabled and restart the assistant.
 Wakewords:
-  Ok_Google: 'Disabled'
+#  Ok_Google: 'Disabled'
   Custom_Wakeword: 'Enabled'
-#  Ok_Google: 'Enabled'
+  Ok_Google: 'Enabled'
 #  Custom_Wakeword: 'Disabled'
   #Set below to 'Picovoice' or 'Snowboy' as per your choice.
   Wakeword_Engine: 'Picovoice'
