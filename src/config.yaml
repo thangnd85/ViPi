@@ -11,14 +11,14 @@ ctr_led:
   # 8. 'GOO'   ---> Google
   # 8. 'ALE'   ---> Alexa
   # 9. 'WS2'   ---> WS2812
-  type: 'WS2'
+  type: 'R2M'
 
 Startup_voice: 'Disabled'  
 continue_conversation: False #True or False
 app_news_radio: 'Enabled'
 Google_Assistant:
-    device_model_id: 'vipi-speaker'
-    project_id: 'vipi-195e3'
+    device_model_id: 'dien_cua_ban'
+    project_id: 'dien_cua_ban'
 Weather:
     control: 'Disabled'
     lat_long: 
@@ -28,7 +28,7 @@ Weather:
     darksky_api: 'c457d056f60c2aa93fd47339aad294da'
     
 Home_Assistant:
-    control: 'Enabled'
+    control: 'Disabled'
     ratio: 60
     url: 'http://192.168.1.246:8123'
     token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhNWJlODRhZGZhMDc0MjMyODcxMjViMjdlODc0NTY1NCIsImlhdCI6MTYyMzAwMjE4MCwiZXhwIjoxOTM4MzYyMTgwfQ.us5XLLZuqzk2dFQhVdYkAjJKBSQlJxuHHQ0AlS4mAyY'
@@ -82,7 +82,7 @@ ESP:
 
 
 #API Key for YouTube and Kickstarter Search Engine
-Google_cloud_api_key: "AIzaSyAm3WDBX32iML5Ycux30lveD2P56SINpnA"
+Google_cloud_api_key: "AIzaSyBSZUMffFwHfjWhOF9qSfcV75T2ySwpoJw"
 
 #GPIOS used in the project. Feel free to change in case.
 Gpios:
@@ -92,15 +92,15 @@ Gpios:
     - 10
     - 0
   ir:
-    - 12
+    - 0
   picontrol:
     - 0
   pushbutton_trigger:
-    - 17
+    - 0
   servo:
     - 0
   stopbutton_music_AIY_pushbutton:
-    - 17
+    - 0
 
 #Preset commands/requests using IR remote/receiver
 ##
@@ -108,7 +108,7 @@ Gpios:
 
 ##
 IR:
-  IR_Control: 'Enabled'
+  IR_Control: 'Disabled'
   Codes:
     - 33738799 #Up 
     - 33714319 #Down 
@@ -247,9 +247,9 @@ Pushbullet:
 #To enable custom wakeword, change status to Enabled and restart the assistant.
 Wakewords:
 #  Ok_Google: 'Disabled'
-  Custom_Wakeword: 'Enabled'
+#  Custom_Wakeword: 'Enabled'
   Ok_Google: 'Enabled'
-#  Custom_Wakeword: 'Disabled'
+  Custom_Wakeword: 'Disabled'
   #Set below to 'Picovoice' or 'Snowboy' as per your choice.
   Wakeword_Engine: 'Picovoice'
   Picovoice_wakeword_models:
@@ -277,7 +277,7 @@ YouTube:
 
 #Chromecast on Tivi
 Chromecast:
-  Chromecast_Control: 'Enabled'
+  Chromecast_Control: 'Disabled'
 
   #Change ip to match th ip address of your Chromecast device
   Chromecast_Devices:
