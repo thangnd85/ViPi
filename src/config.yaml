@@ -12,13 +12,14 @@ ctr_led:
   # 8. 'ALE'   ---> Alexa
   # 9. 'WS2'   ---> WS2812
   type: 'R2M'
-
+Register_Device: False
 Startup_voice: 'Disabled'  
 continue_conversation: False #True or False
 app_news_radio: 'Enabled'
 Google_Assistant:
     device_model_id: 'dien_cua_ban'
     project_id: 'dien_cua_ban'
+
 Weather:
     control: 'Disabled'
     lat_long: 
