@@ -77,7 +77,7 @@
         "external_url": "https://thang.hass",
         "internal_url": "http://192.168.1.246:8123",
         "ratio": 70,
-        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJI9.eyJpc3MiOiIxZGNlN2U4ODVlYTA0MDgxYTQyNWY3NDAxN2I4NTcxMSIsImlhdCI6MTY1NzEyNTc1NywiZXhwIjoxOTcyNDg1NzU3fQ.bW67QE3alVeSM8y6gPozQ4Is6EBsTuJyBPzzY_PqZfA"
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1eyJpc3MiOiIxZGNlN2U4ODVlYTA0MDgxYTQyNWY3NDAxN2I4NTcxMSIsImlhdCI6MTY1NzEyNTc1NywiZXhwIjoxOTcyNDg1NzU3fQ.bW67QE3alVeSM8y6gPozQ4Is6EBsTuJyBPzzY_PqZfA"
     },
     "IR": {
         "Codes": [
