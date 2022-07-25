@@ -1,23 +1,46 @@
 #!/bin/bash
+# Copyright 2017 Google Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+set -o errexit
 
+scripts_dir="$(dirname "${BASH_SOURCE[0]}")"
+GIT_DIR="$(realpath $(dirname ${BASH_SOURCE[0]})/..)"
+
+# make sure we're running as the owner of the checkout directory
+RUN_AS="$(ls -ld "$scripts_dir" | awk 'NR==1 {print $3}')"
+if [ "$USER" != "$RUN_AS" ]
+then
+    echo "Tập lệnh này phải chạy dưới dạng $ RUN_AS, đang cố gắng thay đổi người dùng..."
+    exec sudo -u $RUN_AS $0
+fi
+clear
+echo ""
+echo ""
+sudo mv ${GIT_DIR}/scripts/wifi-connect-start.service /lib/systemd/system/wifi-connect-start.service
+sudo systemctl enable wifi-connect-start.service
+sudo systemctl start wifi-connect-start.service
 set -u
 trap "exit 1" TERM
 export TOP_PID=$$
-
 : "${WFC_REPO:=balena-os/wifi-connect}"
 : "${WFC_INSTALL_ROOT:=/usr/local}"
-
 SCRIPT='raspbian-install.sh'
 NAME='WiFi Connect Raspbian Installer'
-
 INSTALL_BIN_DIR="$WFC_INSTALL_ROOT/sbin"
 INSTALL_UI_DIR="$WFC_INSTALL_ROOT/share/wifi-connect/ui"
-
 RELEASE_URL="https://api.github.com/repos/balena-os/wifi-connect/releases/latest"
-
 CONFIRMATION=false
-
-
 main() {
     for arg in "$@"; do
         case "$arg" in
@@ -32,83 +55,56 @@ main() {
                 ;;
         esac
     done
-
     need_cmd id
     need_cmd curl
     need_cmd systemctl
     need_cmd apt-get
     need_cmd grep
     need_cmd mktemp
-
     check_os_version
-
     install_wfc
-
     activate_network_manager
-
 }
-
 check_os_version() {
     local _version=""
-
     if [ -f /etc/os-release ]; then
         _version=$(grep -oP 'VERSION="\K[^"]+' /etc/os-release)
     fi
-
     if [ "$_version" == "8 (jessie)" ]; then
         err "Distributions based on Debian 8 (jessie) are not supported"
     fi
 }
-
 activate_network_manager() {
     if [ "$(service_load_state NetworkManager)" = "not-found" ]; then
         say 'NetworkManager is not installed'
-
         # Do not install NetworkManager over running dhcpcd to avoid clashes
-
         say 'Downloading NetworkManager...'
-
         ensure sudo apt-get update
-
         ensure sudo apt-get install -y -d network-manager
-
-        disable_dhcpcd
-
         say 'Installing NetworkManager...'
-
         ensure sudo apt-get install -y network-manager
-
         ensure sudo apt-get clean
+		disable_dhcpcd
     else
         say 'NetworkManager is already installed'
-
         if [ "$(service_active_state NetworkManager)" = "active" ]; then
             say 'NetworkManager is already active'
         else
-
-            disable_dhcpcd
-
             say 'Activating NetworkManager...'
-
             ensure sudo systemctl enable NetworkManager
-
             ensure sudo systemctl start NetworkManager
+			disable_dhcpcd
         fi
     fi
-
     if [ ! "$(service_active_state NetworkManager)" = "active" ]; then
         err 'Cannot activate NetworkManager'
     fi
 }
-
 disable_dhcpcd() {
     if [ "$(service_active_state dhcpcd)" = "active" ]; then
         say 'Deactivating and disabling dhcpcd...'
-
         ensure sudo systemctl stop dhcpcd
-
         ensure sudo systemctl disable dhcpcd
-
         if [ "$(service_active_state dhcpcd)" = "active" ]; then
             err 'Cannot deactivate dhcpcd'
         else
@@ -118,27 +114,11 @@ disable_dhcpcd() {
         say 'dhcpcd is not active'
     fi
 }
-
 service_load_state() {
-    ensure systemctl -p LoadState --value show "$1"
+    ensure sudo systemctl -p LoadState --value show "$1"
 }
-
 service_active_state() {
-    ensure systemctl -p ActiveState --value show "$1"
-}
-
-confirm_installation() {
-    if [ "$CONFIRMATION" = false ]; then
-        return
-    fi
-
-    printf '\33[1;36m%s:\33[0m ' "$NAME"
-
-    read -r -p "Continue to install NetworkManager and disable dhcpcd? [y/N] " response
-    response=${response,,}  # convert to lowercase
-    if [[ ! $response =~ ^(yes|y)$ ]]; then
-        exit 0
-    fi
+    ensure sudo systemctl -p ActiveState --value show "$1"
 }
 
 install_wfc() {
@@ -146,30 +126,17 @@ install_wfc() {
     local _arch_url
     local _wfc_version
     local _download_dir
-
-    say "Retrieving latest release from $RELEASE_URL..."
-
     _arch_url=$(ensure curl "$RELEASE_URL" -s | grep -hoP "$_regex")
-
-    say "Downloading and extracting $_arch_url..."
-
     _download_dir=$(ensure mktemp -d)
-
     ensure curl -Ls "$_arch_url" | tar -xz -C "$_download_dir"
-
     ensure sudo mv "$_download_dir/wifi-connect" $INSTALL_BIN_DIR
-
     ensure sudo mkdir -p $INSTALL_UI_DIR
-
     ensure sudo rm -rdf $INSTALL_UI_DIR
-
-    ensure sudo mv "$_download_dir/ui" $INSTALL_UI_DIR
-
+    ensure sudo mv ${GIT_DIR}/scripts/ui $INSTALL_UI_DIR
     ensure rm -rdf "$_download_dir"
-
     _wfc_version=$(ensure wifi-connect --version)
 
-    say "Successfully installed $_wfc_version"
+    say "Cài đặt thành công $_wfc_version"
 }
 
 say() {
@@ -195,3 +162,5 @@ ensure() {
 }
 
 main "$@" || exit 1
+
+echo "Hoàn thành cài đặt, vui lòng reboot........"

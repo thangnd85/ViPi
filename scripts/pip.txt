@@ -6,7 +6,7 @@ gTTS-token>=1.1.3
 youtube_dl>=2018.11.23
 PyChromecast>=2.3.0
 pafy>=0.5.4
-psutil>=5.4.8
+pip>=5.4.8
 urllib3>=1.24.1
 google-api-python-client>=1.7.5
 requests>=2.20.1
@@ -32,8 +32,12 @@ termcolor
 pyusb 
 python-vlc>=3.0.4106
 rpi-ws281x
-underthesea==1.2.3
 fuzzywuzzy
 python-Levenshtein
 mutagen
 youtube-search-python
+flask
+flask-bootstrap
+flask-restful
+cherrypy
+git+https://github.com/thangnd85/yaml_editor

@@ -1,0 +1,35 @@
+<head>
+    <title>Cấu hình ban đầu cho ViPi</title>
+</head>
+<h1>Auth Google</h1>
+<form action = "upload" method = "POST" 
+enctype = "multipart/form-data">
+Bước 1: Chọn file <input type = "file" name = "file" />
+
+<button type="submit">Bước 2: Tải json lên</button> {{upload}}
+</form>
+<p>
+    Bước 3: Lấy token: <a href="{{url}}" target="_blank">>> Bấm vào đây, sau đó copy mã</a>
+</p>
+<form method="post" action="token">
+<input type="text" value="" name="token" />
+<button type="submit">Bước 4: Dán mã vào ô bên cạnh rồi bấm vào đây</button> {{result}}
+</form>
+<h1>Quick action</h1>
+<p>
+<form>
+    <method="POST" action="killpython"> 
+    <button type="submit"> Tắt tiến trình </button>
+<method="POST" action="config"> 
+    <button type="submit"> Sửa config</button>
+</form>
+</p>
+<p>
+<form> 
+    <method="POST" action="reboot"> 
+        <button type="submit"> Khởi động lại </button>
+    <method="POST" action="shutdown"> 
+        <button type="submit"> Tắt ViPi </button>
+</form>
+</p>
+<p>Phát triển bởi thangnd85@ViPi team</p>

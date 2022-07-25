@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	{% if title %}
+    <title>ViPi Dashboard - {{ title }}</title>
+    {% else %}
+    <title>ViPi Dashboard</title>
+    {% endif %}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	
+	<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='dashboard-style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='chatbot/chat_interface.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='chatbot/temporary.css') }}">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+	<style>
+		.navbar-mainbg i {margin: 0;}
+		.navbar-mainbg{background-color:#5161ce;padding:0;border-radius: 26px;margin-bottom: 20px;}
+		#navbarSupportedContent{overflow:hidden;position:relative}
+		#navbarSupportedContent ul{padding:0;margin:0}
+		#navbarSupportedContent li{list-style-type:none;float:left}
+		#navbarSupportedContent ul li a{color:rgba(255,255,255,.5);text-decoration:none;font-size:15px;display:block;padding: 15px 20px;transition-duration:.6s;transition-timing-function:cubic-bezier(0.68,-.55,.265,1.55);position:relative}
+		#navbarSupportedContent>ul>li.active>a{color:#5161ce;background-color:transparent;transition:all .7s}
+		#navbarSupportedContent a:not(:only-child):after{content:"\f105";position:absolute;right:20px;top:10px;font-size:14px;font-family:"Font Awesome 5 Free";display:inline-block;padding-right:3px;vertical-align:middle;font-weight:900;transition:.5s}
+		#navbarSupportedContent .active>a:not(:only-child):after{transform:rotate(90deg)}
+		.hori-selector{display:inline-block;position:absolute;height:100%;top:0;left:0;transition-duration:.6s;transition-timing-function:cubic-bezier(0.68,-.55,.265,1.55);background-color:#fff;border-top-left-radius:20px;border-top-right-radius:20px;margin-top:10px}
+		.hori-selector .left,.hori-selector .right{position:absolute;width:25px;height:25px;background-color:#fff;bottom:10px}
+		.hori-selector .right{right:-25px}
+		.hori-selector .left{left:-25px}
+		.hori-selector .left:before,.hori-selector .right:before{content:'';position:absolute;width:50px;height:50px;border-radius:40%;background-color:#5161ce}
+		.hori-selector .right:before{bottom:0;right:-25px}
+		.hori-selector .left:before{bottom:0;left:-25px}
+		.navbar-nav {
+			display: flex;
+			flex-direction: inherit;
+			justify-content: center;
+		}	
+
+	</style>
+	</head>
+	
+	
+	
+	<body>
+		<div class="container">
+			<div class="wrap">
+				<div class="row">
+					
+					<div class="col-12 col-sm-12 col-md-12 col-lg-1 col-xl-1">
+						<!-- Menu PC -->
+						<div id="accordian">
+							<ul class="show-dropdown main-navbar">							
+								<div class="selector-active"><div class="top"></div><div class="bottom"></div></div>
+								<li class="home"><a href="/"><i class="fa fa-tachometer"></i></a></li>
+								<li class="music"><a href="music"><i class="fa fa-music"></i></a></li>
+								<li class="doc-text"><a href="doc-text"><i class="fa fa-book"></i></a></li>
+								<li class="settings"><a href="settings"><i class="fa fa-cogs"></i></a></li>
+							</ul>	
+						</div>
+						<!-- End Menu PC -->
+						<nav class="navbar navbar-expand-lg navbar-mainbg" id="nav-mobile">					
+							<div class="navbar-collapse" id="navbarSupportedContent">
+								<ul class="navbar-nav ml-auto">
+									<div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+									<li class="nav-item home"><a class="nav-link" href="/"><i class="fa fa-tachometer"></i></a></li>
+									<li class="nav-item music"><a class="nav-link" href="music"><i class="fa fa-music"></i></a></li>
+									<li class="nav-item doc-text"><a class="nav-link" href="doc-text"><i class="fa fa-book"></i></a></li>
+									<li class="nav-item settings"><a class="nav-link" href="settings"><i class="fa fa-cogs"></i></a></li>							
+								</ul>
+							 </div>
+						</nav>
+					</div>
+					
+					<div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-11">
+						<div class="row top-menu">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+								<img src="{{ url_for('static', filename='img/logo.png') }}" style="width:45px;"/>
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 user-control">
+								<div class="btn-group">
+									<button class="btn btn-large user-menu"><img src="{{ url_for('static', filename='img/avatar.jpg') }}"/>Thủy</button>
+									<button class="btn btn-large dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+										<ul class="dropdown-menu">
+											<li><a href="#">Thông tin tải khoản</a></li>
+											<li><a href="#">Đăng xuất</a></li>							
+										</ul>
+								  </div>
+							</div>
+						</div>
+						<div class="row">
+					
+			{% block content %}{% endblock %}	
+			<div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+						
+								<div class="sidebar">
+									<h2 class="title-box">ViPi Assistant</h2>
+									<div class="row">
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-violet">
+										<div class="control">
+											<div class="device-icon">
+												<i class="fa fa-home" aria-hidden="true"></i>
+											</div>
+											<div class="device-button">	
+												<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+													<div class="handle"></div>
+												</button>
+											</div>	
+										</div>	
+										<small>Home Assistant</small>
+									</div>	
+								</div>	<!-- End Device -->
+								
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-yellow">
+										<div class="control">
+											<div class="device-icon">
+												<i class="fa fa-google" aria-hidden="true"></i>
+											</div>
+											<div class="device-button">	
+												<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+													<div class="handle"></div>
+												</button>
+											</div>	
+										</div>	
+										<small>Gtts</small>
+									</div>	
+								</div>	
+								<!-- End Device -->
+								
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-orange">
+										<div class="control">
+											<div class="device-icon">
+												<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+											</div>
+											<div class="device-button">	
+												<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+													<div class="handle"></div>
+												</button>
+											</div>	
+										</div>	
+										<small>Đèn phòng khách</small>
+									</div>	
+								</div>	<!-- End Device -->
+								
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-blue">
+										<div class="control">
+											<div class="device-icon">
+												<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+											</div>
+											<div class="device-button">	
+												<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+													<div class="handle"></div>
+												</button>
+											</div>	
+										</div>	
+										<small>Đèn phòng khách</small>
+									</div>	
+								</div>	
+								<!-- End Device -->
+								
+							</div>  
+							
+									<h2 class="title-box">Thông tin hệ thống</h2>
+									<div class="input-toogle">
+										<input id="toogle-input" type="checkbox" class='btn1' {{check_b1}}>
+										<label for="toogle-input"class='b1_status'>{{b1}}</label>
+									</div> 
+
+									<div class="input-toogle1">
+										<input id="toogle-input1" type="checkbox" class='btn2' {{check_b2}} >
+										<label for="toogle-input1" class="b2_status">{{b2}}</label>
+									</div> 
+							
+								</div> <!-- End Sidebar -->
+						
+						
+							</div><!-- End Col Sidebar -->
+						</div>
+					</div>
+
+				</div> <!-- # End Row -->
+			
+			 <!-- Trigger/Open The Modal -->
+			<button id="myBtn"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+
+
+				
+			<div class="chat-container" id="chatbox">
+				<span class="close">&times;</span>
+				<h2>Vipi Assistant</h2>
+				<div class="chat_window">
+					<ul class="messages"></ul>
+					<small>Nói "Hi" để bắt đầu trò chuyện</small>
+					<div class="bottom_wrapper clearfix">
+						<div class="message_input_wrapper">
+							<input id="msg_input" class="message_input" placeholder="Nói 'Hi' để bắt đầu trò chuyện..." />
+						</div>
+						<div class="send_message">
+							 <div class="text">Gửi</div>
+						</div>
+					</div>
+				</div>
+				<div class="message_template">
+					<li class="message">
+						<div class="avatar"></div>
+						<div class="text_wrapper">
+							<div class="text"></div>
+						</div>
+					</li>
+				</div>
+        	</div>
+				
+			<script>
+				// Get the modal
+				var modal = document.getElementById("chatbox");
+
+				// Get the button that opens the modal
+				var btn = document.getElementById("myBtn");
+
+				// Get the <span> element that closes the modal
+				var span = document.getElementsByClassName("close")[0];
+
+				// When the user clicks on the button, open the modal
+				btn.onclick = function() {
+				  modal.style.display = "block";
+				}
+
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+				  modal.style.display = "none";
+				}
+
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+				  if (event.target == modal) {
+					modal.style.display = "none";
+				  }
+				} 
+			</script>	
+			
+				
+			</div> <!-- #End Wrap -->	
+		</div>	<!-- #End Container -->
+		<script src="{{ url_for('static', filename='dashboard-nav.js') }}"></script>
+		<script src="{{ url_for('static', filename='chatbot/bind.js') }}"></script>
+		<script src="{{ url_for('static', filename='dashboard-weather.js') }}"></script>
+		<script src='https://code.highcharts.com/stock/highstock.js'></script>
+		<script src='https://code.highcharts.com/stock/modules/exporting.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js'></script>	
+		<script src="{{ url_for('static', filename='dashboard-time.js') }}"></script>
+		<script>
+			//$(function($) {
+			  //let url = window.location.href;
+			  //$('#accordian ul li a').each(function() {
+				//if (this.href === url) {
+				  //$(this).closest('li').addClass('active');
+				//}
+			  //});
+			//});
+		</script>
+		<script>
+			var today = new Date();
+			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+			//var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+			//var dateTime = time+' '+date;
+			var dateTime = date;
+
+			document.getElementById("date").innerHTML = dateTime;
+			
+			//Dropdown menu	
+			jQuery(function($) {
+			$('.btn-group').hover(function() {
+			$(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
+			}, function() {
+			$(this).find('.dropdown-menu').first().stop(true, true).delay(500).slideUp();
+			});});
+						
+		</script>
+		<script>
+			// ---------Responsive-navbar-active-animation-----------
+			function test(){
+			  var tabsNewAnim = $('#navbarSupportedContent');
+			  var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+			  var activeItemNewAnim = tabsNewAnim.find('.active');
+			  var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+			  var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+			  var itemPosNewAnimTop = activeItemNewAnim.position();
+			  var itemPosNewAnimLeft = activeItemNewAnim.position();
+			  $(".hori-selector").css({
+				"top":itemPosNewAnimTop.top + "px", 
+				"left":itemPosNewAnimLeft.left + "px",
+				"height": activeWidthNewAnimHeight + "px",
+				"width": activeWidthNewAnimWidth + "px"
+			  });
+			  $("#navbarSupportedContent").on("click","li",function(e){
+				$('#navbarSupportedContent ul li').removeClass("active");
+				$(this).addClass('active');
+				var activeWidthNewAnimHeight = $(this).innerHeight();
+				var activeWidthNewAnimWidth = $(this).innerWidth();
+				var itemPosNewAnimTop = $(this).position();
+				var itemPosNewAnimLeft = $(this).position();
+				$(".hori-selector").css({
+				  "top":itemPosNewAnimTop.top + "px", 
+				  "left":itemPosNewAnimLeft.left + "px",
+				  "height": activeWidthNewAnimHeight + "px",
+				  "width": activeWidthNewAnimWidth + "px"
+				});
+			  });
+			}
+			$(document).ready(function(){
+			  setTimeout(function(){ test(); });
+			});
+			$(window).on('resize', function(){
+			  setTimeout(function(){ test(); }, 500);
+			});
+			$(".navbar-toggler").click(function(){
+			  setTimeout(function(){ test(); });
+			});
+		</script>
+		
+		<script>
+			$(document).ready(function() {
+				$(".input-toogle").click(function() {
+				  var input = jQuery(this).find("input");
+				  input.prop("checked", !input.prop("checked"));
+				});
+			});
+			$(document).ready(function() {
+				$(".input-toogle1").click(function() {
+				  var input = jQuery(this).find("input1");
+				  input.prop("checked", !input.prop("checked"));
+				});
+			});  
+			$(document).ready(function() {
+			  $('.input-toogle').click(function() {
+			   var b1_status = $('.b1_status').text();
+			   $.ajax({
+				url: "/b1",
+				type: "get",
+				 data: {b1_status: b1_status},
+				 success: function(response) {
+				  $(".b1_status").html(response);
+				 },
+				 error: function(xhr) {
+				  //Do Something to handle error
+				 }
+			   });
+			  });
+			});
+			
+			$(document).ready(function() {
+			  $('.input-toogle1').click(function() {
+			   var b2_status = $('.b2_status').text();
+			   $.ajax({
+				url: "/b2",
+				type: "get",
+				 data: {b2_status: b2_status},
+				 success: function(response) {
+				  $(".b2_status").html(response);
+				 },
+				 error: function(xhr) {
+				  //Do Something to handle error
+				 }
+			   });
+			  });
+			});
+		 </script>
+	</body>
+</html>
+

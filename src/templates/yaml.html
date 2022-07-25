@@ -1,0 +1,41 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}YAML Editor{% endblock %}
+
+{% block styles %}
+{{super()}}
+    <link href="{{ url_for('static', filename='jquery-linedtextarea.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+        <script src="{{ url_for('static', filename='js-yaml.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='jquery-linedtextarea.js') }}"></script>
+        <script type="text/javascript">
+            var changeStr = '{{ change_str }}'
+            $(document).ready(function(){
+                $("#yaml_data").val(jsyaml.dump(JSON.parse('{{ data|safe }}')))
+                $("#yaml_data").linedtextarea();
+        });
+        </script>
+        <script src="{{ url_for('static', filename='app.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<!------ Include the above in your HEAD tag ---------->
+
+        <div class="container" style="margin-top:30px;">
+            <!-- <div class="form-group">
+                <a href="/" class="btn btn-lg btn-default">Go to tree version</a>
+            </div> -->
+            <div class="form-group">
+                <pre>Edit your YAML (Update corresponding fields with {{ change_str }} text):</pre>
+                <div>
+                    <meta charset="UTF-8">
+                    <textarea class="form-control linedtextarea" id='yaml_data' style="height: 500px;box-shadow: none;"></textarea>
+                </div>
+            </div>
+            <div class="form-group pull-right">
+                <button type="button" onclick="saveSimple()" class="btn btn-lg btn-success ">Lưu cấu hình</button>
+            </div>
+        </div>
+{% endblock %}

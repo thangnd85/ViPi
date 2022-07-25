@@ -1,0 +1,29 @@
+{% extends "header-footer.html" %}
+
+{% block content %}
+	<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+		<section class="content-section music-btn">
+			<div id="music-box">
+			<form method="post" action="wplay">
+				<input name="song">
+				<button type="submit"> Tìm và phát </button> 
+			</form>
+			</div>
+			<div class="btn-group">
+				<form method="post" action="prev">
+					<button type="submit">  Prev </button> </form>
+				<form method="post" action="play">
+					<button type="submit"> Play </button> </form>
+				<form method="post" action="next">
+					<button type="submit"> Next </button> </form>
+				<form method="post" action = "stop">
+					<button type="submit">  Stop </button> </form>
+				<form method="post" action = "volup">
+					<button type="submit">  Vol Up </button> </form>
+				<form method="post" action = "voldown">
+					<button type="submit">  Vol Down </button> </form>
+			</div>
+		</section>
+	
+	</div>
+{% endblock %}

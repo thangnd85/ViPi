@@ -1,0 +1,178 @@
+<html>
+<body>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+	<style>
+		.input-toogle {
+		  position: relative;
+		  padding: 8px;
+		  min-width: 140px;
+		}
+
+		.input-toogle label {
+		  line-height: 44px;
+		  vertical-align: middle;
+		  display: inline-block;
+		  position: relative;
+		  height: 22px;
+		  width: 45px;
+		  background-color: #f43a59;
+		  cursor: pointer;
+		  font-size: 0;
+		  color: transparent;
+		  border-radius: 11px;
+		  transition: background-color 500ms ease;
+		}
+
+		.input-toogle label:after {
+		  content: '';
+		  display: block;
+		  height: 20px;
+		  width: 20px;
+		  position: absolute;
+		  top: 1px;
+		  right: 24px;
+		  border-radius: 50%;
+		  background-color: #e43a59;
+		  box-shadow: 2px 0px 0px rgba(0,0,0,0.15);
+		  transition: right 500ms ease, 
+				  background-color 500ms ease, 
+				  box-shadow 500ms ease;
+		}
+
+		.input-toogle input{
+		  display: none
+		}
+
+		.input-toogle input:checked + label {
+		  background: #0ad251;
+		}
+
+		.input-toogle input:checked + label:after {
+		  right: 2px;
+		  background-color: #0ac251 ;
+		  box-shadow: -2px 0px 0px rgba(0,0,0,0.1);
+		}
+		
+		
+		.input-toogle1 {
+		  position: relative;
+		  padding: 8px;
+		  min-width: 140px;
+		}
+
+		.input-toogle1 label {
+		  line-height: 44px;
+		  vertical-align: middle;
+		  display: inline-block;
+		  position: relative;
+		  height: 22px;
+		  width: 45px;
+		  background-color: #f43a59;
+		  cursor: pointer;
+		  font-size: 0;
+		  color: transparent;
+		  border-radius: 11px;
+		  transition: background-color 500ms ease;
+		}
+
+		.input-toogle1 label:after {
+		  content: '';
+		  display: block;
+		  height: 20px;
+		  width: 20px;
+		  position: absolute;
+		  top: 1px;
+		  right: 24px;
+		  border-radius: 50%;
+		  background-color: #e43a59;
+		  box-shadow: 2px 0px 0px rgba(0,0,0,0.15);
+		  transition: right 500ms ease, 
+				  background-color 500ms ease, 
+				  box-shadow 500ms ease;
+		}
+
+		.input-toogle1 input{
+		  display: none
+		}
+
+		.input-toogle1 input:checked + label {
+		  background: #0ad251;
+		}
+
+		.input-toogle1 input:checked + label:after {
+		  right: 2px;
+		  background-color: #0ac251 ;
+		  box-shadow: -2px 0px 0px rgba(0,0,0,0.1);
+		}		
+	</style>
+  </head>
+
+  <body>
+	TTS
+	<div class="input-toogle">
+		<input id="toogle-input" type="checkbox" class='btn1' {{check_b1}}>
+		<label for="toogle-input"class='b1_status'>{{b1}}</label>
+	</div> 
+	Home_Assistant
+	<div class="input-toogle1">
+		<input id="toogle-input1" type="checkbox" class='btn2' {{check_b2}} >
+		<label for="toogle-input1" class="b2_status">{{b2}}</label>
+	</div> 
+	
+  </body>
+
+  <script>
+	$(document).ready(function() {
+		$(".input-toogle").click(function() {
+		  var input = jQuery(this).find("input");
+		  input.prop("checked", !input.prop("checked"));
+		});
+	});
+	$(document).ready(function() {
+		$(".input-toogle1").click(function() {
+		  var input = jQuery(this).find("input1");
+		  input.prop("checked", !input.prop("checked"));
+		});
+	});  
+	$(document).ready(function() {
+	  $('.input-toogle').click(function() {
+	   var b1_status = $('.b1_status').text();
+	   $.ajax({
+		url: "/b1",
+		type: "get",
+		 data: {b1_status: b1_status},
+		 success: function(response) {
+		  $(".b1_status").html(response);
+		 },
+		 error: function(xhr) {
+		  //Do Something to handle error
+		 }
+	   });
+	  });
+	});
+	
+	$(document).ready(function() {
+	  $('.input-toogle1').click(function() {
+	   var b2_status = $('.b2_status').text();
+	   $.ajax({
+		url: "/b2",
+		type: "get",
+		 data: {b2_status: b2_status},
+		 success: function(response) {
+		  $(".b2_status").html(response);
+		 },
+		 error: function(xhr) {
+		  //Do Something to handle error
+		 }
+	   });
+	  });
+	});
+ </script>
+
+
+ </html>

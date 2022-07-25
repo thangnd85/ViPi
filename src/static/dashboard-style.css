@@ -1,0 +1,910 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+ * {
+    margin:0;
+    padding:0;
+}
+
+body {
+    background: #F1E9FF;
+	font-family: 'Nunito', sans-serif;
+	padding: 20px 0;
+	height: 100vh;
+}
+
+.wrap {
+     background: #fff;
+     border-radius: 32px;
+     position: relative;
+     overflow: hidden;
+     padding: 15px;
+	 overflow-y: Scrollbar;
+}
+
+i {
+     margin-right:10px 
+}
+
+h2 {
+     margin:0 
+}
+
+h6 {
+     margin:0;
+    color:#777 
+}
+
+/*-------- Menu ----------*/
+
+#accordian {
+     background: #7A40F2;
+     width: 100%;
+     
+     float: left;
+     height: 90vh;
+     overflow-x: hidden;
+     position: relative;
+     border-radius: 26px;
+}
+
+#accordian div::before, #accordian div::after {
+     box-sizing: content-box;
+}
+
+#accordian ul {
+     padding-left: 0;
+}
+
+#accordian .top::before, #accordian .bottom::before, #accordian ul li i::before {
+     box-sizing: content-box;
+}
+
+#accordian ul li i {
+     font-size: 20px;
+}
+
+.main-navbar{
+    position:relative
+}
+
+#accordian li{
+    list-style-type:none
+}
+
+#accordian ul li a{
+    color:rgba(255,255,255,.5);
+    text-decoration:none;
+    font-size:15px;
+    line-height:35px;
+    display:block;
+    padding:0 20px;
+    transition-duration:.6s;
+    transition-timing-function:cubic-bezier(0.68,-.55,.265,1.55);
+    position:relative
+}
+
+#accordian>ul>li.active>a{
+    color:#7A40F2;
+    background-color:transparent;
+    transition:all .7s
+}
+
+#accordian a:not(:only-child):after{
+    content:"\f105";
+    position:absolute;
+    right:20px;
+    top:10%;
+    font-size:14px;
+    font-family:"Font Awesome 5 Free";
+    display:inline-block;
+    padding-right:3px;
+    vertical-align:middle;
+    font-weight:900;
+    transition:.5s
+}
+
+#accordian .active>a:not(:only-child):after{
+    transform:rotate(90deg)
+}
+
+.selector-active{
+    width:100%;
+    display:inline-block;
+    position:absolute;
+    height:37px;
+    top:0;
+    left:0;
+    transition-duration:.6s;
+    transition-timing-function:cubic-bezier(0.68,-.55,.265,1.55);
+    background-color:#fff;
+    border-top-left-radius:50px;
+    border-bottom-left-radius:50px
+}
+
+.selector-active .bottom,.selector-active .top{
+    position:absolute;
+    width:25px;
+    height:25px;
+    background-color:#fff;
+    right:0
+}
+
+.selector-active .top{
+    top:-25px
+}
+
+.selector-active .bottom{
+    bottom:-25px
+}
+
+.selector-active .bottom:before,.selector-active .top:before{
+    content:'';
+    position:absolute;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background-color:#7A40F2
+}
+
+.selector-active .top:before{
+    left:-25px;
+    top:-25px
+}
+ .selector-active .bottom:before{
+    bottom:-25px;
+    left:-25px
+}
+
+#accordian ul li a {
+     padding: 10px 20px;
+     margin: 25px 0;
+}
+
+.sidebar {
+     background: #F5F5F5;
+     padding: 29px;
+     border-radius: 30px;
+}
+
+#nav-mobile {
+    visibility: hidden;
+    clear: both;
+    display: none;
+}
+
+#accordian {padding: 20px 0 10px 12px;}
+
+@media (min-width:1920px){ 
+	#clock {font-size: 24px;}
+	.btn-group {overflow-x: auto;max-width: 100%;margin-bottom: 20px;}
+	.music-btn button {min-width: 118px;font-size: 16px;}
+	.chat-container {width: 446px;height: 90%;}
+}
+
+@media (max-width:1920px){ 
+	#clock {font-size: 24px;}
+	.btn-group {overflow-x: auto;max-width: 100%;margin-bottom: 20px;}
+	.music-btn button {min-width: 118px;font-size: 16px;}
+	.chat-container {width: 446px;height: 90%;}
+}
+
+@media (max-width:1366px){ 
+	#accordian {padding: 20px 0 10px 5px;}
+	#clock {font-size: 24px;}
+	.btn-group {overflow-x: auto;max-width: 100%;margin-bottom: 20px;}
+	.music-btn button {min-width: 118px;font-size: 16px;}
+	.chat-container {width: 446px; height: 90%;}
+}
+
+@media (max-width:991px){ 
+	#accordian ul {display: flex;}
+	#accordian {visibility: hidden;clear: both;display: none;}
+	#nav-mobile { visibility:inherit;clear: both; display: block;}
+	.info {padding-right: 0;}
+	#clock {font-size: 15px;}
+	.btn-group {overflow-x: scroll;max-width: 100%;margin-bottom: 20px;}
+	.music-btn button {min-width: 120px;font-size: 14px;}
+	.chat-container {width: 95%; height: 90%;}
+}
+
+/*-------- User control ----------*/
+
+.top-menu {
+	margin-bottom: 20px;
+}
+
+.user-control {
+  text-align: right;
+}
+
+.user-menu img {
+  width: 35px;
+  border-radius: 100%;
+  overflow: hidden;
+  margin-right: 10px;
+  height: 35px;
+}
+
+.user-control .dropdown-menu {
+	top: 50px;
+	right: 10px;
+	padding: 15px;
+	border: 1px solid #f2f2f2;
+	text-align: right;
+	border-radius: 18px;
+}
+
+.user-control .dropdown-menu a {
+	font-size: 14px;
+	text-decoration: none;
+	color: #c45a01;
+}
+
+/*-------- Weather ----------*/
+
+.welcome {
+	background-color: #FFECC8;
+	padding: 29px;
+	border-radius: 30px;
+	margin-bottom: 20px;
+	background-image: url(bg-welcome.png);
+	background-size: 42%;
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	position: relative;
+	overflow: hidden;
+}
+
+#clock {
+  position: absolute;
+  top: 15px;
+  right: 22px;
+  font-weight: 900;
+  color: #c45a01;
+  opacity: 0.5;
+}
+
+.weather {
+  display: flex;
+}
+
+.info {
+  color: #c45a01;
+  padding-right: 30%;
+  
+}
+
+.temp {
+	font-size: 30px;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.temp span {
+  cursor: pointer;
+}
+
+.weather-info {
+	color: #000;
+}
+
+.weather-info img {
+	width: 60px;
+	padding: 0 10px;
+}
+
+.location {
+  font-size: 15px;
+  padding: 12px 10px;
+}
+
+
+
+/*-------- Wrap ----------*/
+
+.title-box {
+  font-size: 20px;
+  padding: 0 0 10px 0;
+}
+
+.wrab-box {
+	padding: 25px;
+	border-radius: 20px;
+	color: #fff;
+	margin-bottom: 20px;
+}
+
+.bg-violet {
+  background: #7a40f2;
+}
+.bg-yellow {
+  background: #f4c427;
+}
+.bg-blue {
+  background: #3acbe9;
+}
+.bg-orange {
+  background: #ff9060;
+}
+
+.bg-white {
+	background: #fff;
+	border: 1px solid #ebeaf4;
+	color: #9695ab;
+}
+
+.wrab-box small {
+  display: block;
+  padding: 15px 0 0 0;
+  font-weight: 700;
+  width: 100%;
+}
+
+.wrab-box.bg-white {
+  padding: 18px;
+}
+
+.wrab-box.bg-white small {
+	font-size: 12px;
+}
+
+.control {
+	display: flex;      
+    align-content: space-between;
+}
+
+.device-icon {
+	width: 50%;
+	font-size: 33px;
+}
+
+.device-button {
+  width: 50%;
+  text-align: right;
+  padding-top: 11px;
+}
+
+
+/*--------- Button ------*/
+
+
+.btn-toggle {
+  margin: 0 4rem;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 1.5rem;
+  width: 3rem;
+  border-radius: 1.5rem;
+  color: #6b7381;
+  background: #bdc1c8;
+}
+.btn-toggle:focus,
+.btn-toggle.focus,
+.btn-toggle:focus.active,
+.btn-toggle.focus.active {
+  outline: none;
+}
+.btn-toggle:before,
+.btn-toggle:after {
+  line-height: 1.5rem;
+  width: 4rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+.btn-toggle:before {
+  content: 'Off';
+  left: -4rem;
+}
+.btn-toggle:after {
+  content: 'On';
+  right: -4rem;
+  opacity: 0.5;
+}
+.btn-toggle > .handle {
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 1.125rem;
+  background: #fff;
+  transition: left 0.25s;
+}
+.btn-toggle.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.active > .handle {
+  left: 1.6875rem;
+  transition: left 0.25s;
+}
+.btn-toggle.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-sm:before,
+.btn-toggle.btn-sm:after {
+  line-height: -0.5rem;
+  color: #fff;
+  letter-spacing: 0.75px;
+  left: 0.4125rem;
+  width: 2.325rem;
+}
+.btn-toggle.btn-sm:before {
+  text-align: right;
+}
+.btn-toggle.btn-sm:after {
+  text-align: left;
+  opacity: 0;
+}
+.btn-toggle.btn-sm.active:before {
+  opacity: 0;
+}
+.btn-toggle.btn-sm.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-xs:before,
+.btn-toggle.btn-xs:after {
+  display: none;
+}
+.btn-toggle:before,
+.btn-toggle:after {
+  color: #6b7381;
+}
+.btn-toggle.active {
+  background-color: #29b5a8;
+}
+.btn-toggle.btn-lg {
+  margin: 0 5rem;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 2.5rem;
+  width: 5rem;
+  border-radius: 2.5rem;
+}
+.btn-toggle.btn-lg:focus,
+.btn-toggle.btn-lg.focus,
+.btn-toggle.btn-lg:focus.active,
+.btn-toggle.btn-lg.focus.active {
+  outline: none;
+}
+.btn-toggle.btn-lg::before, 
+.btn-toggle.btn-lg::after {
+  line-height: 2.5rem;
+  width: 44px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+
+.btn-toggle.btn-lg:before {
+  content: 'Off';
+  left: -5rem;
+}
+.btn-toggle.btn-lg:after {
+  content: 'On';
+  right: -5rem;
+  opacity: 0.5;
+}
+.btn-toggle.btn-lg > .handle {
+  position: absolute;
+  top: 0.3125rem;
+  left: 0.3125rem;
+  width: 1.875rem;
+  height: 1.875rem;
+  border-radius: 1.875rem;
+  background: #fff;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-lg.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.btn-lg.active > .handle {
+  left: 2.8125rem;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-lg.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.btn-lg.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-lg.btn-sm:before,
+.btn-toggle.btn-lg.btn-sm:after {
+  line-height: 0.5rem;
+  color: #fff;
+  letter-spacing: 0.75px;
+  left: 0.6875rem;
+  width: 3.875rem;
+}
+.btn-toggle.btn-lg.btn-sm:before {
+  text-align: right;
+}
+.btn-toggle.btn-lg.btn-sm:after {
+  text-align: left;
+  opacity: 0;
+}
+.btn-toggle.btn-lg.btn-sm.active:before {
+  opacity: 0;
+}
+.btn-toggle.btn-lg.btn-sm.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-lg.btn-xs:before,
+.btn-toggle.btn-lg.btn-xs:after {
+  display: none;
+}
+.btn-toggle.btn-sm {
+  margin: 0 0.5rem;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 1.5rem;
+  width: 3rem;
+  border-radius: 1.5rem;
+}
+.btn-toggle.btn-sm:focus,
+.btn-toggle.btn-sm.focus,
+.btn-toggle.btn-sm:focus.active,
+.btn-toggle.btn-sm.focus.active {
+  outline: none;
+}
+.btn-toggle.btn-sm:before,
+.btn-toggle.btn-sm:after {
+  line-height: 1.5rem;
+  width: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+.btn-toggle.btn-sm:before {
+  content: 'Off';
+  left: -0.5rem;
+}
+.btn-toggle.btn-sm:after {
+  content: 'On';
+  right: -0.5rem;
+  opacity: 0.5;
+}
+.btn-toggle.btn-sm > .handle {
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 1.125rem;
+  background: #fff;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-sm.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.btn-sm.active > .handle {
+  left: 1.6875rem;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-sm.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.btn-sm.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-sm.btn-sm:before,
+.btn-toggle.btn-sm.btn-sm:after {
+  line-height: -0.5rem;
+  color: #fff;
+  letter-spacing: 0.75px;
+  left: 0.4125rem;
+  width: 2.325rem;
+}
+.btn-toggle.btn-sm.btn-sm:before {
+  text-align: right;
+}
+.btn-toggle.btn-sm.btn-sm:after {
+  text-align: left;
+  opacity: 0;
+}
+.btn-toggle.btn-sm.btn-sm.active:before {
+  opacity: 0;
+}
+.btn-toggle.btn-sm.btn-sm.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-sm.btn-xs:before,
+.btn-toggle.btn-sm.btn-xs:after {
+  display: none;
+}
+.btn-toggle.btn-xs {
+  margin: 0 0;
+  padding: 0;
+  position: relative;
+  border: none;
+  height: 1rem;
+  width: 2rem;
+  border-radius: 1rem;
+}
+.btn-toggle.btn-xs:focus,
+.btn-toggle.btn-xs.focus,
+.btn-toggle.btn-xs:focus.active,
+.btn-toggle.btn-xs.focus.active {
+  outline: none;
+}
+.btn-toggle.btn-xs:before,
+.btn-toggle.btn-xs:after {
+  line-height: 1rem;
+  width: 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: 0;
+  transition: opacity 0.25s;
+}
+.btn-toggle.btn-xs:before {
+  content: 'Off';
+  left: 0;
+}
+.btn-toggle.btn-xs:after {
+  content: 'On';
+  right: 0;
+  opacity: 0.5;
+}
+.btn-toggle.btn-xs > .handle {
+  position: absolute;
+  top: 0.125rem;
+  left: 0.125rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.75rem;
+  background: #fff;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-xs.active {
+  transition: background-color 0.25s;
+}
+.btn-toggle.btn-xs.active > .handle {
+  left: 1.125rem;
+  transition: left 0.25s;
+}
+.btn-toggle.btn-xs.active:before {
+  opacity: 0.5;
+}
+.btn-toggle.btn-xs.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-xs.btn-sm:before,
+.btn-toggle.btn-xs.btn-sm:after {
+  line-height: -1rem;
+  color: #fff;
+  letter-spacing: 0.75px;
+  left: 0.275rem;
+  width: 1.55rem;
+}
+.btn-toggle.btn-xs.btn-sm:before {
+  text-align: right;
+}
+.btn-toggle.btn-xs.btn-sm:after {
+  text-align: left;
+  opacity: 0;
+}
+.btn-toggle.btn-xs.btn-sm.active:before {
+  opacity: 0;
+}
+.btn-toggle.btn-xs.btn-sm.active:after {
+  opacity: 1;
+}
+.btn-toggle.btn-xs.btn-xs:before,
+.btn-toggle.btn-xs.btn-xs:after {
+  display: none;
+}
+.btn-toggle.btn-secondary {
+  color: #fff;
+  background: #bdc1c8;
+}
+.btn-toggle.btn-secondary:before,
+.btn-toggle.btn-secondary:after {
+  color: #fff;
+}
+.btn-toggle.btn-secondary.active {
+  background-color: #ff8300;
+}
+
+.vipi-btn {
+    background: #ff9060;
+    color: #fff;
+    margin-right: 5px;
+    padding: 10px 20px;
+    border-radius: 19px;
+	border: 0;
+}
+
+.vipi-btn:hover {
+    background: #7a40f2;
+}
+
+#doc-text {
+  width: 100%;
+  border: 1px solid #ebeaf4;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.btn-submit.reading-btn {
+  background: #7a40f2;
+  color: #fff;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 19px;
+  margin-bottom: 20px;
+}
+
+.btn-submit.reading-btn:hover {
+	background: #3acbe9;
+}
+
+.music-btn button {
+  background: #ff9060;
+  color: #fff;
+  border: 0;
+  border-radius: 20px;
+  padding: 10px 25px;
+  margin-right: 5px;
+}
+
+.music-btn button:hover {
+   background: #7a40f2;
+}
+
+#music-box {
+  margin-bottom: 20px;
+}
+
+#music-box input {
+  height: 45px;
+  border-radius: 19px;
+  border: 1px solid #ebebeb;
+  padding: 20px;
+  width: 100%;
+}
+
+#music-box {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+#music-box button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  height: 44px;
+}
+
+*:focus {
+    outline: none;
+}
+
+.input-toogle {
+  position: relative;
+  padding: 8px;
+  min-width: 140px;
+}
+
+.input-toogle label {
+  line-height: 44px;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  height: 22px;
+  width: 45px;
+  background-color: #f43a59;
+  cursor: pointer;
+  font-size: 0;
+  color: transparent;
+  border-radius: 11px;
+  transition: background-color 500ms ease;
+}
+
+.input-toogle label:after {
+  content: "";
+  display: block;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 1px;
+  right: 24px;
+  border-radius: 50%;
+  background-color: #e43a59;
+  box-shadow: 2px 0px 0px rgba(0, 0, 0, 0.15);
+  transition: right 500ms ease, background-color 500ms ease,
+    box-shadow 500ms ease;
+}
+
+.input-toogle input {
+  display: none;
+}
+
+.input-toogle input:checked + label {
+  background: #0ad251;
+}
+
+.input-toogle input:checked + label:after {
+  right: 2px;
+  background-color: #0ac251;
+  box-shadow: -2px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+.input-toogle1 {
+  position: relative;
+  padding: 8px;
+  min-width: 140px;
+}
+
+.input-toogle1 label {
+  line-height: 44px;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  height: 22px;
+  width: 45px;
+  background-color: #f43a59;
+  cursor: pointer;
+  font-size: 0;
+  color: transparent;
+  border-radius: 11px;
+  transition: background-color 500ms ease;
+}
+
+.input-toogle1 label:after {
+  content: "";
+  display: block;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 1px;
+  right: 24px;
+  border-radius: 50%;
+  background-color: #e43a59;
+  box-shadow: 2px 0px 0px rgba(0, 0, 0, 0.15);
+  transition: right 500ms ease, background-color 500ms ease,
+    box-shadow 500ms ease;
+}
+
+.input-toogle1 input {
+  display: none;
+}
+
+.input-toogle1 input:checked + label {
+  background: #0ad251;
+}
+
+.input-toogle1 input:checked + label:after {
+  right: 2px;
+  background-color: #0ac251;
+  box-shadow: -2px 0px 0px rgba(0, 0, 0, 0.1);
+}

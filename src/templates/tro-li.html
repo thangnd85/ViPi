@@ -1,0 +1,32 @@
+{% extends "header-footer.html" %}
+
+{% block content %}
+
+    <section class="content-section">
+        <form method="POST">
+		<textarea id="doc-text" placeholder="Nhập lệnh." name="text">
+		</textarea>      
+        <button class="btn-submit" type="submit"> Gửi đến loa </button> 
+		</form>
+    </section>
+
+    <section class="content-section">
+      <div class="section-header-wrapper">
+      Phản hồi từ trợ lí
+      </div>
+      <div class="files-table">
+        <div class="files-table-header">
+          <div class="column-header table-cell">Yêu cầu</div>
+          <div class="column-header table-cell size-cell">Nội dung</div>
+          <div class="column-header table-cell">Thời gian</div>
+        </div>
+        <div class="files-table-row">
+          <div class="table-cell name-cell pdf"> {{message}} </div>
+          <div class="table-cell"> {{result}} </div>
+          <div class="table-cell">{{current_time}}</div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+{% endblock %}

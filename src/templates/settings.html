@@ -1,0 +1,24 @@
+{% extends "header-footer.html" %}
+
+{% block content %}
+	<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+		<h2 class="title-box">Cấu hình hệ thống</h2>
+		<section class="content-section">
+			<div class="btn-group">
+				<form method="POST" action="interprer"> 
+				<button class="vipi-btn" type="submit"> Thông dịch </button> </form>
+				<form method="POST" action="killpython"> 
+				<button class="vipi-btn" type="submit"> Tắt tiến trình </button> </form>
+				<form method="POST" action="config"> 
+				<button class="vipi-btn" type="submit">Sửa config {{result}}</button>  </form>
+			</div>
+			<div class="btn-group">
+				<form method="POST" action="reboot"> 
+				<button class="vipi-btn" type="submit"> Reboot </button></form>
+				<form method="POST" action="shutdown"> 
+				<button class="vipi-btn" type="submit"> Shutdown </button> </form>
+			</div>
+		</section>
+   
+  </div>
+{% endblock %}

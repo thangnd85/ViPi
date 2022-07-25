@@ -1,0 +1,85 @@
+{% extends "header-footer.html" %}
+
+{% block content %}
+
+	<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+					
+		<div class="welcome">
+			<div class="info">
+				<h1>Xin chào, Thủy!</h1>
+				<p>Chào mừng bạn đến với trang quản trị của loa thông minh ViPi! Chúc bạn 1 ngày vui vẻ.</p>
+			</div>
+			<div class="weather">						
+				<div id="temp" class="temp"><span></span></div>
+				<div class="weather-info">
+					<!--<span id="weather-type"></span> -->
+						<img src="" alt="Đang cập nhật...">
+					<!-- <span id="wind-speed"></span> -->
+				</div>
+				<div id="location" class="location"></div>
+			</div>
+			<p>Hôm nay ngày <strong id="date"></strong></p>
+			<div class="clock" id="clock"> </div>
+		</div>
+						
+		<h2 class="title-box">Hass</h2>
+		<div class="row">
+			<!-- Start Device -->
+			<div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+				<div class="wrab-box bg-white">
+					<div class="control">
+						<div class="device-icon">
+							<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+						</div>
+						<div class="device-button">	
+							<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+								<div class="handle"></div>
+							</button>
+						</div>	
+					</div>	
+					<small>Đèn phòng khách</small>
+				</div>	
+			</div>	
+			<!-- End Device -->
+			<!-- Start Device -->
+			<div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+				<div class="wrab-box bg-white">
+					<div class="control">
+						<div class="device-icon">
+							<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+						</div>
+						<div class="device-button">	
+							<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+								<div class="handle"></div>
+							</button>
+						</div>	
+					</div>	
+					<small>Đèn phòng khách</small>
+				</div>	
+			</div>	
+			<!-- End Device -->		
+			<!-- Start Device -->
+			<div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+				<div class="wrab-box bg-white">
+					<div class="control">
+						<div class="device-icon">
+							<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+						</div>
+						<div class="device-button">	
+							<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+								<div class="handle"></div>
+							</button>
+						</div>	
+					</div>	
+					<small>Đèn phòng khách</small>
+				</div>	
+			</div>	
+			<!-- End Device -->			
+															
+								
+		</div>	
+						
+	</div>
+							
+  
+{% endblock %}

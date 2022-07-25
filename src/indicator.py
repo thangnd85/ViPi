@@ -1,90 +1,128 @@
 #!/usr/bin/env python
-
 try:
     import RPi.GPIO as GPIO
 except Exception as e:
     GPIO = None
-import time
-import os
-from actions import configuration
-import apa102
-import time
-import threading
-import numpy
-import usb.core
-import usb.util
+import time, os, re, apa102, threading, numpy, argparse, json
+try: 
+    import usb.core, usb.util
+except:
+    os.system('pip install pyusb >> /dev/null')
+    import usb.core, usb.util                             
 from gpiozero import LED
-import argparse
+from termcolor import colored
 try:
     import queue as Queue
 except ImportError:
     import Queue as Queue
 import yaml
-import json
 from rpi_ws281x import PixelStrip, Color
 ROOT_PATH = os.path.realpath(os.path.join(__file__, '..', '..'))
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
+CURENT_PATH =  os.path.realpath(os.path.join(__file__, '..',))
+#1: Config_Mic
+# R2M: ReSpeaker 2-Mics
+# R4M: ReSpeaker 4-Mics
+# RUM: ReSpeaker Mic Array v2.0
+# USB: Usb soudcard
 
-audiosetup=''
-with open('{}/src/config.yaml'.format(ROOT_PATH),'r', encoding='utf8') as conf:
-    configuration = yaml.safe_load(conf)
-if configuration['ctr_led']['type']=="GEN'":
-    audiosetup=''
-elif configuration['ctr_led']['type']=="R4M":
-    audiosetup='R4M'
-elif configuration['ctr_led']['type']=="R2M":
-    audiosetup='R2M'
-elif configuration['ctr_led']['type']=="RUM":
-    audiosetup='RUM'
-elif configuration['ctr_led']['type']=="NEO":
-    audiosetup='NEO'
-elif configuration['ctr_led']['type']=="GOO":
-    audiosetup='GOO'
-elif configuration['ctr_led']['type']=="ALE":
-    audiosetup='ALE'
-elif configuration['ctr_led']['type']=="WS2":
-    audiosetup='WS2'
+#2: Config_Led:
+# R2M: 3 Led ReSpeaker 2-Mics
+# R4M: 12 Led ReSpeaker 4-Mics
+# RUM: 12 led ReSpeaker Mic Array v2.0
+# WS2: Led WS28x hoặc SK68XX
+
+#3: Config_Audio out:
+# RPI_H: Headphone 3.5 Raspberry
+# R2M_H: Headphone ReSpeaker 2-Mics
+# R2M_J: SPEAK ReSpeaker 2-Mics (cổng JST)
+# RUM_H: Headphone 3.5 ReSpeaker Mic Array v2.0
+
+
+#ctr_led
+#ctr_led
+
+with open('{}/config.json'.format(CURENT_PATH),'r', encoding='utf8') as conf:
+    configuration = json.load(conf)
+try:
+    led_number=configuration['led_setup']['pixels']
+except:
+    led_number=12
+#1: Config_Mic
+mic_setup=''
+if configuration['mic_setup']['type']=="USB":
+    mic_setup=''
+elif configuration['mic_setup']['type']=="R4M":
+    mic_setup='R4M'
+elif configuration['mic_setup']['type']=="R2M":
+    mic_setup='R2M'
+elif configuration['mic_setup']['type']=="RUM":
+    mic_setup='RUM'
+elif configuration['mic_setup']['type']=="HAT":
+    mic_setup='HAT'
 else:
-    audiosetup=''
-    print('Mic bạn đang sử dụng là: '+ audiosetup)
+    mic_setup='bạn chưa chọn Mic'
 
-if configuration['IR']['IR_Control']=='Enabled':
-    ircontrol=True
+    
+#2: Config_Led:
+led_setup=''
+if configuration['led_setup']['type']=="USB":
+    led_setup=''
+elif configuration['led_setup']['type']=="R4M":
+    led_setup='R4M'
+elif configuration['led_setup']['type']=="R2M":
+    led_setup='R2M'
+elif configuration['led_setup']['type']=="RUM":
+    led_setup='RUM'
+elif configuration['led_setup']['type']=="WS2":
+    led_setup='WS2'
 else:
-    ircontrol=False
+    led_setup='bạn chưa chọn Led'
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-
-#Indicators
-aiyindicator=configuration['Gpios']['AIY_indicator'][0]
-listeningindicator=configuration['Gpios']['assistant_indicators'][0]
-speakingindicator=configuration['Gpios']['assistant_indicators'][1]
-
-#Stopbutton
-stoppushbutton=configuration['Gpios']['stopbutton_music_AIY_pushbutton'][0]
-GPIO.setup(stoppushbutton, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-GPIO.add_event_detect(stoppushbutton,GPIO.FALLING)
-
-#IR receiver
-if ircontrol:
-    irreceiver=configuration['Gpios']['ir'][0]
-    GPIO.setup(irreceiver, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+#3: Config_Audio out:
+vol_setup=''
+if configuration['vol_setup']['type']=="RPI_H":
+    vol_setup='RPI_H'
+elif configuration['vol_setup']['type']=="R2M_H":
+    vol_setup='R2M_H'
+elif configuration['vol_setup']['type']=="R2M_J":
+    vol_setup='R2M_J'
+elif configuration['vol_setup']['type']=="RUM_H":
+    vol_setup='RUM_H'
+elif configuration['vol_setup']['type']=="HAT":
+    vol_setup='HAT'
 else:
-    irreceiver=None
+    ctr_vol='bạn chưa chọn cổng xuất âm thanh'
+    
+    
+print('Mic setup: '+ mic_setup+ ', Led setup: '+ led_setup+ ', Pixels_led: '+ str(led_number))
 
-if (audiosetup=='AIY'):
-    GPIO.setup(aiyindicator, GPIO.OUT)
-    led=GPIO.PWM(aiyindicator,1)
-    led.start(0)
-    print('Initializing GPIO '+str(aiyindicator)+' for assistant activity indication')
-if (audiosetup=='GEN'):
-#    GPIO.setup(listeningindicator, GPIO.OUT)
-#    GPIO.setup(speakingindicator, GPIO.OUT)
-#    GPIO.output(listeningindicator, GPIO.LOW)
-#    GPIO.output(speakingindicator, GPIO.LOW)
-#    print('Initializing GPIOs '+str(listeningindicator)+' and '+str(speakingindicator)+' for assistant activity indication')
-    pass
+# if configuration['IR']['IR_Control']=='Enabled':
+    # ircontrol=True
+# else:
+    # ircontrol=False
+
+# GPIO.setmode(GPIO.BCM)
+# GPIO.setwarnings(False)
+
+# #Indicators
+# aiyindicator=configuration['Gpios']['AIY_indicator'][0]
+# listeningindicator=configuration['Gpios']['assistant_indicators'][0]
+# speakingindicator=configuration['Gpios']['assistant_indicators'][1]
+
+# #Stopbutton
+# stoppushbutton=configuration['Gpios']['stopbutton_music_AIY_pushbutton'][0]
+# GPIO.setup(stoppushbutton, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+# GPIO.add_event_detect(stoppushbutton,GPIO.FALLING)
+
+# #IR receiver
+# if ircontrol:
+    # irreceiver=configuration['Gpios']['ir'][0]
+    # GPIO.setup(irreceiver, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+# else:
+    # irreceiver=None
+
+
 class GoogleHomeLedPattern(object):
     def __init__(self, show=None):
         self.basis = numpy.array([0] * 4 * 12)
@@ -389,11 +427,13 @@ class PixelRing:
     def off(self):
         self.mono(0)
 
-    def listen(self, direction=None):
+    def wakeup(self,color,direction=None):
+        if color == None:
+            self.write(2)
+        else:
+            self.write(1, [(color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF, 0])
+    def listen(self):
         self.write(2)
-
-    wakeup = listen
-
     def speak(self):
         self.write(3)
 
@@ -435,10 +475,10 @@ class PixelRing:
         close the interface
         """
         usb.util.dispose_resources(self.dev)
-##start ws2812
+#W2812
 class ws2812:
     PIXELS_N = 3
-    LED_COUNT = 16       # Number of LED pixels.
+    LED_COUNT = led_number       # Number of LED pixels.
     #LED_PIN = 12         # GPIO pin connected to the pixels (18 uses PWM!).
     LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
     LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
@@ -464,13 +504,13 @@ class ws2812:
         self.strip.begin()
 ##
 
-    def colorWipe(self,strip, color, wait_ms=15):
+    def colorWipe(self,strip, color, wait_ms=5):
         """Wipe color across display a pixel at a time."""
         for i in range(self.strip.numPixels()):
             self.strip.setPixelColor(i, color)
             self.strip.show()
-            time.sleep(wait_ms / 2500.0)
-    def theaterChase(self,strip, color, wait_ms=15, iterations=5):
+            time.sleep(wait_ms / 2000.0)
+    def theaterChase(self,strip, color, wait_ms=5, iterations=1):
         """Movie theater light style chaser animation."""
         for j in range(iterations):
             for q in range(3):
@@ -490,22 +530,22 @@ class ws2812:
         else:
             pos -= 170
             return Color(0, pos * 3, 255 - pos * 3)
-    def rainbow(self,strip, wait_ms=15, iterations=1):
+    def rainbow(self,strip, wait_ms=5, iterations=1):
         """Draw rainbow that fades across all pixels at once."""
         for j in range(256 * iterations):
             for i in range(self.strip.numPixels()):
                 self.strip.setPixelColor(i, self.wheel((i + j) & 255))
             self.strip.show()
-            time.sleep(wait_ms / 2500.0)
-    def rainbowCycle(self,strip, wait_ms=15, iterations=1):
+            time.sleep(wait_ms / 2000.0)
+    def rainbowCycle(self,strip, wait_ms=5, iterations=1):
         """Draw rainbow that uniformly distributes itself across all pixels."""
         for j in range(256 * iterations):
             for i in range(self.strip.numPixels()):
                 self.strip.setPixelColor(i, self.wheel(
                     (int(i * 256 / strip.numPixels()) + j) & 255))
             self.strip.show()
-            time.sleep(wait_ms / 2500.0)
-    def theaterChaseRainbow(self,strip, wait_ms=15):
+            time.sleep(wait_ms / 2000.0)
+    def theaterChaseRainbow(self,strip, wait_ms=5):
         """Rainbow movie theater light style chaser animation."""
         for j in range(256):
             for q in range(1):
@@ -519,24 +559,28 @@ class ws2812:
 ##
 
     def wakeup(self):
-           
+        self.queue.put(self._off_apa)   
         self.next.set()
         self.queue.put(self._wakeup)
-        self.queue.put(self._off_apa)        
+                
         
     def listen(self):
+        self.queue.put(self._off_apa)
         self.next.set()
         self.queue.put(self._listen)
-        self.queue.put(self._off_apa)
+        
     def think(self):
+        self.queue.put(self._off_apa)
         self.next.set()
         self.queue.put(self._think)
         self.queue.put(self._off_apa)
     def speak(self):
+        self.queue.put(self._off_apa)
         self.next.set()
         self.queue.put(self._speak)
         self.queue.put(self._off_apa)
     def off(self):
+        self.queue.put(self._off_apa)
         self.next.set()
         self.queue.put(self._off)
         self.queue.put(self._off_apa)
@@ -552,16 +596,19 @@ class ws2812:
         self.write([0] * 3 * self.PIXELS_N)
         self.colorWipe(self.strip, Color(0, 255, 0))
         self.colorWipe(self.strip, Color(127, 0, 0))
-        
+        self.colorWipe(self.strip, Color(0, 0, 0))
+        self.write([0] * 3 * self.PIXELS_N)
     def _listen(self):
         self.write([0] * 3 * self.PIXELS_N)
         self.rainbow(self.strip)
         self.colorWipe(self.strip, Color(0, 0, 0))
+        self.write([0] * 3 * self.PIXELS_N)
     def _think(self):
         self.write([0] * 3 * self.PIXELS_N)
-        self.rainbowCycle(self.strip)
-        self.write([0] * 3 * self.PIXELS_N)
+        self.theaterChaseRainbow(self.strip)
+        self.colorWipe(self.strip, Color(0, 127, 255))         
         self.colorWipe(self.strip, Color(0, 0, 0))
+        self.write([0] * 3 * self.PIXELS_N)                
     def _speak(self):
         self.write([0] * 3 * self.PIXELS_N)
         self.theaterChaseRainbow(self.strip)
@@ -579,128 +626,102 @@ class ws2812:
         for i in range(self.PIXELS_N):
             self.dev.set_pixel(i, int(colors[3*i]), int(colors[3*i + 1]), int(colors[3*i + 2]))
         self.dev.show()
+    def _volume(self, volume):
+        LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
+        LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
+        LED_DMA = 10          # DMA channel to use for generating signal (try 10)
+        LED_BRIGHTNESS = 250  # Set to 0 for darkest and 255 for brightest
+        LED_INVERT = False    # True to invert the signal (when using NPN transistor level shift)
+        LED_CHANNEL = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
+        LED_COUNT_1=round(volume/(100/led_number))
+        st = PixelStrip(LED_COUNT_1, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
+        st.begin()    
+        for i in range(st.numPixels()):
+            st.setPixelColor(i, Color(0, 0, 255))
+            st.show()
+            time.sleep(0.05)
 ## end ws2812
 def find(vid=0x2886, pid=0x0018):
     dev = usb.core.find(idVendor=vid, idProduct=pid)
     if not dev:
         return
-
-    # configuration = dev.get_active_configuration()
-
-    # interface_number = None
-    # for interface in configuration:
-    #     interface_number = interface.bInterfaceNumber
-
-    #     if dev.is_kernel_driver_active(interface_number):
-    #         dev.detach_kernel_driver(interface_number)
-
     return PixelRing(dev)
+class gen:
+    def wakeup(self):
+        pass
 
-if audiosetup=='R2M':
-    pixels=Pixels2mic()
-elif audiosetup=='WS2':
-    pixels = ws2812()
-elif audiosetup=='R4M':
-    pixels=Pixels4mic()
-elif audiosetup=='RUM':
-    pixel_ring = find()
-elif audiosetup=='GOO':
-    pixel_ring = find()
-elif audiosetup=='ALE':
-    pixel_ring = AlexaLedPattern()
+    def listen(self):
+        pass
+        
+    def think(self):
+        pass
+    def speak(self):
+        pass
+    def off(self):
+        pass
+    def mute(self):
+        pass
+    def _volume(self, volume):
+        pass
+## end gen
 
+    # find =find()
 
-def ctr_led(activity):
-    activity=activity.lower()
-#########  wakeup  #########
-    if activity=='wakeup':
-        if (audiosetup=='GEN'):
-            GPIO.output(speakingindicator,GPIO.LOW)
-            GPIO.output(listeningindicator,GPIO.HIGH)
-        elif (audiosetup=='R2M' or audiosetup=='R4M'):
+    
+def off_led_ring():
+    off_led_ring=find()
+    off_led_ring.off()
+def pixel():
+    if led_setup=='R2M':
+        pixels=Pixels2mic()
+    if led_setup=='WS2':
+        pixels = ws2812()
+    if led_setup =='R4M':
+        pixels = Pixels4mic()
+    if led_setup=='RUM':
+        pixels = find()
+    else:
+        pixels = gen()
+    return pixels
+def ctr_led(state):
+    pixels = pixel()
+    state=state.lower()
+    if state=='wakeup':
+        if led_setup=='RUM':
+        #tra bảng màu tại: https://www.usbhddboot.xyz/2019/10/hex-code.html
+            pixels.wakeup(0xFF0000)
+        else:
             pixels.wakeup()
-        elif (audiosetup=='WS2'):
-            pixels.wakeup()
-        elif (audiosetup=='AIY'):
-            led.ChangeDutyCycle(75)
-        elif (audiosetup=='RUM'):
-            pixel_ring.wakeup()
-        elif (audiosetup=='ALE'):
-            pixels.wakeup()              
-#########  think  #########
-    if activity=='think':
-        if (audiosetup=='GEN'):
-            GPIO.output(speakingindicator,GPIO.LOW)
-            GPIO.output(listeningindicator,GPIO.HIGH)
-        elif (audiosetup=='R2M' or audiosetup=='R4M'):
-            pixels.think()
-        elif (audiosetup=='WS2'):
-            pixels.think()
-        elif (audiosetup=='AIY'):
-            led.ChangeDutyCycle(75)
-        elif (audiosetup=='RUM'):
-            pixel_ring.think()
-        elif (audiosetup=='ALE'):
-            pixels.think()                           
-#########  listening  #########
-    if activity=='listening':
-        if (audiosetup=='GEN'):
-            GPIO.output(speakingindicator,GPIO.LOW)
-            GPIO.output(listeningindicator,GPIO.HIGH)
-        elif (audiosetup=='R2M' or audiosetup=='R4M'):
-            pixels.listen()
-        elif (audiosetup=='WS2'):
-            pixels.listen()
-        elif (audiosetup=='AIY'):
-            led.ChangeDutyCycle(75)
-        elif (audiosetup=='RUM'):
-            pixel_ring.listen()
-        elif (audiosetup=='ALE'):
-            pixels.listen()           
-#########  speaking #########
-    elif activity=='speaking':
-        if (audiosetup=='GEN'):
-            GPIO.output(speakingindicator,GPIO.HIGH)
-            GPIO.output(listeningindicator,GPIO.LOW)
-        elif (audiosetup=='R2M' or audiosetup=='R4M'):
-            pixels.speak()
-        elif (audiosetup=='WS2'):
-            pixels.speak()
-        elif (audiosetup=='AIY'):
-            led.ChangeDutyCycle(50)
-        elif (audiosetup=='RUM'):
-            pixel_ring.speak()
-        elif (audiosetup=='ALE'):
-            pixels.speak()            
-#########  off/unmute #########
-    elif (activity=='off' or activity=='unmute'):
-        if (audiosetup=='GEN'):
-            GPIO.output(speakingindicator,GPIO.LOW)
-            GPIO.output(listeningindicator,GPIO.LOW)
-        elif (audiosetup=='R2M' or audiosetup=='R4M'):
-            pixels.off()
-        elif (audiosetup=='WS2'):
-            pixels.off()
-        elif (audiosetup=='AIY'):
-            led.ChangeDutyCycle(0)
-        elif (audiosetup=='RUM'):
-            pixel_ring.off()
-        elif (audiosetup=='ALE'):
-            pixels.pixels.off()              
-            
-            
-#########  on/mute #########
-    elif (activity=='on' or activity=='mute'):
-        if (audiosetup=='GEN'):
-            GPIO.output(speakingindicator,GPIO.HIGH)
-            GPIO.output(listeningindicator,GPIO.HIGH)
-        elif (audiosetup=='R2M' or audiosetup=='R4M'):
+    elif state=='think':
+        pixels.think()                
+    elif state=='listen':
+        pixels.listen()
+    elif state=='speak'  or 'speaking':
+        pixels.speak()
+    elif (state=='on' or state=='mute'):
+        if (led_setup=='RUM'):
+            pixels.mono(0xFF6600)#màu cam:
+        else:
             pixels.mute()
-        elif (audiosetup=='AIY'):
-            led.ChangeDutyCycle(100)
-        elif (audiosetup=='RUM'):
-            pixel_ring.mono(0xFF0000)
-        elif (audiosetup=='ALE'):
-            pixels.pixels.off()  
-        elif (audiosetup=='WS2'):
-            pixels.mute()
+    elif (state=='off' or state=='unmute'):
+        pixels.off()
+    else:
+        pass
+def ctr_vol_led(volume):
+    if led_setup=='WS2':
+        pixels._volume(volume)
+        time.sleep(1.0)
+        pixels.off()       
+    elif led_setup=='RUM':
+        if volume<9:
+            pixels.set_volume(0)
+        else:
+            pixels.set_volume(round(volume/10)-1)
+    else:
+        pass
+
+#########  vol_level  #########
+def off_led_ring():
+    off_led_ring=find()
+    off_led_ring.off()
+

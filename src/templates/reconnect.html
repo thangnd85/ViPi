@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>ViPi Dashboard - Khởi động lại hệ thống</title>
+	<style>
+		#iwebcenter{
+			background: orange;
+			width: 100px;
+			height: 100px;
+			text-align: center;
+			line-height: 100px;
+			font-size: 50px;
+			color: #fff;
+			font-weight: bold;
+			transform: translate(-50%,-50%);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			border-radius: 5px;
+		}
+	</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+	<center>Hệ thống đang khởi động lại. Vui lòng chờ trong</center>
+	<div id="iwebcenter"></div>
+<!-- partial -->
+	<script src='https://code.jquery.com/jquery-1.12.3.js'></script>
+	<script>
+		function counter($el, n) {
+		(function loop() {
+		   $el.html(n);
+		   if (n == 0){
+				window.location.href = 'http://192.168.1.13:5002';
+			   }
+		   if (n--) {
+			   setTimeout(loop, 3000);
+		   }
+		})();
+		}
+		counter($('#iwebcenter'), 30);
+	</script>
+
+</body>
+</html>

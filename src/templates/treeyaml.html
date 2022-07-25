@@ -1,0 +1,54 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}YAML Editor{% endblock %}
+
+{% block styles %}
+{{super()}}
+    <link href="{{ url_for('static', filename='treeview.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+        <script src="{{ url_for('static', filename='treeview.js') }}"></script>
+        <script>
+            var changeStr = '{{ change_str }}'
+        </script>
+        <script src="{{ url_for('static', filename='app.js') }}"></script>
+{% endblock %}
+{% block content %}
+<!------ Include the above in your HEAD tag ---------->
+    <div class="container" style="margin-top:30px;">
+        <!-- <div class="form-group">
+            <a href="/simpleView" class="btn btn-lg btn-default">Go to simple version</a>
+        </div> -->
+        <div class="form-group">
+            <meta charset="UTF-8">
+            <pre>Edit your YAML tree (Update corresponding fields with {{ change_str }} text):</pre>
+            <ul id="tree">
+                {%- for key, value in data.items() recursive %}
+                    {% set outer_loop = loop %}
+                    <li key="{{ key }}"
+                    {%- if value is mapping %}
+                        val="map">{{ key }}<ul class="col">{{ outer_loop(value.items()) }}</ul>
+                    {%- elif value is string or value is number %}
+                        val="string">{{ key }}<input class="val form-control" value="{{ value }}"/>
+                    {%- elif value is iterable %}
+                        val="iter">{{ key }}
+                        {%- for item in value recursive %}
+                            {%- if item is mapping %}
+                                <ul>{{ outer_loop(item.items())}}</ul>
+                            {%- elif item is string or item is number %}
+                                <input class="val form-control iter" value="{{ item }}"/>
+                            {%- elif item is iterable %}
+                                <ul class="iter"><li {{ loop(item) }}</li></ul>
+                            {%- endif %}
+                        {%- endfor %}
+                    {%- endif %}</li>
+                {%- endfor %}
+            </ul>
+        </div>
+        <div class="form-group pull-right">
+                <button type="button" onclick="saveTree()" class="btn btn-lg btn-success ">Save</button>
+                <button type="button" onclick="saveExitTree()" class="btn btn-lg btn-primary ">Save and Exit</button>
+            </div>
+    </div>
+{% endblock %}

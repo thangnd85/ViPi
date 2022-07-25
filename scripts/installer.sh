@@ -162,6 +162,7 @@ google-oauthlib-tool --scope https://www.googleapis.com/auth/assistant-sdk-proto
           --scope https://www.googleapis.com/auth/gcm \
           --save --headless --client-secrets $credname
 
+
 echo ""
 echo ""
 sudo mv ${GIT_DIR}/scripts/wifi-connect-start.service /lib/systemd/system/wifi-connect-start.service
@@ -347,4 +348,5 @@ ensure() {
 }
 
 main "$@" || exit 1
+
 echo "Hoàn thành cài đặt, vui lòng reboot........"

@@ -1,0 +1,14 @@
+{
+    "button1": {
+        "state": "Enabled"
+    },
+    "button2": {
+        "state": "Disabled"
+    },
+    "button3": {
+        "state": "OFF"
+    },
+    "button4": {
+        "state": "ON"
+    }
+}

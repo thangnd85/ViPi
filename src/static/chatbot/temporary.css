@@ -1,0 +1,71 @@
+#myBtn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: #f4c427;
+  border: 0;
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transition-duration: 0.5s;
+  transform: scale(1);
+}
+
+#myBtn i {
+  margin: 0;
+  font-size: 30px;
+}
+
+#myBtn:hover {
+
+    transform: scale(1.1);
+
+}
+
+#chatbox small {
+  padding: 8px 20px;
+  background: #fff;
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid #ebebeb;
+  color: #414141;
+  font-style: italic;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 10px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.messages{
+	height: calc(100vh - 250px);
+}
+​
+.messages .message.left .text {
+    color: black !important;
+    font-weight: inherit;
+}
+​
+#msg_input{
+    color: black;
+}
+
+
+.messages .message.left .avatar .status{
+	padding: 30%;
+    font-size: 25px;
+    color: #fff;
+}
