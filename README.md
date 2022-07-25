@@ -4,7 +4,35 @@ https://github.com/shivasiddharth/GassistPi
 
 Với sự đóng góp các thành viên mù code và tester đam mê phá nhà, nghèo vì độ loa sẽ update trong contributer sau :D
 
-## ĐÓNG GÓP
+1 số bạn có nhã ý donate cho nhóm.mình xin ghi nhận tấm lòng.cũng là 1 phần các bạn đã kích lệ cho anh em tìm tòi và nghiên cứu thêm các thứ mới.
+Nhất là phần cứng all in all anh em đang ấp ủ.
+
+Momo: 0935300314 lâm.
+Xin ghi rõ nội dung ủng hộ nhóm vipi.
+ Tất cả thông tin donate đều cập nhập lên git.
+## DONATE: 
+Danh sách các bạn đã ủng hộ.cập nhập đến 03.07.2021.
+
+Dù ít hay nhiều chúng tôi đều trân trọng tấm lòng của các bạn như nhau.
+
+1 - Khuê: 50.000đ
+
+2 - Tiến: 500.000đ
+
+3 - T.Quang: 100.000đ
+
+4 - M.Quang: 200.000đ
+
+5 - T.Nguyên: 2.000.000đ
+
+Vì anh em chúng tôi làm nhóm nên tất cả đều công khai minh bạch.😍😍😍😍😍
+
+Donate chúng tôi ko hề bắt buộc.
+
+Kinh phí này nhóm sẽ dùng cho việc phát triển phần cứng all in one.
+
+xin chân thành cảm ơn.
+## PHÁT TRIỂN CODE :
 Người mò mẫm đầu tiên [longhd2](https://github.com/longhd2)
 
 Coder 3h Youtube [canghp128](https://github.com/canghp128)
@@ -13,7 +41,9 @@ Coder ẩn dật [HungDoManh](https://github.com/HungDoManh)
 
 Copy & paste [thangnd85](https://github.com/thangnd85)
 
-Sharktank [lamthientieu](https://github.com/lamthientieu)
+Phá Hoại Bày Vẽ [lamthientieu](https://github.com/lamthientieu)
+
+Chuyên gia âm thanh, độ chế tay nghề cao [Đại Ca SƠN - PHÚ QUỐC]
 
 Sharktank [tuanto90](https://github.com/tuanto90)
 
@@ -22,7 +52,7 @@ Tester nghiệp dư [tienhuansk](https://github.com/tienhuansk)
 
 Đây là dự án miễn phí, phục vụ cá nhân khi rảnh rỗi, không phải dev chuyên nghiệp. 
 
-Anh em muốn tham gia vào đội coder thì cứ inbox [m.me/thangnd85](m.me/thangnd85) hoặc [t.me/thangnd85](t.me/thangnd85)
+Anh em muốn tham gia vào đội coder thì cứ inbox [Nhóm test code](https://t.me/vipi_code)
 
 ## 1.Chuẩn bị:
 Thẻ nhớ, file image tải bên dưới:
@@ -114,8 +144,8 @@ arecord -l
 aplay -l
 ```
 
-###
-### 4. Cài portaudio:
+##4. Cài portaudio:
+ 
 Tải về từ git:
 ```sh
 git clone -b alsapatch https://github.com/gglockner/portaudio
@@ -131,7 +161,7 @@ sudo apt-get install pulseaudio -y && sudo apt-get remove pulseaudio -y
 ```
 
 
-## 4.1. Disable onboard sound nếu không dùng:
+### 4.1. Disable onboard sound nếu không dùng:
 ```sh
 sudo nano /etc/modprobe.d/snd-blacklist.conf
 ```
@@ -141,12 +171,12 @@ blacklist snd_bcm2835
 ```
 Ctr + X, Y Enter
 
-### 5. Clone source về  Pi và cài đặt
+## 5. Clone source về  Pi và cài đặt
 
 
 ```sh
 cd /home/${USER}/
-git clone https://github.com/thangnd85/ViPi.git
+git clone https://github.com/lamthientieu/ViPi.git
 sudo chmod +x ./ViPi/scripts/installer.sh && sudo ./ViPi/scripts/installer.sh
 ```
 Nhập đường dẫn json:  /home/pi/ten_file.json (đổi tên cho đúng nhé)
@@ -170,10 +200,10 @@ Cách 2:
 ```
 cd /home/${USER}/
 rm -rf ViPi
-git clone https://github.com/thangnd85/ViPi
+git clone https://github.com/lamthientieu/ViPi.git
 ```
 
-### 6. Cấu hình led và các cài đặt khác trong file ViPi/src/config.yaml
+## 6. Cấu hình led và các cài đặt khác trong file ViPi/src/config.yaml
 ```sh
   #  Set type mic to:
   # 1. 'GEN'   ---> USB-MIC-JACK
@@ -189,7 +219,7 @@ git clone https://github.com/thangnd85/ViPi
   .......
 ```
 
-### 7.Chạy lần đầu:
+## 7.Chạy lần đầu:
 Chạy lần đầu với raspi:
 ```sh
 source ~/env/bin/activate
@@ -199,12 +229,12 @@ google-oauthlib-tool --scope https://www.googleapis.com/auth/assistant-sdk-proto
 ```
 Tiếp tục:
 ```sh
-~/env/bin/python -u ~/ViPi/src/start.py --project-id 'XXX' --device-model-id 'XXX'
+env/bin/python -u ./ViPi/src/start.py --project-id 'XXX' --device-model-id 'XXX'
 ```
-Thay XXX bằng project-id và device-model-id của bạn.
+Thay bằng project-id và device-model-id của bạn trong file config.
 
 
-### 8.Thiết lập chạy tự động:
+## 8.Thiết lập chạy tự động:
 a. Chạy tự động với supervisor:
 ```sh
 sudo nano /etc/supervisor/conf.d/ViPi.conf
@@ -239,33 +269,103 @@ Ctrn + X, Y, enter để save. Xong reboot lại Pi, có thể mở web lên nh�
 ```sh
 sudo reboot
 ```
-b. Chạy tự động với crontab -e:
 
-```sh
-sudo cp /home/pi/ViPi/run_vipi.py /home/pi/run_vipi.py
-crontab -e
-```
-chọn 1 và paste line to the end, press ctrl + X, Y. Then reboot Pi
-
-```sh
-@reboot python -u /home/pi/run_vipi.py
-```
-### 9.Tắt chạy tự động trong phiên làm việc:
+### 8.1.Tắt chạy tự động trong phiên làm việc:
 
 ```sh
 sudo supervisorctl stop ViPi
 ```
-### 10.Xóa chạy tự động:
+### 8.2.Xóa chạy tự động:
 ```sh
 sudo rm -rf /etc/supervisor/conf.d/ViPi.conf
 ```
-### 11. Tạo STT tại đây:
+## 9. Chạy TTS Web và điều khiển Google Assistant qua web:
+Để sử dụng tính năng số 9 và 10, cần cài đặt thêm gói
+```
+source ~/env/bin/activate
+cd ~/ViPi/scripts
+pip install -r pip.txt
+```
+```
+sudo nano /etc/supervisor/conf.d/webtts.conf
+```
+Dán nội dung sau:
+```sh
+[program:WebTTS]
+directory=/home/pi
+command=/bin/bash -c 'env/bin/python -u ./ViPi/src/webtts.py'
+numprocs=1
+autostart=true
+autorestart=true
+user=pi
+```
+Chạy lệnh sau để khởi động chạy tự động:
+```sh
+sudo supervisorctl update
+```
+Điều khiển Google Assistant qua web:
+```
+http://ip_của_pi:5001/command?message=lệnh muốn điều khiển
+```
+TTS qua web:
+```
+http://ip_của_pi:5001/tts?message=text muốn phát
+```
+Qua Home Assistant:
+```
+notify:
+  - name: ga_broadcast
+    platform: rest
+    resource: http://ip_của_pi:5001/broadcast_message
+  - name: ga_command
+    platform: rest
+    resource: http://ip_của_pi:5001/command
+```
+Và automation:
+```
+  - alias: Broadcast the dishwasher has finished
+    initial_state: True
+    trigger:
+      - platform: state
+        entity_id: input_select.dishwasher_status
+        to: 'Off'
+    action:
+      - service: notify.ga_broadcast
+        data:
+          message: "The Dishwasher has finished."
+```
+## 10. OAuth qua web và edit yaml bằng web
+Để sử dụng tính năng này, bạn phải cài đặt thêm gói ở bước 9. 
+Lưu ý: File yaml sau khi sửa xong sẽ có cấu trúc khác, sẽ điều chỉnh lại cho hợp lí hơn.
+```
+sudo nano /etc/supervisor/conf.d/oauth.conf
+```
+Dán nội dung sau:
+```sh
+[program:OAuth]
+directory=/home/pi
+command=/bin/bash -c 'env/bin/python -u ./ViPi/src/oauth.py'
+numprocs=1
+autostart=true
+autorestart=true
+user=pi
+```
+Chạy lệnh sau để khởi động chạy tự động:
+```sh
+sudo supervisorctl update
+```
+Vào web cấu hình OAuth và chỉnh YAML
+```
+http://ip_của_pi:8080
+```
+### (Tùy chọn, chưa phát triển) Tạo STT tại đây:
 
 -  Đăng ký Acc FPT AI tại: https://fpt.ai/
 
 -  Đăng ký Acc Viettel AI tại: https://viettelgroup.ai/en
 
 -  Đăng ký Acc Zalo AI tại: https://zalo.ai/user-profile
+
 
 
 
@@ -442,3 +542,51 @@ systemctl --system start pulseaudio.service
 sudo cp ./client.conf /etc/pulse/client.conf        
 sudo sed -i '/^pulse-access:/ s/$/root,pi/' /etc/group    
 ```
+## Hướng dẫn cập nhật supervisor lên bản mới (fix lỗi utf-8)
+Dừng supervisor cũ: 
+```
+sudo systemctl disable supervisor
+sudo systemctl stop supervisor
+sudo rm /etc/systemd/system/supervisor.service
+```
+Gỡ cài đặt supervisor cũ:
+```
+sudo apt remove supervisor -y
+```
+Xỏa bỏ config cũ
+```
+sudo rm - /etc/supervisor/supervisord.conf
+```
+Cài đặt supervisor mới. Trước tiên đảm bảo bạn không ở env, sau đó cài đặt, copy cấu hình mới qua:
+```
+deactivate
+sudo python3 -m pip install supervisor
+sudo wget https://github.com/lamthientieu/ViPi/blob/20b8245a69fa94bfbc9f102df1004c6ec48b5258/supervisord.conf -P /etc/supervisor/
+```
+Tiếp theo, chỉnh sửa lại init.d
+```
+sudo nano /etc/init.d/supervisor
+```
+Tìm đến đoạn 
+```
+PATH= .....
+```
+Sửa lại cho giống như sau: (quan trọng là cho thêm cái vị trí của supervisor bin file)
+```
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/supervisord
+NAME=supervisord
+DESC=supervisor
+````
+Sau đó Ctr + X, Y, Enter
+
+Enable và start supervisor
+````
+sudo systemctl enable supervisor
+sudo systemctl start supervisor
+````
+Kiểm tra nếu không start được thành công thì có thể chạy lệnh sau:
+```
+sudo pkill -9 supervisord
+```
+Rồi start lại supervisor. User và password web là user/123

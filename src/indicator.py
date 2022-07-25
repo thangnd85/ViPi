@@ -45,11 +45,11 @@ CURENT_PATH =  os.path.realpath(os.path.join(__file__, '..',))
 with open('{}/config.json'.format(CURENT_PATH),'r', encoding='utf8') as conf:
     configuration = json.load(conf)
 try:
-    led_number=configuration['led_setup']['pixels']
+    led_number=int(configuration['led_setup']['pixels'])
 except:
     led_number=12
 #1: Config_Mic
-mic_setup=''
+
 if configuration['mic_setup']['type']=="USB":
     mic_setup=''
 elif configuration['mic_setup']['type']=="R4M":
@@ -61,41 +61,9 @@ elif configuration['mic_setup']['type']=="RUM":
 elif configuration['mic_setup']['type']=="HAT":
     mic_setup='HAT'
 else:
-    mic_setup='bạn chưa chọn Mic'
+    mic_setup=''
 
     
-#2: Config_Led:
-led_setup=''
-if configuration['led_setup']['type']=="USB":
-    led_setup=''
-elif configuration['led_setup']['type']=="R4M":
-    led_setup='R4M'
-elif configuration['led_setup']['type']=="R2M":
-    led_setup='R2M'
-elif configuration['led_setup']['type']=="RUM":
-    led_setup='RUM'
-elif configuration['led_setup']['type']=="WS2":
-    led_setup='WS2'
-else:
-    led_setup='bạn chưa chọn Led'
-
-#3: Config_Audio out:
-vol_setup=''
-if configuration['vol_setup']['type']=="RPI_H":
-    vol_setup='RPI_H'
-elif configuration['vol_setup']['type']=="R2M_H":
-    vol_setup='R2M_H'
-elif configuration['vol_setup']['type']=="R2M_J":
-    vol_setup='R2M_J'
-elif configuration['vol_setup']['type']=="RUM_H":
-    vol_setup='RUM_H'
-elif configuration['vol_setup']['type']=="HAT":
-    vol_setup='HAT'
-else:
-    ctr_vol='bạn chưa chọn cổng xuất âm thanh'
-    
-    
-print('Mic setup: '+ mic_setup+ ', Led setup: '+ led_setup+ ', Pixels_led: '+ str(led_number))
 
 # if configuration['IR']['IR_Control']=='Enabled':
     # ircontrol=True
@@ -646,7 +614,7 @@ def find(vid=0x2886, pid=0x0018):
     if not dev:
         return
     return PixelRing(dev)
-class gen:
+class gen():
     def wakeup(self):
         pass
 
@@ -666,25 +634,51 @@ class gen:
 ## end gen
 
     # find =find()
+#2: Config_Led:
+led_setup=''
+if configuration['led_setup']['type']=="USB":
+    led_setup=''
+if configuration['led_setup']['type']=="R4M":
+    led_setup='R4M'
+    pixels = Pixels4mic()
+if configuration['led_setup']['type']=="R2M":
+    led_setup='R2M'
+    pixels=Pixels2mic()
+elif configuration['led_setup']['type']=="RUM":
+    led_setup='RUM'
+    pixels = find()
+elif configuration['led_setup']['type']=="WS2":
+    led_setup='WS2'
+    pixels = ws2812()
+else:
+    led_setup=''
+    pixels = gen() 
+
+#3: Config_Audio out:
+vol_setup=''
+if configuration['vol_setup']['type']=="RPI_H":
+    vol_setup='RPI_H'
+if configuration['vol_setup']['type']=="R2M_H":
+    vol_setup='R2M_H'
+if configuration['vol_setup']['type']=="R2M_J":
+    vol_setup='R2M_J'
+if configuration['vol_setup']['type']=="RUM_H":
+    vol_setup='RUM_H'
+if configuration['vol_setup']['type']=="HAT":
+    vol_setup='HAT'
+else:
+    ctr_vol='bạn chưa chọn cổng xuất âm thanh'
+   
+    
+print('Mic setup: '+ mic_setup+ ', Led setup: '+ led_setup+ ', Pixels_led: '+ str(led_number))
+
 
     
 def off_led_ring():
     off_led_ring=find()
     off_led_ring.off()
-def pixel():
-    if led_setup=='R2M':
-        pixels=Pixels2mic()
-    if led_setup=='WS2':
-        pixels = ws2812()
-    if led_setup =='R4M':
-        pixels = Pixels4mic()
-    if led_setup=='RUM':
-        pixels = find()
-    else:
-        pixels = gen()
-    return pixels
+
 def ctr_led(state):
-    pixels = pixel()
     state=state.lower()
     if state=='wakeup':
         if led_setup=='RUM':

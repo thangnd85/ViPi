@@ -1,4 +1,5 @@
 {
+    "Boss": "ViPi Team",
     "Chromecast": {
         "Chromecast_Control": "Disabled",
         "Chromecast_Devices": {
@@ -30,7 +31,7 @@
         "Google_cloud_api_key": "AIzaSyBlN3_7HDNM-ByZaDUUoGi5tItiGZVdo1c",
         "device_model_id": "new-vipi-dev-new-speaker",
         "project_id": "new-vipi-dev",
-		"Interprer":"Enabled"
+        "Interprer": "Enabled"
     },
     "Gpios": {
         "AIY_indicator": [
@@ -73,11 +74,11 @@
         ]
     },
     "Home_Assistant": {
-        "control": "Enabled",
+        "control": "Disabled",
         "external_url": "https://thang.hass",
         "internal_url": "http://192.168.1.246:8123",
-        "ratio": 70,
-        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1eyJpc3MiOiIxZGNlN2U4ODVlYTA0MDgxYTQyNWY3NDAxN2I4NTcxMSIsImlhdCI6MTY1NzEyNTc1NywiZXhwIjoxOTcyNDg1NzU3fQ.bW67QE3alVeSM8y6gPozQ4Is6EBsTuJyBPzzY_PqZfA"
+        "ratio": "75",
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9Jpc3MiOiIxZGNlN2U4ODVlYTA0MDgxYTQyNWY3NDAxN2I4NTcxMSIsImlhdCI6MTY1NzEyNTc1NywiZXhwIjoxOTcyNDg1NzU3fQ.bW67QE3alVeSM8y6gPozQ4Is6EBsTuJyBPzzY_PqZfA"
     },
     "IR": {
         "Codes": [
@@ -196,7 +197,7 @@
         "L\u1ef1a ch\u1ecdn file kh\u1edfi \u0111\u1ed9ng, new_start or new_main": "new_start",
         "Server1": "http://api.hass.bid",
         "Server2": "http://vipi.duckdns.org:5000",
-        "Startup_file": "new_main",
+        "Startup_file": "new_start",
         "Startup_voice": "Enabled"
     },
     "Tasmota_devicelist": {
@@ -216,10 +217,10 @@
     },
     "TextToSpeech": {
         "Test": "This is test",
-        "Choice": "ZTTS",
+        "Choice": "GTTS",
         "Ch\u1ecdn gtts ho\u1eb7c ztts": "ZTTS",
         "Speed": 0.9,
-        "Quality": 1,
+        "Quality": "0",
         "Google_Cloud_TTS_Credentials_Path": "ENTER THE PATH TO YOUR TTS CREDENTIALS FILE HERE",
         "Voice_Gender": "Female",
         "Voice_Region": "South",
@@ -254,7 +255,7 @@
             11.555358,
             106.172483
         ],
-        "location": "tam k\u1ef3, qu\u1ea3ng nam "
+        "location": "T\u00e2n Ch\u00e2u, T\u00e2y Ninh"
     },
     "YouTube": {
         "YouTube_Control": "Enabled",
@@ -264,10 +265,10 @@
     "continue_conversation": "True",
     "led_setup": {
         "pixels": 16,
-        "type": "WS2"
+        "type": "R2M"
     },
     "mic_setup": {
-        "type": "HAT"
+        "type": "R2M"
     },
     "vol_setup": {
         "amixer_controls": "Master",

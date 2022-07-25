@@ -1,12 +1,10 @@
 import platform, os, yaml, json, time
-ROOT_PATH = os.path.realpath(os.path.join(__file__, '..', '..'))
-USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
-with open('{}/src/config.yaml'.format(ROOT_PATH),'r', encoding='utf8') as conf:
-    configuration = yaml.safe_load(conf)
+from actions import USER_PATH,configuration
+
 try:      
     with open('{}/.config/google-oauthlib-tool/credentials.json'.format(USER_PATH), 'r') as registers:
         register = json.load(registers)
-    register=False
+    register = False
 except:
     register=True
 if register:

@@ -9,18 +9,11 @@ import os
 import os.path
 import pathlib2 as pathlib
 import socket
-from actions import say_save
+from actions import say_save, get_ip
 from requests_oauthlib import OAuth2Session
 from google.oauth2.credentials import Credentials
 from google.assistant.library.file_helpers import existing_file
-host_name = socket.gethostname()
-h=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-host_addr = ''
-try:
-    host_addr = socket.gethostbyname(host_name + ".local")
-    h.connect(("8.8.8.8", 80))
-except:
-    host_addr = h.getsockname()[0]
+host_addr = get_ip()
 say_save('Cần phải đăng kí lại với Google tại địa chỉ: '+host_addr+'hai chấm 5002')
 ROOT_PATH = os.path.realpath(os.path.join(__file__, '..', '..'))
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
@@ -87,7 +80,7 @@ def token():
     #os.system('sudo supervisorctl reload')
     result = 'Đã hoàn thành'
     time.sleep(5)
-    os.system('sudo reboot')
+    os.system('sudo systemctl restart supervisor')
     return render_template('upload.html',url = auth_url, result = result)
 
 @app.route('/config', methods=['GET', 'POST'])

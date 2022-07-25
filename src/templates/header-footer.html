@@ -59,6 +59,7 @@
 								<li class="music"><a href="music"><i class="fa fa-music"></i></a></li>
 								<li class="doc-text"><a href="doc-text"><i class="fa fa-book"></i></a></li>
 								<li class="settings"><a href="settings"><i class="fa fa-cogs"></i></a></li>
+								<li class="home-assistant"><a href="home-assistant"><i class="fa fa-home" aria-hidden="true"></i></a></li>
 							</ul>	
 						</div>
 						<!-- End Menu PC -->
@@ -69,7 +70,8 @@
 									<li class="nav-item home"><a class="nav-link" href="/"><i class="fa fa-tachometer"></i></a></li>
 									<li class="nav-item music"><a class="nav-link" href="music"><i class="fa fa-music"></i></a></li>
 									<li class="nav-item doc-text"><a class="nav-link" href="doc-text"><i class="fa fa-book"></i></a></li>
-									<li class="nav-item settings"><a class="nav-link" href="settings"><i class="fa fa-cogs"></i></a></li>							
+									<li class="nav-item settings"><a class="nav-link" href="settings"><i class="fa fa-cogs"></i></a></li>	
+									<li class="nav-item home-assistant"><a class="nav-link" href="home-assistant"><i class="fa fa-home" aria-hidden="true"></i></a></li>									
 								</ul>
 							 </div>
 						</nav>
@@ -82,7 +84,7 @@
 							</div>
 							<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 user-control">
 								<div class="btn-group">
-									<button class="btn btn-large user-menu"><img src="{{ url_for('static', filename='img/avatar.jpg') }}"/>Thủy</button>
+									<button class="btn btn-large user-menu"><img src="{{ url_for('static', filename='img/avatar.jpg') }}"/>{{boss}}</button>
 									<button class="btn btn-large dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
 										<ul class="dropdown-menu">
 											<li><a href="#">Thông tin tải khoản</a></li>
@@ -93,8 +95,8 @@
 						</div>
 						<div class="row">
 					
-			{% block content %}{% endblock %}	
-			<div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+							{% block content %}{% endblock %}	
+							<div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
 						
 								<div class="sidebar">
 									<h2 class="title-box">ViPi Assistant</h2>
@@ -102,33 +104,21 @@
 								<!-- Start Device -->
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 									<div class="wrab-box bg-violet">
-										<div class="control">
-											<div class="device-icon">
-												<i class="fa fa-home" aria-hidden="true"></i>
-											</div>
-											<div class="device-button">	
-												<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-													<div class="handle"></div>
-												</button>
-											</div>	
-										</div>	
+										<div class="input-toogle button-toggle">
+											<input id="toogle-input" type="checkbox" class='btn1' {{check_b1}}>
+											<label for="toogle-input"class='b1_status'>{{b1}}</label>
+										</div> 
 										<small>Home Assistant</small>
 									</div>	
 								</div>	<!-- End Device -->
 								
 								<!-- Start Device -->
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-									<div class="wrab-box bg-yellow">
-										<div class="control">
-											<div class="device-icon">
-												<i class="fa fa-google" aria-hidden="true"></i>
-											</div>
-											<div class="device-button">	
-												<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-													<div class="handle"></div>
-												</button>
-											</div>	
-										</div>	
+									<div class="wrab-box bg-yellow">									
+										<div class="input-toogle1 button-toggle">
+											<input id="toogle-input1" type="checkbox" class='btn2' {{check_b2}} >
+											<label for="toogle-input1" class="b2_status">{{b2}}</label>
+										</div> 
 										<small>Gtts</small>
 									</div>	
 								</div>	
@@ -172,20 +162,22 @@
 							</div>  
 							
 									<h2 class="title-box">Thông tin hệ thống</h2>
-									<div class="input-toogle">
-										<input id="toogle-input" type="checkbox" class='btn1' {{check_b1}}>
-										<label for="toogle-input"class='b1_status'>{{b1}}</label>
-									</div> 
+									Hệ điều hành: {{sys}};
+									Tên thiết bị: {{node}};
+									Thời gian hoạt động: {{boottime}};
+									Tốc độ CPU: {{currentfrequency}} Mhz
+									
+									
 
-									<div class="input-toogle1">
-										<input id="toogle-input1" type="checkbox" class='btn2' {{check_b2}} >
-										<label for="toogle-input1" class="b2_status">{{b2}}</label>
-									</div> 
 							
 								</div> <!-- End Sidebar -->
 						
 						
 							</div><!-- End Col Sidebar -->
+						</div>
+						
+						<div class="footer-info">
+							<p>ViPi Dashboard 1.0 - Bản quyền thuộc về ViPi Team.</p>
 						</div>
 					</div>
 
@@ -255,6 +247,7 @@
 		<script src="{{ url_for('static', filename='dashboard-nav.js') }}"></script>
 		<script src="{{ url_for('static', filename='chatbot/bind.js') }}"></script>
 		<script src="{{ url_for('static', filename='dashboard-weather.js') }}"></script>
+		<script src="{{ url_for('static', filename='repeater-field.js') }}"></script>
 		<script src='https://code.highcharts.com/stock/highstock.js'></script>
 		<script src='https://code.highcharts.com/stock/modules/exporting.js'></script>
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js'></script>	

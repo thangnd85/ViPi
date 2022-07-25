@@ -1,0 +1,25 @@
+{% extends "header-footer.html" %}
+
+{% block content %}
+	<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+		<section class="content-section home-assistant">
+			<h2 class="title-box">Cấu hình Home Assistant</h2>
+			<div class="flex flex-col lg:flex-row" x-data="{ fields: [''] }">
+			<div class="lg:w-1/2 lg:mr-6 lg:mb-0 mb-6">
+			  <template x-for="(field, index) in fields" :key="index">
+				<div class="flex mb-2">
+				  <input type="text" name="data[]" x-model="fields[index]" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Tên thiết bị trên HASS">
+				  <button x-show="fields.length > 1" class="vipi-btn" @click="fields.splice(index, 1)">-</button>
+				</div>
+			  </template>
+			  <button class="vipi-btn" @click="fields.push('')">Thêm thiết bị</button>
+			</div>
+			<div class="lg:w-1/2 bg-gray-800 px-6 py-4 rounded shadow-lg">
+			  <div class="text-md text-gray-500">DATA</div>
+			  <pre x-text="JSON.stringify(fields, null, 2)" class='text-green-700'></pre>
+			</div>
+		  </div>
+		</section>
+	
+	</div>
+{% endblock %}

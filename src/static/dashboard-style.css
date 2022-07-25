@@ -17,8 +17,7 @@ body {
      border-radius: 32px;
      position: relative;
      overflow: hidden;
-     padding: 15px;
-	 overflow-y: Scrollbar;
+     
 }
 
 i {
@@ -176,24 +175,30 @@ h6 {
 
 @media (min-width:1920px){ 
 	#clock {font-size: 24px;}
-	.btn-group {overflow-x: auto;max-width: 100%;margin-bottom: 20px;}
-	.music-btn button {min-width: 118px;font-size: 16px;}
 	.chat-container {width: 446px;height: 90%;}
+	.content-scroll { max-height: 600px;overflow-y: scroll; padding-right: 10px;}
+	.music-btn .btn-group {width: 80%; margin-bottom: 30px;}
+	.wrap {padding: 15px 15px 15px 15px;}
+	.footer-info p {text-align: left;}
 }
 
 @media (max-width:1920px){ 
 	#clock {font-size: 24px;}
-	.btn-group {overflow-x: auto;max-width: 100%;margin-bottom: 20px;}
-	.music-btn button {min-width: 118px;font-size: 16px;}
 	.chat-container {width: 446px;height: 90%;}
+	.content-scroll { max-height: 600px;overflow-y: scroll; padding-right: 10px;}
+	.music-btn .btn-group {width: 80%; margin-bottom: 30px;}
+	.wrap {padding: 15px 15px 15px 15px;}
+	.footer-info p {text-align: left;}
 }
 
 @media (max-width:1366px){ 
 	#accordian {padding: 20px 0 10px 5px;}
 	#clock {font-size: 24px;}
-	.btn-group {overflow-x: auto;max-width: 100%;margin-bottom: 20px;}
-	.music-btn button {min-width: 118px;font-size: 16px;}
 	.chat-container {width: 446px; height: 90%;}
+	.content-scroll { max-height: 600px;overflow-y: scroll; padding-right: 10px;}
+	.music-btn .btn-group {width: 80%; margin-bottom: 30px;}
+	.wrap {padding: 15px 15px 15px 15px;}
+	.footer-info p {text-align: left;}
 }
 
 @media (max-width:991px){ 
@@ -202,9 +207,11 @@ h6 {
 	#nav-mobile { visibility:inherit;clear: both; display: block;}
 	.info {padding-right: 0;}
 	#clock {font-size: 15px;}
-	.btn-group {overflow-x: scroll;max-width: 100%;margin-bottom: 20px;}
-	.music-btn button {min-width: 120px;font-size: 14px;}
 	.chat-container {width: 95%; height: 90%;}
+	.content-scroll { max-height: 600px;overflow-y: scroll; padding-right: 10px;}
+	.music-btn .btn-group {width: 100%; margin-bottom: 30px;}
+	.wrap {padding: 15px 15px 60px 15px;}
+	.footer-info p {text-align: center;}
 }
 
 /*-------- User control ----------*/
@@ -364,6 +371,36 @@ h6 {
   padding-top: 11px;
 }
 
+
+/*--------- Media Player -----*/
+
+.music-btn {
+    margin-bottom: 30px;
+}
+
+.music-btn .btn-group {
+    background: #ff9060;
+    padding: 10px;
+    border-radius: 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.music-btn .btn-group button {
+    border: 0;
+    background: transparent;
+    margin: 0 10px;
+    padding: 5px;
+}
+
+.music-btn .btn-group button i {
+    color: #fff;
+}
+
+.music-btn .btn-group button:hover i {
+    color: #7a40f2;
+}
 
 /*--------- Button ------*/
 
@@ -764,19 +801,6 @@ h6 {
 	background: #3acbe9;
 }
 
-.music-btn button {
-  background: #ff9060;
-  color: #fff;
-  border: 0;
-  border-radius: 20px;
-  padding: 10px 25px;
-  margin-right: 5px;
-}
-
-.music-btn button:hover {
-   background: #7a40f2;
-}
-
 #music-box {
   margin-bottom: 20px;
 }
@@ -796,41 +820,66 @@ h6 {
 }
 
 #music-box button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  height: 44px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 44px;
+    background: #ff9060;
+    border: 0;
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#music-box button:hover {
+    background: #7a40f2;
 }
 
 *:focus {
     outline: none;
 }
 
-.input-toogle {
+.button-toggle {
   position: relative;
-  padding: 8px;
+  padding: 6px 0px;
   min-width: 140px;
 }
 
-.input-toogle label {
-  line-height: 44px;
-  vertical-align: middle;
-  display: inline-block;
-  position: relative;
-  height: 22px;
-  width: 45px;
-  background-color: #f43a59;
-  cursor: pointer;
-  font-size: 0;
-  color: transparent;
-  border-radius: 11px;
-  transition: background-color 500ms ease;
+.button-toggle label {
+    line-height: 44px;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    height: 26px;
+    width: 50px;
+    background-color: #ff8300;
+    cursor: pointer;
+    font-size: 0;
+    color: transparent;
+    border-radius: 11px;
+    transition: background-color 500ms ease;
+    border: 2px solid #ff8300;
+    border-radius: 22px;
+	position: relative;
 }
 
-.input-toogle label:after {
+.button-toggle label:before {
+    content: "ON";
+    position: absolute;
+    top: -10px;
+    left: 4px;
+    z-index: 1;
+    color: #ffffff;
+    font-size: 10px;
+}
+
+.button-toggle label:after {
   content: "";
   display: block;
   height: 20px;
@@ -839,72 +888,94 @@ h6 {
   top: 1px;
   right: 24px;
   border-radius: 50%;
-  background-color: #e43a59;
+  background-color: #ffffff;
   box-shadow: 2px 0px 0px rgba(0, 0, 0, 0.15);
   transition: right 500ms ease, background-color 500ms ease,
     box-shadow 500ms ease;
 }
 
-.input-toogle input {
+.button-toggle input {
   display: none;
 }
 
-.input-toogle input:checked + label {
-  background: #0ad251;
+.button-toggle input:checked + label {
+  background: #bdc1c8;
+  border: 2px solid #bdc1c8;
 }
 
-.input-toogle input:checked + label:after {
+.button-toggle input:checked + label:after {
   right: 2px;
-  background-color: #0ac251;
+  background-color: #ffffff;
   box-shadow: -2px 0px 0px rgba(0, 0, 0, 0.1);
 }
 
-.input-toogle1 {
-  position: relative;
-  padding: 8px;
-  min-width: 140px;
+.text-input-config input {
+    width: 100%;
+    border: 1px solid #ebebeb;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
 }
 
-.input-toogle1 label {
-  line-height: 44px;
-  vertical-align: middle;
-  display: inline-block;
-  position: relative;
-  height: 22px;
-  width: 45px;
-  background-color: #f43a59;
-  cursor: pointer;
-  font-size: 0;
-  color: transparent;
-  border-radius: 11px;
-  transition: background-color 500ms ease;
+h2.title-box span a {
+    font-size: 14px;
+    color: #7a40f2;
+    text-decoration: none;
 }
 
-.input-toogle1 label:after {
-  content: "";
-  display: block;
-  height: 20px;
-  width: 20px;
-  position: absolute;
-  top: 1px;
-  right: 24px;
-  border-radius: 50%;
-  background-color: #e43a59;
-  box-shadow: 2px 0px 0px rgba(0, 0, 0, 0.15);
-  transition: right 500ms ease, background-color 500ms ease,
-    box-shadow 500ms ease;
+.footer-info p {
+    display: block;
+    font-size: 13px;
+    color: #9695ab;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-top: 20px;
 }
 
-.input-toogle1 input {
-  display: none;
+.content-scroll::-webkit-scrollbar {
+    width: 10px;
 }
 
-.input-toogle1 input:checked + label {
-  background: #0ad251;
+.content-scroll::-webkit-scrollbar-track {
+    background-color: #fff;
 }
 
-.input-toogle1 input:checked + label:after {
-  right: 2px;
-  background-color: #0ac251;
-  box-shadow: -2px 0px 0px rgba(0, 0, 0, 0.1);
+.content-scroll::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 60px;
+}
+
+.content-scroll {
+	scrollbar-color: #6969dd #e0e0e0;
+    scrollbar-width: thin;
+	margin-bottom: 30px;
+}
+
+.system-config {
+    margin-bottom: 30px;
+}
+
+.system-config .vipi-btn {
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.system-config .vipi-btn i {
+    margin: 0;
+    padding: 0 5px;
+}
+
+.system-config form {
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.system-config form small {
+    position: absolute;
+    bottom: 0;
+    font-size: 9px;
+    right: 3px;
+    width: 100%;
+    text-align: center;
 }
