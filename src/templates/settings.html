@@ -38,16 +38,19 @@
 			<div class="text-input-config">
 					Device model ID<input name="device_model_id" placeholder="{{device_model_id}}">
 					Project ID<input name="project_id" placeholder="{{project_id}}">
-					StartUp file (new_main or new_start) <input name="startup_file" placeholder="{{startup_file}}">
-					StartUP sound <input name="startup_sound" placeholder="{{startup_sound}}">
+					File khởi động (new_main or new_start) <input name="startup_file" placeholder="{{startup_file}}">
+					Âm thanh khởi động <input name="startup_sound" placeholder="{{startup_sound}}">
+					Đọc IP <input name="get_ip" placeholder="{{get_ip}}">
 			</div>
 		<h2 class="title-box">Cấu hình giọng nói <span>( <a href="#">Xem hướng dẫn</a> )</span></h2>
 			<div class="text-input-config">
-				Giới tính (Male/Female)<input name="gender" placeholder="{{gender}}">
-				Vùng(Zalo only - South or North)<input name="region" placeholder="{{region}}">
-				Tốc độ (Zalo only 0-1)<input name="speed" placeholder="{{speed}}">
-				Chất lượng (Zalo only Cao: 1/Thấp: 0)<input name="quality" placeholder="{{quality}}">
-				Zalo API<input name="zaloapi" placeholder="{{zaloapi}}">
+					Độ nhạy Picovoice(Picovoice only 0.3 - 1.0)<input name="sensitivities" placeholder="{{sensitivities}}">
+					Nhận dạng âm thanh (zalo, google, google-api)<input name="stt" placeholder="{{stt}}">			
+					Giới tính (Male/Female)<input name="gender" placeholder="{{gender}}">
+					Vùng(Zalo only - South or North)<input name="region" placeholder="{{region}}">
+					Tốc độ (Zalo only 0-1)<input name="speed" placeholder="{{speed}}">
+					Chất lượng (Zalo only Cao: 1/Thấp: 0)<input name="quality" placeholder="{{quality}}">
+					Zalo API<input name="zaloapi" placeholder="{{zaloapi}}">
 			</div>
 		<h2 class="title-box">Cấu hình HASS <span>( <a href="#">Xem hướng dẫn</a> )</span></h2>
 			<div class="text-input-config">
@@ -56,7 +59,7 @@
 					Độ chính xác<input name="ratiohass" placeholder="{{ratiohass}}">
 					Long-lived token<input name="tokenhass" placeholder="{{tokenhass}}">
 			</div>
-		
+
 		<h2 class="title-box">Cấu hình LOA <span>( <a href="#">Xem hướng dẫn</a> )</span></h2>
 			<div class="text-input-config">
 				Tên chủ nhân <input name="vipiname" placeholder="{{boss}}">
@@ -65,8 +68,18 @@
 				Loại led<input name="led" placeholder="{{led}}">
 				Loại MIC<input name="mic" placeholder="{{mic}}">
 				Âm lượng <input name="volume" placeholder="{{volume}}">
-				<button class="btn-submit reading-btn" type="submit">Lưu cấu hình loa</button>
 			</div>
+		<h2 class="title-box">Cấu hình GPIOs<span>( <a href="#">Xem hướng dẫn</a> )</span></h2>
+			<div class="text-input-config">
+					Cho phép sử dụng<input name="control" placeholder="{{control}}">
+					Up <input name="gpio_up" placeholder="{{gpio_up}}">
+					Down<input name="gpio_down" placeholder="{{gpio_down}}">
+					Left<input name="gpio_left" placeholder="{{gpio_left}}">
+					Right<input name="gpio_right" placeholder="{{gpio_right}}">
+					Center<input name="gpio_center" placeholder="{{gpio_center}}">
+				<button class="btn-submit reading-btn" type="submit">Lưu cấu hình</button>
+			</div>	
+
 		</form>
 		</div>
 	</div>

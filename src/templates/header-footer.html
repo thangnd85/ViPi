@@ -119,42 +119,31 @@
 											<input id="toogle-input1" type="checkbox" class='btn2' {{check_b2}} >
 											<label for="toogle-input1" class="b2_status">{{b2}}</label>
 										</div> 
-										<small>Gtts</small>
+										<small>GTTS | ZTTS</small>
 									</div>	
 								</div>	
 								<!-- End Device -->
 								
 								<!-- Start Device -->
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-									<div class="wrab-box bg-orange">
-										<div class="control">
-											<div class="device-icon">
-												<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-											</div>
-											<div class="device-button">	
-												<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-													<div class="handle"></div>
-												</button>
-											</div>	
-										</div>	
-										<small>Đèn phòng khách</small>
+									<div class="wrab-box bg-yellow">									
+										<div class="input-toogle3 button-toggle">
+											<input id="toogle-input3" type="checkbox" class='btn3' {{check_b3}} >
+											<label for="toogle-input3" class="b3_status">{{b3}}</label>
+										</div> 
+										<small>Ok Google</small>
 									</div>	
-								</div>	<!-- End Device -->
+								</div>	
+								<!-- End Device -->
 								
 								<!-- Start Device -->
 								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
 									<div class="wrab-box bg-blue">
-										<div class="control">
-											<div class="device-icon">
-												<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-											</div>
-											<div class="device-button">	
-												<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-													<div class="handle"></div>
-												</button>
-											</div>	
-										</div>	
-										<small>Đèn phòng khách</small>
+										<div class="input-toogle4 button-toggle">
+											<input id="toogle-input4" type="checkbox" class='btn4' {{check_b4}} >
+											<label for="toogle-input4" class="b4_status">{{b4}}</label>
+										</div> 
+										<small>Picovoice</small>
 									</div>	
 								</div>	
 								<!-- End Device -->
@@ -329,12 +318,25 @@
 				  input.prop("checked", !input.prop("checked"));
 				});
 			});
+
 			$(document).ready(function() {
 				$(".input-toogle1").click(function() {
 				  var input = jQuery(this).find("input1");
 				  input.prop("checked", !input.prop("checked"));
 				});
 			});  
+			$(document).ready(function() {
+				$(".input-toogle4").click(function() {
+				  var input = jQuery(this).find("input4");
+				  input.prop("checked", !input.prop("checked"));
+				});
+			});
+			$(document).ready(function() {
+				$(".input-toogle3").click(function() {
+				  var input = jQuery(this).find("input3");
+				  input.prop("checked", !input.prop("checked"));
+				});
+			});
 			$(document).ready(function() {
 			  $('.input-toogle').click(function() {
 			   var b1_status = $('.b1_status').text();
@@ -359,6 +361,38 @@
 				url: "/b2",
 				type: "get",
 				 data: {b2_status: b2_status},
+				 success: function(response) {
+				  $(".b2_status").html(response);
+				 },
+				 error: function(xhr) {
+				  //Do Something to handle error
+				 }
+			   });
+			  });
+			});
+			$(document).ready(function() {
+			  $('.input-toogle3').click(function() {
+			   var b3_status = $('.b3_status').text();
+			   $.ajax({
+				url: "/b3",
+				type: "get",
+				 data: {b3_status: b3_status},
+				 success: function(response) {
+				  $(".b3_status").html(response);
+				 },
+				 error: function(xhr) {
+				  //Do Something to handle error
+				 }
+			   });
+			  });
+			});
+			$(document).ready(function() {
+			  $('.input-toogle4').click(function() {
+			   var b4_status = $('.b4_status').text();
+			   $.ajax({
+				url: "/b4",
+				type: "get",
+				 data: {b4_status: b4_status},
 				 success: function(response) {
 				  $(".b2_status").html(response);
 				 },

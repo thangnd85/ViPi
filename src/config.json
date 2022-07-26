@@ -1,11 +1,11 @@
 {
-    "Boss": "ViPi Team",
+    "Boss": "Nhóm ViPi",
     "Chromecast": {
         "Chromecast_Control": "Disabled",
         "Chromecast_Devices": {
             "Device_Names": [
                 "Mini",
-                "Tivi tr\u01b0\u1edbc"
+                "Tivi trước"
             ],
             "IP_Address": [
                 "192.168.1.11",
@@ -42,43 +42,25 @@
             0
         ],
         "control": "Enabled",
-        "gpio_center": [
-            22
-        ],
-        "gpio_down": [
-            0
-        ],
-        "gpio_left": [
-            13
-        ],
-        "gpio_right": [
-            5
-        ],
-        "gpio_up": [
-            0
-        ],
-        "ir": [
-            24
-        ],
+        "gpio_center": 22,
+        "gpio_down": 0,
+        "gpio_left": 13,
+        "gpio_right": 5,
+        "gpio_up": 0,
+        "ir": 24,
         "picontrol": [
             0
         ],
-        "pushbutton_trigger": [
-            0
-        ],
-        "servo": [
-            0
-        ],
-        "stopbutton_music_AIY_pushbutton": [
-            0
-        ]
+        "pushbutton_trigger": 0,
+        "servo": 0,
+        "stopbutton_music_AIY_pushbutton": 0
     },
     "Home_Assistant": {
         "control": "Disabled",
         "external_url": "https://thang.hass",
-        "internal_url": "http://192.168.1.246:8123",
+        "internal_url": "",
         "ratio": "75",
-        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9Jpc3MiOiIxZGNlN2U4ODVlYTA0MDgxYTQyNWY3NDAxN2I4NTcxMSIsImlhdCI6MTY1NzEyNTc1NywiZXhwIjoxOTcyNDg1NzU3fQ.bW67QE3alVeSM8y6gPozQ4Is6EBsTuJyBPzzY_PqZfA"
+        "token": "eyJ0iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIxZGNlN2U4ODVlYTA0MDgxYTQyNWY3NDAxN2I4NTcxMSIsImlhdCI6MTY1NzEyNTc1NywiZXhwIjoxOTcyNDg1NzU3fQ.bW67QE3alVeSM8y6gPozQ4Is6EBsTuJyBPzzY_PqZfA"
     },
     "IR": {
         "Codes": [
@@ -113,24 +95,24 @@
         ],
         "IR_Control": "Disabled",
         "Music_list": [
-            "nh\u1ea1c thi\u1ebfu nhi",
-            "ch\u00e1u th\u01b0\u01a1ng ch\u00fa b\u1ed9 \u0111\u1ed9i",
-            "li\u00ean kh\u00fac con heo \u0111\u1ea5t",
-            "nh\u1ea1c thi\u1ebfu nhi vai ch\u00fa mang s\u00fang",
-            "nh\u1ea1c thi\u1ebfu nhi qu\u1ea3 g\u00ec",
-            "nh\u1ea1c thi\u1ebfu nhi b\u00e9 xu\u00e2n mai",
-            "nh\u1ea1c thi\u1ebfu nhi c\u1ea3 nh\u00e0 th\u01b0\u01a1ng nhau",
-            "nh\u1ea1c d\u00e2n ca thi\u1ebfu nhi"
+            "nhạc thiếu nhi",
+            "cháu thương chú bộ đội",
+            "liên khúc con heo đất",
+            "nhạc thiếu nhi vai chú mang súng",
+            "nhạc thiếu nhi quả gì",
+            "nhạc thiếu nhi bé xuân mai",
+            "nhạc thiếu nhi cả nhà thương nhau",
+            "nhạc dân ca thiếu nhi"
         ],
         "Story_list": [
-            "truy\u1ec7n c\u1ed5 t\u00edch t\u00edch chu",
-            "truy\u1ec7n c\u1ed5 t\u00edch th\u00e1nh gi\u00f3ng",
-            "truy\u1ec7n k\u1ec3 c\u00f4 b\u00e9 qu\u00e0ng kh\u0103n \u0111\u1ecf",
-            "truy\u1ec7n c\u1ed5 t\u00edch vi\u1ec7t nam",
-            "truy\u1ec7n c\u1ed5 t\u00edch t\u1ea5m c\u00e1m",
-            "s\u1ef1 t\u00edch hoa m\u00e0o g\u00e0",
-            "s\u1ef1 t\u00edch qu\u1ea3 d\u01b0a h\u1ea5u",
-            "truy\u1ec7n c\u00e2y kh\u1ebf"
+            "truyện cổ tích tích chu",
+            "truyện cổ tích thánh gióng",
+            "truyện kể cô bé quàng khăn đỏ",
+            "truyện cổ tích việt nam",
+            "truyện cổ tích tấm cám",
+            "sự tích hoa mào gà",
+            "sự tích quả dưa hấu",
+            "truyện cây khế"
         ]
     },
     "Language": {
@@ -160,15 +142,15 @@
             "VOV1",
             "VOV2",
             "VOV3",
-            "VOV H\u00c0 N\u1ed8I",
-            "VOV H\u1ed2 CH\u00cd MINH"
+            "VOV HÀ NỘI",
+            "VOV HỒ CHÍ MINH"
         ],
         "stationradio": [
             "VOV1",
             "VOV2",
             "VOV3",
-            "VOV GIAO TH\u00d4NG H\u00c0 N\u1ed8I",
-            "VOV GIAO TH\u00d4NG H\u1ed2 CH\u00cd MINH"
+            "VOV GIAO THÔNG HÀ NỘI",
+            "VOV GIAO THÔNG HỒ CHÍ MINH"
         ]
     },
     "Raspberrypi_GPIO_Control": {
@@ -194,11 +176,12 @@
     },
     "Start_config": {
         "Control_online": "Enabled",
-        "L\u1ef1a ch\u1ecdn file kh\u1edfi \u0111\u1ed9ng, new_start or new_main": "new_start",
+        "Lựa chọn file khởi động, new_start or new_main": "new_start",
         "Server1": "http://api.hass.bid",
         "Server2": "http://vipi.duckdns.org:5000",
-        "Startup_file": "new_start",
-        "Startup_voice": "Enabled"
+        "Startup_file": "new_main",
+        "Startup_voice": "Enabled",
+        "Read_IP": "Enabled"
     },
     "Tasmota_devicelist": {
         "Tasmota_Control": "Disabled",
@@ -218,9 +201,9 @@
     "TextToSpeech": {
         "Test": "This is test",
         "Choice": "GTTS",
-        "Ch\u1ecdn gtts ho\u1eb7c ztts": "ZTTS",
+        "Chọn gtts hoặc ztts": "ZTTS",
         "Speed": 0.9,
-        "Quality": "0",
+        "Quality": 1,
         "Google_Cloud_TTS_Credentials_Path": "ENTER THE PATH TO YOUR TTS CREDENTIALS FILE HERE",
         "Voice_Gender": "Female",
         "Voice_Region": "South",
@@ -245,7 +228,7 @@
         ],
         "Wakeword_Engine": "Picovoice",
         "access_key": "ig4J30nReYupu9q6sDv0dIsYVo0i6SBbIHIaq8i931KBYygRH58SeA==",
-        "sensitivities": 0.3
+        "sensitivities": 0.5
     },
     "Weather": {
         "control": "Disabled",
@@ -255,7 +238,7 @@
             11.555358,
             106.172483
         ],
-        "location": "T\u00e2n Ch\u00e2u, T\u00e2y Ninh"
+        "location": "Tân Châu, Tây Ninh"
     },
     "YouTube": {
         "YouTube_Control": "Enabled",
