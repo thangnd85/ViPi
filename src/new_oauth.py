@@ -45,16 +45,6 @@ def index():
    return render_template('upload.html',url = auth_url)
 
 @app.route('/upload', methods = ['GET', 'POST'])
-def upload_file():
-    try:
-        if request.method == 'POST':
-            f = request.files['file']
-            f.save(oauth_json)
-            upload = 'Đã upload thành công'
-    except:
-            upload  = 'Upload không thành công'
-    return render_template('upload.html',url = auth_url, upload = upload)
-@app.route('/token', methods = ['POST'])
 def token():
     token = request.form['token']
     oauth2.fetch_token(user_data['token_uri'], client_secret=user_data['client_secret'], code=token)
@@ -79,51 +69,20 @@ def token():
     say_save('Đã đăng kí thành công với Google. Hệ thống tự khởi động lại sau 1 phút, vui lòng chờ.')
     #os.system('sudo supervisorctl reload')
     result = 'Đã hoàn thành'
-    time.sleep(5)
-    os.system('sudo systemctl restart supervisor')
+    time.sleep(1)
     return render_template('upload.html',url = auth_url, result = result)
-
-@app.route('/config', methods=['GET', 'POST'])
-def config():
-    import yaml, json
-    """Renders index page to edit provided yaml file."""
-    with open(config_file) as file_obj:
-        data = yaml.load(file_obj, Loader=yaml.Loader)
-    return render_template('yaml.html',
-                           data=json.dumps(data),
-                           change_str='#CHANGE_ME')
-
-@app.route('/tree', methods=['GET', 'POST'])
-def tree():
-    import yaml, json
-    """Renders tree view page to edit provided yaml file."""
-    with open(config_file) as file_obj:
-        data = yaml.load(file_obj, Loader=yaml.Loader)
-    return render_template('treeyaml.html',
-                           data=data, datastr=json.dumps(data),
-                           change_str='#CHANGE_ME')
-
-@app.route('/save', methods=['POST'])
-def save():
-    import yaml, json
-    """Save current progress on file."""
-    out = request.json.get('yaml_data')
-    with open(config_file, 'w') as file_obj:
-        yaml.dump(out, file_obj, default_flow_style=False)
-    return "Data saved successfully!"
-
-@app.route('/saveExit', methods=['POST'])
-def save_exit():
-    import yaml, json
-    """Save current progress on file and shuts down the server."""
-    out = request.json.get('yaml_data')
-    with open(config_file, 'w') as file_obj:
-        yaml.dump(out, file_obj, default_flow_style=False)
-    func = request.environ.get('werkzeug.server.shutdown')
-    if func:
-        func()
-    return "Saved successfully, Shutting down app! You may close the tab!"
-
+@app.route('/reboot', methods=['POST'])
+def reboot():
+    os.system('sudo reboot')
+    return render_template('reconnect.html')    
+@app.route('/shutdown', methods=['POST'])
+def shutdown():
+    os.system('sudo shutdown -h now')
+    return redirect('/')
+@app.route('/killpython', methods=['POST'])
+def killpython():
+    os.system('pkill -9 python')
+    return redirect('/')
 @app.errorhandler(404)
 def page_not_found(e):
     """Serves 404 error."""
