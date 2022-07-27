@@ -66,14 +66,14 @@ def token():
             'client_secret': credentials.client_secret,
             'scopes': credentials.scopes,
         },json_file)
-    say_save('Đã đăng kí thành công với Google. Hệ thống tự khởi động lại sau 1 phút, vui lòng chờ.')
+    say_save('Đã đăng kí thành công với Google. Bấm vào reboot để khởi động lại bot, vui lòng chờ.')
     #os.system('sudo supervisorctl reload')
     result = 'Đã hoàn thành'
     time.sleep(1)
     return render_template('upload.html',url = auth_url, result = result)
 @app.route('/reboot', methods=['POST'])
 def reboot():
-    os.system('sudo reboot')
+    os.system('sudo supervisorctl restart all')
     return render_template('reconnect.html')    
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
