@@ -440,7 +440,7 @@ h6 {
   left: -4rem;
 }
 .btn-toggle:after {
-  content: 'On';
+  content: '';
   right: -4rem;
   opacity: 0.5;
 }
@@ -533,7 +533,7 @@ h6 {
   left: -5rem;
 }
 .btn-toggle.btn-lg:after {
-  content: 'On';
+  content: '';
   right: -5rem;
   opacity: 0.5;
 }
@@ -618,7 +618,7 @@ h6 {
   left: -0.5rem;
 }
 .btn-toggle.btn-sm:after {
-  content: 'On';
+  content: '';
   right: -0.5rem;
   opacity: 0.5;
 }
@@ -703,7 +703,7 @@ h6 {
   left: 0;
 }
 .btn-toggle.btn-xs:after {
-  content: 'On';
+  content: '';
   right: 0;
   opacity: 0.5;
 }
@@ -870,7 +870,7 @@ h6 {
 }
 
 .button-toggle label:before {
-    content: "ON";
+    content: "";
     position: absolute;
     top: -10px;
     left: 4px;
@@ -909,6 +909,21 @@ h6 {
   box-shadow: -2px 0px 0px rgba(0, 0, 0, 0.1);
 }
 
+
+.button-toggle input1 {
+  display: none;
+}
+
+.button-toggle input1:checked + label {
+  background: #bdc1c8;
+  border: 2px solid #bdc1c8;
+}
+
+.button-toggle input1:checked + label:after {
+  right: 2px;
+  background-color: #ffffff;
+  box-shadow: -2px 0px 0px rgba(0, 0, 0, 0.1);
+}
 .text-input-config input {
     width: 100%;
     border: 1px solid #ebebeb;

@@ -141,7 +141,9 @@
 		"med_volume_ctr": [
 			"âm lượng",
 			"âm thanh",
-			"volume"
+			"volume",
+			"tăng âm",
+			"giảm âm"
 		],
 		"med_setup_volume": [
 			"thiết lập",
