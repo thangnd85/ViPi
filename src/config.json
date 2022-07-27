@@ -179,7 +179,7 @@
         "Lựa chọn file khởi động, new_start or new_main": "new_start",
         "Server1": "http://api.hass.bid",
         "Server2": "http://vipi.duckdns.org:5000",
-        "Startup_file": "new_main",
+        "Startup_file": "new_start",
         "Startup_voice": "Enabled",
         "Read_IP": "Enabled"
     },
