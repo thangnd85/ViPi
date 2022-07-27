@@ -34,7 +34,7 @@ oauth2 = OAuth2Session(
         scope=["https://www.googleapis.com/auth/assistant-sdk-prototype", "https://www.googleapis.com/auth/gcm"]
     )
 auth_url, _ = oauth2.authorization_url(user_data['auth_uri'], access_type='offline', prompt='consent')  
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template,redirect
 from flask_restful import Resource, Api
 from flask_bootstrap import Bootstrap
 app = Flask(__name__)
