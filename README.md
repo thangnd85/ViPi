@@ -1,7 +1,7 @@
-## Dự án bot [ViPi] là dự án mod lại từ các dự án sau:
+## [ViPi] là dự án ban đầu được tham khảo từ GassistPi (nguồn bên dưới) của 1 dev người Ấn & và đến hiện tại nó được phát triển khá xa so với định hướng ban đầu chúng ta cùng bắt đầu nào!
 https://github.com/googlesamples/assistant-sdk-python/tree/master/google-assistant-sdk
 https://github.com/shivasiddharth/GassistPi
-
+ 
 Với sự đóng góp các thành viên mù code và tester đam mê phá nhà, nghèo vì độ loa sẽ update trong contributer sau :D
 
 1 số bạn có nhã ý donate cho nhóm.mình xin ghi nhận tấm lòng.cũng là 1 phần các bạn đã kích lệ cho anh em tìm tòi và nghiên cứu thêm các thứ mới.
@@ -11,7 +11,7 @@ Momo: 0935300314 lâm.
 Xin ghi rõ nội dung ủng hộ nhóm vipi.
  Tất cả thông tin donate đều cập nhập lên git.
 ## DONATE: 
-Danh sách các bạn đã ủng hộ.cập nhập đến 03.07.2021.
+Danh sách các bạn đã ủng hộ.cập nhập đến 09.07.2021.
 
 Dù ít hay nhiều chúng tôi đều trân trọng tấm lòng của các bạn như nhau.
 
@@ -24,6 +24,16 @@ Dù ít hay nhiều chúng tôi đều trân trọng tấm lòng của các bạ
 4 - M.Quang: 200.000đ
 
 5 - T.Nguyên: 2.000.000đ
+
+6 - D.Hai : 50.000đ
+
+7 - T.An: 100.000đ
+
+8 - T.Đạt: 100.000đ
+
+9 - V.Dũng: 100.000đ
+
+Tc: 3.200.000đ
 
 Vì anh em chúng tôi làm nhóm nên tất cả đều công khai minh bạch.😍😍😍😍😍
 
@@ -54,539 +64,320 @@ Tester nghiệp dư [tienhuansk](https://github.com/tienhuansk)
 
 Anh em muốn tham gia vào đội coder thì cứ inbox [Nhóm test code](https://t.me/vipi_code)
 
-## 1.Chuẩn bị:
-Thẻ nhớ, file image tải bên dưới:
-Imgage gốc:
+### UPDATE: 25/07/2022:
+_Có gì mới trong img này:_
+- Cấu hình cơ bản hoàn toàn trên dashboard (trừ phần phím cảm ứng, tuỳ người sử dụng nên chưa đưa ra)
+- Xử lí lệnh gần tự nhiên nhất có thể. Có thể ra lệnh kiểu: "mấy giờ rồi bật đèn phòng khách lên", hay "bật đèn phòng khách lên phát bài hát hẹn ước từ hư vô", "bật đèn phòng khách và đèn phòng ngủ", "bật đèn trước rồi tắt đèn sau đi", và nhiều lệnh ối giời ôi khác, tất nhiên chạy được hay không thì tuỳ nhé.
+- Bật hội thoại liên tục bằng cách ra lệnh: "trò chuyện", "hội thoại" , thoát ra bằng cách nói "dừng lại"
+- Tính năng dịch song ngữ: kích hoạt "thông dịch", "dịch tự động"; kết thúc: "dừng lại"
+- Tính năng chat trên dashboard
+- Và đặc biệt, bổ sung thêm nhiều lỗi mới.
 
-http://www.cs.tohoku-gakuin.ac.jp/pub/Linux/RaspBerryPi/
+## Nào hãy bắt đầu vào việc chính! 
 
-Hoặc bản có sẵn môi trường và wifi hotspot
-
+R
+## Bước 1: Tải IMG cho raspi tại đây, IMG mặc định cho Raspberry Pi Zero 2 W và hoàn toàn tương thích với / Pi 3/ 3B+ trở lên:
+```sh
 https://vipiteam.page.link/img
-
-Flash vào thẻ nhớ bằng Echter hoặc Raspberry Pi Imager
-
-## 1.1 Kết nối wifi và ssh:
-
-1, Với image gốc: Tạo file ssh (không có đuôi gì cả và không nội dung) 
-
-Tạo tiếp file wpa_suplicant.conf với nội dung sau:
 ```
-country=vn
-update_config=1
-ctrl_interface=/var/run/wpa_supplicant
+Giải nén và dùng Phần mềm win32 disk imager để ghi ra thẻ:
+![image](https://user-images.githubusercontent.com/57694952/177024364-5aa1771e-fccd-4340-8a68-9a0ffa8490a2.png)
 
-network={
- scan_ssid=1
- ssid="tên_wifi"
- psk="pass_wifi"
-}
+Gắn thẻ vào raspi đợi 1-2 phút, kết nối với mạng WiFi được raspi phát ra với tên "ViPi"
+![image](https://user-images.githubusercontent.com/57694952/177024308-4e08fbea-c3b3-49f8-8f2a-de8f6910acef.png)
+
+Sau đó kết nối với mạng WIFI đang sử dụng
+![image](https://user-images.githubusercontent.com/57694952/177024665-f17a300c-862f-4b39-96dc-550163f5449b.png)
+
+
+
+
+
+Đăng ký tài khoản json theo hướng dẫn" chờ cập nhật sau chưa tìm ra link"
+
+
+ Sau đó nghe loa Thông báo IP và truy cập vào địa chỉ, nếu không tìm thấy IP thì vào modem để kiểm tra:
+ ![image](https://user-images.githubusercontent.com/57694952/180699128-adb00fd2-a0be-4d3a-b4b0-94d6dad09854.png)
+Để đăng ký google assistant vào địa chỉ IP:5002 thực hiện như hình:
+
+![image](https://user-images.githubusercontent.com/57694952/177025093-0bd11d9a-9b3c-4fdc-b26f-8ce7a375a804.png)
+
+
+![image](https://user-images.githubusercontent.com/57694952/180699234-6ea1affc-1df1-4a5d-9b45-b18e61fcb352.png)
+
+
+![image](https://user-images.githubusercontent.com/57694952/180699312-60f5bd81-8f20-4120-85e0-65a82f6d396f.png)
+
+
+![image](https://user-images.githubusercontent.com/57694952/180699384-0e55735e-a0eb-4030-ad37-7fc2400157e3.png)
+
+Chờ Bot khởi động lại và thực hiện config:
+![image](https://user-images.githubusercontent.com/57694952/180699789-c2b144ce-0494-465c-b851-cabf190abace.png)
+
+
+
+
+Vào địa chỉ IP:5002 chọn config để chỉnh sữa cài đặt, đăng ký tài khoản Zalo ai, mượn số điện thoại zalo bạn bè đăng ký 2-3 key zalo để dử dụng
+![image](https://user-images.githubusercontent.com/57694952/177025349-e69adda8-6909-41b9-b0d6-a935c723bb10.png)
+
+## Lưu ý chọn đúng cấu hình đang sử dụng:
+
+1/ Cấu hình homeassistant: tăng độ chuẩn xác bằng cách chỉnh ratio: 100 là đúng tên thiết bị 100% mới điều khiển được
+
+![image](https://user-images.githubusercontent.com/57694952/177025400-ce34e980-afe9-47b8-8cfe-f8a5fe6c8d29.png)
+
+2/ Dán API zalo vào để sử dụng Zalo
+![image](https://user-images.githubusercontent.com/57694952/177025492-37121a1c-622a-463a-bc28-67b1cc344e26.png)
+
+3/ Thay đổi cấu hình cho phù hợp với phần cứng
+để điều âm lượng hãy hãy kiểm tra card âm thanh đang sử dụng và điền đúng vào (Master/ Heaphone/ hoặc Speaker...)
+
+![image](https://user-images.githubusercontent.com/57694952/177025539-ad868848-4539-4862-a421-33cedaedc00f.png)
+
+Các Gpio được sử dụng trong code, các bạn có thể thay đổi nhưng không phải GPIO nào cũng dùng được:
+
+(Gpio_left:   Bấm 1 lần: Giảm âm lượng,  Bấm 2 lần: Mở bài hát trước
+            
+ Gpio_right:  Bấm 1 lần: tăng âm lượng, Bấm 2 lần: Next bài hát
+             
+ Gpio_center: Bấm 1 lần: gọi ViPi, Bấm 2 lần: stop/play)
+                
+
+![image](https://user-images.githubusercontent.com/57694952/177025720-53f14834-2068-4210-94b9-17351a679ba3.png)
+
+
+Khởi động lại pi!
+
+
+Để sử dụng dashboar vào địa chỉ IP:5002
+
+Để xem log vào địa chỉ IP:9001 với user/pass: user/123
+
+
+
+## Để nghe 1 bài hát: Hotword + các key trong "app_music_play"+ bài hát + (chọn nguồn nhạc muốn phát: Youtube, nhạc của tui, Zing, mặc định khi không chọn là nhạc của tui)
+
+VD:         Ok google + hát nhạc + còn thương rau đắng mọc sau hè + trên youtube==> Bot sẽ tìm nhạc trên Youtube)
+            Ok google + hát nhạc + còn thương rau đắng mọc sau hè ==> Bot mặc định tìm trên Nhạc của tui, nếu trên nhạc của tui không có bài hát đó thì sẽ chuyển sang tìm trên Youtube)
+
 ```
-Rồi chép cả 2 vào partition boot trong thẻ nhớ. Gắn thẻ vào Pi rồi bật nguồn.
-
-2. Trường hợp flash image có sẵn môi trường, sau khi flash xong, gắn vào Pi và bật nguồn, sẽ xuất hiện wifi tên là ViPi
-
-Kết nối với wifi đó để tiến hành nối vào mạng.
-
-3. Sau khi nối mạng, có thể dùng các phần mềm trên điện thoại như Fing để quét IP, 
-
-hoặc dùng IP scanner free trên PC Hay vào modem/router để xem IP của pi. 
-
-
-File json google Actions:
-
-Tạo json theo hướng dẫn tại đây, tải về đổi tên tùy ý, chút sẽ sử dụng.
-
-https://www.youtube.com/watch?v=ROQ5K4om2Fo
-
-Nhớ thêm email của mình vào mục Test user:
-
-Nếu cài đặt từ img gốc, tiến hành từ bước 2:
-
-Nếu cài từ img sẵn có môi trường, chuyển qua bước 7.
-
-### 2.Update OS & cài đặt git:
-
-Dùng ssh để đăng nhập vào pi với username và pass mặc định
-
-Sử dụng puTTY hoặc Terminal để SSH vào Pi với địa chỉ đã scan bên trên, hoặc dùng hostname raspberrypi.local
-
-Dùng WinSCP để quản lí file trong Pi
-
-Copy json ở bước 1 vào /home/pi (là cái folder mặc định khi vào winscp)
-
-### 3. Cài đặt Mic & Loa nếu sử dụng Mic HAT:
-OS trước tháng 8.2020
-```sh
-cd /home/${USER}/
-git clone https://github.com/respeaker/seeed-voicecard.git
-cd seeed-voicecard
-sudo ./install.sh --compat-kernel
-sudo reboot
+app_music_play:
+        - 'phát bài hát'
+        - 'phát bài nhạc'
+        - 'hát nhạc'
+        - 'phát nhạc'
+        - 'chơi nhạc'
+        - 'hát bài'
+        - 'bài hát'
+        - 'bài nhạc'
+        - 'lên nhạc'
 ```
-OS sau tháng 8.2020
-```sh
-cd /home/${USER}/
-git clone https://github.com/HinTak/seeed-voicecard
-cd seeed-voicecard
-sudo ./install.sh
-sudo reboot now
-```
-Sau khi khởi động lại, đăng nhập lại vào console
-
-Kiểm tra xem có âm thanh ở loa hay không:
-```sh
-speaker-test
-```
-Lệnh Thống kê ID của Mic và Loa
-```sh
-arecord -l
-aplay -l
-```
-
-##4. Cài portaudio:
  
-Tải về từ git:
-```sh
-git clone -b alsapatch https://github.com/gglockner/portaudio
-cd portaudio
-./configure && make
-sudo make install
-sudo ldconfig
-```
-
-Nếu vẫn còn xuất hiện lỗi cài bổ sung các thư viện bổ sung của pulseaudio
-```sh
-sudo apt-get install pulseaudio -y && sudo apt-get remove pulseaudio -y
-```
-
-
-### 4.1. Disable onboard sound nếu không dùng:
-```sh
-sudo nano /etc/modprobe.d/snd-blacklist.conf
-```
-Thêm dòng này vào:
-```
-blacklist snd_bcm2835
-```
-Ctr + X, Y Enter
-
-## 5. Clone source về  Pi và cài đặt
-
-
-```sh
-cd /home/${USER}/
-git clone https://github.com/lamthientieu/ViPi.git
-sudo chmod +x ./ViPi/scripts/installer.sh && sudo ./ViPi/scripts/installer.sh
-```
-Nhập đường dẫn json:  /home/pi/ten_file.json (đổi tên cho đúng nhé)
-
-Sau khi cài đặt xong có thể sẽ bị rớt mạng wifi, khởi động lại pi hoặc kiểm tra wifi trên điện thoại (hay máy tính), 
-
-sẽ có mạng wifi mới tên là ViPi thì kết nối vào đó, rồi lựa chọn mạng wifi nhà mình, nhập mật khẩu để kết nối. 
-
-Ngay sau khi kết nối thành công thì có thể dùng các công cụ để tìm IP để ssh, winscp để chỉnh sửa file tùy ý.
-
-Team sẽ cố gắng tạo ra phần cài đặt bằng trình duyết cho gọn nhẹ. 
-
-### 5.1: Update new source:
-Cách 1: 
-```
-cd /home/${USER}/
-cd ViPi
-git pull
-```
-Cách 2:
-```
-cd /home/${USER}/
-rm -rf ViPi
-git clone https://github.com/lamthientieu/ViPi.git
-```
-
-## 6. Cấu hình led và các cài đặt khác trong file ViPi/src/config.yaml
-```sh
-  #  Set type mic to:
-  # 1. 'GEN'   ---> USB-MIC-JACK
-  # 2. 'GEN'   ---> USB-MIC-HDMI
-  # 3. 'AIY'   ---> AIY-HAT
-  # 4. 'R2M'   ---> Respeaker-2-Mic
-  # 5. 'R4M'   ---> Respeaker-4-Mic
-  # 6. 'RUM'   ---> Respeaker-Usb-Mic
-  # 7. 'NEO'   ---> NeoPixel
-  # 8. 'GOO'   ---> Google
-  # 8. 'ALE'   ---> Alexa
-  Bật tắt Home_Assistant:
-  .......
-```
-
-## 7.Chạy lần đầu:
-Chạy lần đầu với raspi:
-```sh
-source ~/env/bin/activate
-google-oauthlib-tool --scope https://www.googleapis.com/auth/assistant-sdk-prototype \
-          --scope https://www.googleapis.com/auth/gcm \
-          --save --headless --client-secrets /home/pi/ten_file.json
-```
-Tiếp tục:
-```sh
-env/bin/python -u ./ViPi/src/start.py --project-id 'XXX' --device-model-id 'XXX'
-```
-Thay bằng project-id và device-model-id của bạn trong file config.
-
-
-## 8.Thiết lập chạy tự động:
-a. Chạy tự động với supervisor:
-```sh
-sudo nano /etc/supervisor/conf.d/ViPi.conf
-```
-Cửa sổ nano hiện lên, paste dòng sau
-```sh
-[program:ViPi]
-directory=/home/pi
-command=/bin/bash -c 'env/bin/python -u ./ViPi/src/start.py'
-numprocs=1
-autostart=true
-autorestart=true
-user=pi
-```
-Chạy lệnh sau để khởi động chạy tự động:
-```sh
-sudo supervisorctl update
-```
-Bật web ínterface để xem log cho nhanh
-```sh
-sudo nano /etc/supervisor/supervisord.conf
-```
-Sau đó paste dòng này vào:
-```sh
-[inet_http_server]
-port=*:9001
-username=user
-password=pass
-```
-Ctrn + X, Y, enter để save. Xong reboot lại Pi, có thể mở web lên nhập http://ip_của_pi:9001 nhập username và pass ở trên để xem log:
-
-```sh
-sudo reboot
-```
-
-### 8.1.Tắt chạy tự động trong phiên làm việc:
-
-```sh
-sudo supervisorctl stop ViPi
-```
-### 8.2.Xóa chạy tự động:
-```sh
-sudo rm -rf /etc/supervisor/conf.d/ViPi.conf
-```
-## 9. Chạy TTS Web và điều khiển Google Assistant qua web:
-Để sử dụng tính năng số 9 và 10, cần cài đặt thêm gói
-```
-source ~/env/bin/activate
-cd ~/ViPi/scripts
-pip install -r pip.txt
-```
-```
-sudo nano /etc/supervisor/conf.d/webtts.conf
-```
-Dán nội dung sau:
-```sh
-[program:WebTTS]
-directory=/home/pi
-command=/bin/bash -c 'env/bin/python -u ./ViPi/src/webtts.py'
-numprocs=1
-autostart=true
-autorestart=true
-user=pi
-```
-Chạy lệnh sau để khởi động chạy tự động:
-```sh
-sudo supervisorctl update
-```
-Điều khiển Google Assistant qua web:
-```
-http://ip_của_pi:5001/command?message=lệnh muốn điều khiển
-```
-TTS qua web:
-```
-http://ip_của_pi:5001/tts?message=text muốn phát
-```
-Qua Home Assistant:
-```
-notify:
-  - name: ga_broadcast
-    platform: rest
-    resource: http://ip_của_pi:5001/broadcast_message
-  - name: ga_command
-    platform: rest
-    resource: http://ip_của_pi:5001/command
-```
-Và automation:
-```
-  - alias: Broadcast the dishwasher has finished
-    initial_state: True
-    trigger:
-      - platform: state
-        entity_id: input_select.dishwasher_status
-        to: 'Off'
-    action:
-      - service: notify.ga_broadcast
-        data:
-          message: "The Dishwasher has finished."
-```
-## 10. OAuth qua web và edit yaml bằng web
-Để sử dụng tính năng này, bạn phải cài đặt thêm gói ở bước 9. 
-Lưu ý: File yaml sau khi sửa xong sẽ có cấu trúc khác, sẽ điều chỉnh lại cho hợp lí hơn.
-```
-sudo nano /etc/supervisor/conf.d/oauth.conf
-```
-Dán nội dung sau:
-```sh
-[program:OAuth]
-directory=/home/pi
-command=/bin/bash -c 'env/bin/python -u ./ViPi/src/oauth.py'
-numprocs=1
-autostart=true
-autorestart=true
-user=pi
-```
-Chạy lệnh sau để khởi động chạy tự động:
-```sh
-sudo supervisorctl update
-```
-Vào web cấu hình OAuth và chỉnh YAML
-```
-http://ip_của_pi:8080
-```
-### (Tùy chọn, chưa phát triển) Tạo STT tại đây:
-
--  Đăng ký Acc FPT AI tại: https://fpt.ai/
-
--  Đăng ký Acc Viettel AI tại: https://viettelgroup.ai/en
-
--  Đăng ký Acc Zalo AI tại: https://zalo.ai/user-profile
-
-
-
-
-###. Note!
-fix: NotImplementedError: mixer module not available (ImportError: libSDL2_mixer-2.0.so.0: cannot open shared object file: No such file or directory)
-```sh
-sudo dpkg --configure -a
-#sudo apt-get install libsdl-ttf2.0-0
-#sudo apt-get install libsdl2-mixer-2.0-0
-sudo apt-get install python3-sdl2 -y
-sudo apt install libportaudio2;
-```
-Đưa lệnh vào env với raspi:
-```sh
-source env/bin/activate
-```
-Đưa lệnh vào env với bananapi:
-```sh
-source ViPi/env/bin/activate
-```
-Cài thêm app:
-```sh
-pip install pygame
-```
-Hạ phiên bản VLC:
-```sh
-source env/bin/activate
-pip install python-vlc==3.0.11115
-```
-
-### Khai báo khi sử dụng Mic Usb:
-Lệnh Thống kê ID của Mic USB và Loa
-```sh
-arecord -l
-aplay -l
-```
-Chạy lệnh sau
-```sh
-sudo nano /home/pi/.asoundrc
-```
-Cửa sổ nano hiện lên, paste dòng sau, thay thế ID mic, loa phù hợp
-
-```sh
-pcm.dsnooper {
-    type dsnoop
-    ipc_key 816357492
-    ipc_key_add_uid 0
-    ipc_perm 0666
-    slave {
-        pcm "hw:1,0"
-        channels 1
-    }
-}
-
-pcm.!default {
-        type asym
-        playback.pcm {
-                type plug
-                slave.pcm "hw:0,0"
-        }
-        capture.pcm {
-                type plug
-                slave.pcm "dsnooper"
-        }
-}
+### Để nghe danh sách nhạc: dùng các key trong " app_music_auto:"
+    
+    
+    
+### Các keyword cho dự án, ngoài các keyword chính xác, các bạn có thể hỏi thêm làm gì, là ai, bot có thể làm toán mà không cần câu lệnh chính xác....:    
 
 ```
-Coppy cấu hình âm thanh vào etc:
-```sh
-sudo cp /home/pi/.asoundrc /etc/asound.conf
+keyword:
+    app_cooking_recipe:
+        - 'cách nấu món'
+    app_my_name:
+        - 'bạn tên'
+        - 'tên bạn'
+        - 'tên mày'
+    app_hour_schedule:
+        - 'một giờ'
+        - 'hai giờ'
+        - 'ba giờ'
+        - 'bốn giờ'
+        - 'năm giờ'
+        - 'sáu giờ'
+        - 'bẩy giờ'
+        - 'tám giờ'
+        - 'chín giờ'
+        - 'mười một giờ'
+        - 'mười hai giờ'
+    app_minutue_schedule:
+        - 'năm phút'
+        - 'mười phút'
+        - 'mười năm phút'
+        - 'hai mươi năm phút'
+        - 'ba mươi phút'
+        - 'ba mươi năm phút'
+        - 'bốn mươi phút'
+        - 'bốn mươi năm phút'
+        - 'năm mươi phút'
+        - 'năm mươi năm phút'
+    app_lunar_calendar:
+        - 'ngày âm'
+        - 'lịch âm'
+        - 'mồng mấy'
+        - 'mùng mấy'
+        - 'âm lịch hôm nay'
+        - 'âm lịch ngày mai'
+        - 'âm lịch ngày kia'
+    app_read_story:
+        # - 'truyện cười'
+        - 'kể truyện'
+        - 'đọc truyện'
+        - 'tìm truyện'
+        - 'câu chuyện'
+        - 'kể chuyện'
+    app_music_play:
+        - 'phát bài hát'
+        - 'phát bài nhạc'
+        - 'hát nhạc'
+        - 'phát nhạc'
+        - 'chơi nhạc'
+        - 'hát bài'
+        - 'bài hát'
+        - 'bài nhạc'
+        - 'lên nhạc'
+    app_music_random:
+        - 'ca nhạc'
+    med_radio_play:
+        - 'nghe đài'
+        - 'radio'
+        - 'đài phát thanh'
+    app_music_auto:
+        - 'nghe playlist'
+        - 'nghe danh sách'
+        - 'phát danh sách'
+        - 'phát playlist'
+        - 'phát album'
+        - 'nghe album'
+        - 'danh sách'
+        - 'list nhạc'
+        # - 'abum'
+    med_chromecast_play:
+        - 'trên loa'
+        - 'trên tivi'
+    med_custom_weather:
+        - 'dự báo thời tiết'
+        - 'mưa hay nắng'
+        - 'thời tiết'
+    # med_news_radio:
+        # - 'đọc báo'
+        # - 'báo nói'
+        # - 'tin mới'
+        # - 'tin tức'
+    med_read_note:
+        - 'sinh nhật của'
+        - 'ngày sinh của'
+        - 'ngày sinh'
+    med_translate_language:
+        - 'thông dịch'
+        - 'phiên dịch'
+        - 'dịch thuật'
+        - 'dịch tự động'        
+    med_stop_music:
+        - 'tắt nhạc'
+        - 'dừng nhạc'
+        - 'stop music'
+        - 'dừng truyện'
+    med_next_player:
+        - 'tiếp theo'
+        - 'kế tiếp'
+    med_pause_player:
+        - 'tạm dừng'
+        - 'phát lại'
+    med_continue_player:
+        - 'tiếp tục'
+    med_previous_player:
+        - 'phát lại'
+        - 'chơi lại'
+    med_volume_ctr:
+        - 'tăng âm'
+        - 'giảm âm'
+        - 'âm lượng' 
+        - 'to lên'
+        - 'nhỏ lại'
+        - 'nhỏ xuống' 
+    # med_setup_volume:
+        # - 'thiết lập'
+        # - 'cài đặt'
+    # app_speedtest_net:
+        # - 'tốc độ đường truyền'
+        # - 'chất lượng đường truyền'
+    sma_on_all:
+        - 'bật tất cả'
+        - 'bật hết'
+        - 'bật toàn bộ'
+        - 'bật các'
+    sma_off_all:
+        - 'tắt tất cả'
+        - 'tắt hết'
+        - 'tắt toàn bộ'
+        - 'tắt các'
+    sma_on_automation:
+        - 'bật tự động'
+    sma_off_automation:
+        - 'tắt tự động'
+        - 'vô hiệu tự động'
+    sma_trigger_automation:
+        - 'kích hoạt'
+    sma_on_script:
+        - 'bật kịch bản'
+        - 'chạy kịch bản'
+    sma_off_script:
+        - 'tắt kịch bản'
+        - 'dừng kịch bản'
+    sma_toggle_script:
+        - 'đổi kịch bản'
+    sma_on_light:
+        - 'mở đèn'
+        - 'bật đèn'
+    sma_off_light:
+        - 'tắt đèn'
+        - 'ngắt đèn'
+    sma_on_switch:
+        - 'bật công tắc'
+        - 'mở công tắc'
+        - 'bật điện'
+    sma_off_switch:
+        - 'tắt công tắc'
+        - 'ngắt công tắc'
+    sma_on_socket:
+        - 'bật ổ cắm'
+        - 'đóng điện ổ cắm'
+        - 'mở điện ổ cắm'
+        - 'mở nguồn ổ cắm'
+    sma_off_socket:
+        - 'tắt ổ cắm'
+        - 'ngắt ổ cắm'
+        - 'ngắt nguồn ổ cắm'
+    sma_open_cover:
+        - 'mở rèm'
+        - 'kéo rèm lên'
+        - 'kéo rèm ra'
+    sma_close_cover:
+        - 'đóng rèm'
+        - 'kéo rèm lại'
+    sma_on_fan:
+        - 'bật quạt'
+        - 'mở quạt'
+    sma_off_fan:
+        - 'tắt quạt'
+    sma_schedule_:
+        - 'hẹn giờ'
+        - 'đặt giờ'
+    sma_input_:
+        - 'nhập vào'
+        - 'điền vào'
+        - 'chọn mục'
+        - 'đầu vào'
+        - 'mục nhập'
+    sma_status_sensor:
+        - 'kiểm tra'
+        - 'trạng thái'
+        - 'đóng hay mởi'
+        - 'bật hay tắt'
+        - 'kiểm tra'
+        - 'hiển thị'
+        - 'thông tin'
+    sma_status_tracker:
+        - 'vị trí'
+        - 'ở đâu'
 ```
-Đưa Account đang dùng (Ví dụ pi) vào group root:
-```sh
-sudo usermod -aG root pi
-```
-
-Fix lỗi không nhận được âm thanh:
-Step 1: rm ~/.asoundrc && sudo rm /etc/asound.conf
-Step 2: Reinstall driver
-Step 3: Reboot
-
-#### Một số khẩu lệnh:
-
-```
-Tăng/giảm âm thanh: tăng thêm/giảm bớt âm lượng 0-100 
-Tăng giảm âm thanh: đặt/thay đổi âm lượng lớn nhất/ tối thiểu
-Tăng giảm âm thanh: đặt/thay đổi âm lượng 0-100
-Tắt nhạc: tắt nhạc
-Chuyển bài chỉ áp dụng khi phát tự động: bài tiếp theo/ bài hát trước
-Phát một bài hát: Phát bài, phát nhạc+()
-Phát nhiều bài bài hát khi dùng start.py: Phát tự động + (), phát danh sách+()
-Phát nhiều bài bài hát khi dùng start.py: Phát + ()
-phát radio:   radio + (tên đài) ví dụ Radio bà rịa vũng tàu
-Lịch âm: Lịch âm hoặc âm lịch + (hôm nay, qua , mai ,mốt)
-Thay đổi âm lượng giọng nói: âm lượng tăng/ âm lượng giảm ( tự động +/-5% đối với pi zero, +/-10% đối với pi3 trở lên)
-Nghe báo nói: Báo nói + (thời sự, tin mới, thể thao, cười)
-Điều khiển Home_Assistant: Bật tắt thiết bị, kiểm tra trạng thái, kích hoạt kịch bản (script) hoặc tự động hóa (automation)
-
-```
-https://installvirtual.com/install-python-3-7-on-raspberry-pi/
-
-## Sửa lỗi không lưu cài đặt âm thanh khi khởi động với mic 2HAT
-
-Xóa bỏ service cũ:
-```
-sudo rm /lib/systemd/system/alsa-restore.service
-```
-Tạo service mới:
-
-```
-sudo nano /lib/systemd/system/alsa-restore.service
-```
-Dán nội dụng sau vào:
-
-```
-
-[Unit]
-Description=Save/Restore Sound Card State
-Documentation=man:alsactl(1)
-ConditionPathExists=!/etc/alsa/state-daemon.conf
-ConditionPathExistsGlob=/dev/snd/control*
-After=alsa-state.service
-
-[Service]
-Type=oneshot
-RemainAfterExit=true
-ExecStart=
-ExecStart=-/usr/sbin/alsactl -E HOME=/run/alsa -f /etc/voicecard/wm8960_asound.state restore
-
-ExecStop=
-ExecStop=-/usr/sbin/alsactl -E HOME=/run/alsa -f /etc/voicecard/wm8960_asound.state store
-```
-
-Ctr + X,Y, enter
-Sau đó 
-```
-sudo systemctl daemon-reload
-```
-Khởi động lại  
-
-### Chuyển json vào root 
-
-Password: điền pass.không biết pass thì tạo pass mới.
-
-```sh
-sudo passwd root
-sudo su
-cd ~
-cd .config
-mkdir google-oauthlib-tool
-sudo cp /home/pi/.config/google-oauthlib-tool/credentials.json /root/.config/google-oauthlib-tool/credentials.json
-```
-## config Nếu dùng led W2812
-```sh
-sudo usermod -aG spi pi
-sudo nano /boot/config.txt
-```
-#Add thêm 2 dòng sau
-```sh
-core_freq=250
-spidev.bufsiz=32768
-```
-Reboot lại thiết bị
-
-
-### Fix pluseaudio
-```sh   
-cd /home/${USER}/       
-git clone https://github.com/shivasiddharth/PulseAudio-System-Wide       
-cd ./PulseAudio-System-Wide/      
-sudo cp ./pulseaudio.service /etc/systemd/system/pulseaudio.service    
-systemctl --system enable pulseaudio.service       
-systemctl --system start pulseaudio.service       
-sudo cp ./client.conf /etc/pulse/client.conf        
-sudo sed -i '/^pulse-access:/ s/$/root,pi/' /etc/group    
-```
-## Hướng dẫn cập nhật supervisor lên bản mới (fix lỗi utf-8)
-Dừng supervisor cũ: 
-```
-sudo systemctl disable supervisor
-sudo systemctl stop supervisor
-sudo rm /etc/systemd/system/supervisor.service
-```
-Gỡ cài đặt supervisor cũ:
-```
-sudo apt remove supervisor -y
-```
-Xỏa bỏ config cũ
-```
-sudo rm - /etc/supervisor/supervisord.conf
-```
-Cài đặt supervisor mới. Trước tiên đảm bảo bạn không ở env, sau đó cài đặt, copy cấu hình mới qua:
-```
-deactivate
-sudo python3 -m pip install supervisor
-sudo wget https://github.com/lamthientieu/ViPi/blob/20b8245a69fa94bfbc9f102df1004c6ec48b5258/supervisord.conf -P /etc/supervisor/
-```
-Tiếp theo, chỉnh sửa lại init.d
-```
-sudo nano /etc/init.d/supervisor
-```
-Tìm đến đoạn 
-```
-PATH= .....
-```
-Sửa lại cho giống như sau: (quan trọng là cho thêm cái vị trí của supervisor bin file)
-```
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON=/usr/local/bin/supervisord
-NAME=supervisord
-DESC=supervisor
-````
-Sau đó Ctr + X, Y, Enter
-
-Enable và start supervisor
-````
-sudo systemctl enable supervisor
-sudo systemctl start supervisor
-````
-Kiểm tra nếu không start được thành công thì có thể chạy lệnh sau:
-```
-sudo pkill -9 supervisord
-```
-Rồi start lại supervisor. User và password web là user/123
