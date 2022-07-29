@@ -41,7 +41,7 @@
             0,
             0
         ],
-        "control": "Enabled",
+        "control": "Disabled",
         "gpio_center": 22,
         "gpio_down": 0,
         "gpio_left": 13,
@@ -248,14 +248,14 @@
     "continue_conversation": "True",
     "led_setup": {
         "pixels": 16,
-        "type": "R2M"
+        "type": "GEN"
     },
     "mic_setup": {
-        "type": "R2M"
+        "type": "GEN"
     },
     "vol_setup": {
         "amixer_controls": "Master",
-        "type": "R2M",
+        "type": "GEN",
         "volume_max": 100,
         "volume_min": 10,
         "volume_start": 80
