@@ -1,5 +1,6 @@
 {
-    "Boss": "Nhóm ViPi",
+    "Boss": "Thầy Thắng",
+	"Use_Google_Assistant":"OK",
     "Chromecast": {
         "Chromecast_Control": "Disabled",
         "Chromecast_Devices": {
@@ -42,25 +43,25 @@
             0
         ],
         "control": "Disabled",
-        "gpio_center": 22,
+        "gpio_center": 0,
         "gpio_down": 0,
-        "gpio_left": 13,
-        "gpio_right": 5,
+        "gpio_left": 0,
+        "gpio_right": 0,
         "gpio_up": 0,
-        "ir": 24,
+        "ir": 0,
         "picontrol": [
             0
         ],
-        "pushbutton_trigger": 0,
+        "pushbutton_trigger": 22,
         "servo": 0,
-        "stopbutton_music_AIY_pushbutton": 0
+        "stopbutton_music_AIY_pushbutton": 23
     },
     "Home_Assistant": {
         "control": "Disabled",
         "external_url": "https://thang.hass",
-        "internal_url": "",
-        "ratio": "75",
-        "token": "eyJ0iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIxZGNlN2U4ODVlYTA0MDgxYTQyNWY3NDAxN2I4NTcxMSIsImlhdCI6MTY1NzEyNTc1NywiZXhwIjoxOTcyNDg1NzU3fQ.bW67QE3alVeSM8y6gPozQ4Is6EBsTuJyBPzzY_PqZfA"
+        "internal_url": "http://192.168.1.246:8123",
+        "ratio": 75,
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOIUzI1NiJ9.eyJpc3MiOiIxZGNlN2U4ODVlYTA0MDgxYTQyNWY3NDAxN2I4NTcxMSIsImlhdCI6MTY1NzEyNTc1NywiZXhwIjoxOTcyNDg1NzU3fQ.bW67QE3alVeSM8y6gPozQ4Is6EBsTuJyBPzzY_PqZfA"
     },
     "IR": {
         "Codes": [
@@ -172,14 +173,14 @@
         ]
     },
     "SpeechToText": {
-        "Choice": "zalo"
+        "Choice": "google"
     },
     "Start_config": {
         "Control_online": "Enabled",
         "Lựa chọn file khởi động, new_start or new_main": "new_start",
         "Server1": "http://api.hass.bid",
         "Server2": "http://vipi.duckdns.org:5000",
-        "Startup_file": "new_start",
+        "Startup_file": "new_main",
         "Startup_voice": "Enabled",
         "Read_IP": "Enabled"
     },
@@ -228,7 +229,7 @@
         ],
         "Wakeword_Engine": "Picovoice",
         "access_key": "ig4J30nReYupu9q6sDv0dIsYVo0i6SBbIHIaq8i931KBYygRH58SeA==",
-        "sensitivities": 0.5
+        "sensitivities": 0.3
     },
     "Weather": {
         "control": "Disabled",
@@ -248,14 +249,14 @@
     "continue_conversation": "True",
     "led_setup": {
         "pixels": 16,
-        "type": "GEN"
+        "type": "WS2"
     },
     "mic_setup": {
-        "type": "GEN"
+        "type": "R2M"
     },
     "vol_setup": {
         "amixer_controls": "Master",
-        "type": "GEN",
+        "type": "R2M",
         "volume_max": 100,
         "volume_min": 10,
         "volume_start": 80

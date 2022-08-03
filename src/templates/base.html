@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	{% if title %}
+    <title>ViPi Dashboard - {{ title }}</title>
+    {% else %}
+    <title>ViPi Dashboard</title>
+    {% endif %}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	
+	<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='dashboard-style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='chatbot/chat_interface.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='chatbot/temporary.css') }}">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+	<style>
+		.navbar-mainbg i {margin: 0;}
+		.navbar-mainbg{background-color:#5161ce;padding:0;border-radius: 26px;margin-bottom: 20px;}
+		#navbarSupportedContent{overflow:hidden;position:relative}
+		#navbarSupportedContent ul{padding:0;margin:0}
+		#navbarSupportedContent li{list-style-type:none;float:left}
+		#navbarSupportedContent ul li a{color:rgba(255,255,255,.5);text-decoration:none;font-size:15px;display:block;padding: 15px 20px;transition-duration:.6s;transition-timing-function:cubic-bezier(0.68,-.55,.265,1.55);position:relative}
+		#navbarSupportedContent>ul>li.active>a{color:#5161ce;background-color:transparent;transition:all .7s}
+		#navbarSupportedContent a:not(:only-child):after{content:"\f105";position:absolute;right:20px;top:10px;font-size:14px;font-family:"Font Awesome 5 Free";display:inline-block;padding-right:3px;vertical-align:middle;font-weight:900;transition:.5s}
+		#navbarSupportedContent .active>a:not(:only-child):after{transform:rotate(90deg)}
+		.hori-selector{display:inline-block;position:absolute;height:100%;top:0;left:0;transition-duration:.6s;transition-timing-function:cubic-bezier(0.68,-.55,.265,1.55);background-color:#fff;border-top-left-radius:20px;border-top-right-radius:20px;margin-top:10px}
+		.hori-selector .left,.hori-selector .right{position:absolute;width:25px;height:25px;background-color:#fff;bottom:10px}
+		.hori-selector .right{right:-25px}
+		.hori-selector .left{left:-25px}
+		.hori-selector .left:before,.hori-selector .right:before{content:'';position:absolute;width:50px;height:50px;border-radius:40%;background-color:#5161ce}
+		.hori-selector .right:before{bottom:0;right:-25px}
+		.hori-selector .left:before{bottom:0;left:-25px}
+		.navbar-nav {
+			display: flex;
+			flex-direction: inherit;
+			justify-content: center;
+		}	
+
+	</style>
+	</head>
+	
+	
+	
+	<body>
+		<div class="container">
+			<div class="wrap">
+				<div class="row">
+					
+					<div class="col-12 col-sm-12 col-md-12 col-lg-1 col-xl-1">
+						<!-- Menu PC -->
+						<div id="accordian">
+							<ul class="show-dropdown main-navbar">							
+								<div class="selector-active"><div class="top"></div><div class="bottom"></div></div>
+								<li class="home"><a href="/"><i class="fa fa-tachometer"></i></a></li>
+								<li class="music"><a href="music"><i class="fa fa-music"></i></a></li>
+								<li class="doc-text"><a href="doc-text"><i class="fa fa-book"></i></a></li>
+								<li class="settings"><a href="settings"><i class="fa fa-cogs"></i></a></li>
+								<li class="home-assistant"><a href="home-assistant"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+							</ul>	
+						</div>
+						<!-- End Menu PC -->
+						<nav class="navbar navbar-expand-lg navbar-mainbg" id="nav-mobile">					
+							<div class="navbar-collapse" id="navbarSupportedContent">
+								<ul class="navbar-nav ml-auto">
+									<div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+									<li class="nav-item home"><a class="nav-link" href="/"><i class="fa fa-tachometer"></i></a></li>
+									<li class="nav-item music"><a class="nav-link" href="music"><i class="fa fa-music"></i></a></li>
+									<li class="nav-item doc-text"><a class="nav-link" href="doc-text"><i class="fa fa-book"></i></a></li>
+									<li class="nav-item settings"><a class="nav-link" href="settings"><i class="fa fa-cogs"></i></a></li>	
+									<li class="nav-item home-assistant"><a class="nav-link" href="home-assistant"><i class="fa fa-home" aria-hidden="true"></i></a></li>									
+								</ul>
+							 </div>
+						</nav>
+					</div>
+					
+					<div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-11">
+						<div class="row top-menu">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+								<img src="{{ url_for('static', filename='img/logo.png') }}" style="width:45px;"/>
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 user-control">
+								<div class="btn-group">
+									<button class="btn btn-large user-menu"><img src="{{ url_for('static', filename='img/avatar.jpg') }}"/>{{boss}}</button>
+									<button class="btn btn-large dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+										<ul class="dropdown-menu">
+											<li><a href="#">Thông tin tải khoản</a></li>
+											<li><a href="#">Đăng xuất</a></li>							
+										</ul>
+								  </div>
+							</div>
+						</div>
+						<div class="row">
+					
+							{% block content %}{% endblock %}	
+							<div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+						
+								<div class="sidebar">
+									<h2 class="title-box">ViPi Assistant</h2>
+									<div class="row">
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-violet">
+										<div class="input-toogle button-toggle">
+											<input id="toogle-input" type="checkbox" class='btn1' {{check_b1}}>
+											<label for="toogle-input"class='b1_status'>{{b1}}</label>
+										</div> 
+										<small>Home Assistant</small>
+									</div>	
+								</div>	<!-- End Device -->
+								
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-yellow">									
+										<div class="input-toogle1 button-toggle">
+											<input id="toogle-input1" type="checkbox" class='btn2' {{check_b2}} >
+											<label for="toogle-input1" class="b2_status">{{b2}}</label>
+										</div> 
+										<small>GTTS | ZTTS</small>
+									</div>	
+								</div>	
+								<!-- End Device -->
+								
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-yellow">									
+										<div class="input-toogle3 button-toggle">
+											<input id="toogle-input3" type="checkbox" class='btn3' {{check_b3}} >
+											<label for="toogle-input3" class="b3_status">{{b3}}</label>
+										</div> 
+										<small>Ok Google</small>
+									</div>	
+								</div>	
+								<!-- End Device -->
+								
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-blue">
+										<div class="input-toogle4 button-toggle">
+											<input id="toogle-input4" type="checkbox" class='btn4' {{check_b4}} >
+											<label for="toogle-input4" class="b4_status">{{b4}}</label>
+										</div> 
+										<small>Picovoice</small>
+									</div>	
+								</div>	
+								<!-- End Device -->
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-blue">
+										<div class="input-toogle5 button-toggle">
+											<input id="toogle-input5" type="checkbox" class='btn5' {{check_b5}} >
+											<label for="toogle-input5" class="b5_status">{{b5}}</label>
+										</div> 
+										<small>new_start | new_main</small>
+									</div>	
+								</div>	
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-blue">
+										<div class="input-toogle6 button-toggle">
+											<input id="toogle-input6" type="checkbox" class='btn6' {{check_b6}} >
+											<label for="toogle-input6" class="b6_status">{{b6}}</label>
+										</div> 
+										<small>Đọc IP</small>
+									</div>	
+								</div>	
+								<!-- End Device -->								<!-- End Device -->								
+							</div>  
+							
+									<h2 class="title-box">Thông tin hệ thống</h2>
+									Hệ điều hành: {{sys}};
+									Tên thiết bị: {{node}};
+									Thời gian hoạt động: {{boottime}};
+									Tốc độ CPU: {{currentfrequency}} Mhz
+									
+									
+
+							
+								</div> <!-- End Sidebar -->
+						
+						
+							</div><!-- End Col Sidebar -->
+						</div>
+						
+						<div class="footer-info">
+							<p>ViPi Dashboard 1.0 - Bản quyền thuộc về ViPi Team.</p>
+						</div>
+					</div>
+
+				</div> <!-- # End Row -->
+			
+			 <!-- Trigger/Open The Modal -->
+			<button id="myBtn"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+
+		</div>	<!-- #End Container -->
+		<script src="{{ url_for('static', filename='dashboard-nav.js') }}"></script>
+		<script src="{{ url_for('static', filename='button.js') }}"></script>
+		<script src="{{ url_for('static', filename='chatbot/bind.js') }}"></script>
+		<script src="{{ url_for('static', filename='dashboard-weather.js') }}"></script>
+		<script src="{{ url_for('static', filename='repeater-field.js') }}"></script>
+		<script src='https://code.highcharts.com/stock/highstock.js'></script>
+		<script src='https://code.highcharts.com/stock/modules/exporting.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js'></script>	
+		<script src="{{ url_for('static', filename='dashboard-time.js') }}"></script>
+	</body>
+</html>
+
