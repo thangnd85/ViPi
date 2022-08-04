@@ -42,26 +42,26 @@
             0,
             0
         ],
-        "control": "Disabled",
-        "gpio_center": 0,
+        "control": "Enabled",
+        "gpio_center": 22,
         "gpio_down": 0,
-        "gpio_left": 0,
-        "gpio_right": 0,
+        "gpio_left": 13,
+        "gpio_right": 5,
         "gpio_up": 0,
-        "ir": 0,
+        "ir": 24,
         "picontrol": [
             0
         ],
-        "pushbutton_trigger": 22,
+        "pushbutton_trigger": 17,
         "servo": 0,
-        "stopbutton_music_AIY_pushbutton": 23
+        "stopbutton_music_AIY_pushbutton": 0
     },
     "Home_Assistant": {
         "control": "Disabled",
         "external_url": "https://thang.hass",
         "internal_url": "http://192.168.1.246:8123",
         "ratio": 75,
-        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOIUzI1NiJ9.eyJpc3MiOiIxZGNlN2U4ODVlYTA0MDgxYTQyNWY3NDAxN2I4NTcxMSIsImlhdCI6MTY1NzEyNTc1NywiZXhwIjoxOTcyNDg1NzU3fQ.bW67QE3alVeSM8y6gPozQ4Is6EBsTuJyBPzzY_PqZfA"
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIU1NiJ9.eyJpc3MiOiIxZGNlN2U4ODVlYTA0MDgxYTQyNWY3NDAxN2I4NTcxMSIsImlhdCI6MTY1NzEyNTc1NywiZXhwIjoxOTcyNDg1NzU3fQ.bW67QE3alVeSM8y6gPozQ4Is6EBsTuJyBPzzY_PqZfA"
     },
     "IR": {
         "Codes": [
